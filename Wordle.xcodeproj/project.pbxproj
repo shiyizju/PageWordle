@@ -1,0 +1,317 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F75E3DB0171DAC020058079D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DAF171DAC020058079D /* UIKit.framework */; };
+		F75E3DB2171DAC020058079D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DB1171DAC020058079D /* Foundation.framework */; };
+		F75E3DB4171DAC020058079D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DB3171DAC020058079D /* CoreGraphics.framework */; };
+		F75E3DBA171DAC020058079D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DB8171DAC020058079D /* InfoPlist.strings */; };
+		F75E3DBC171DAC020058079D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F75E3DBB171DAC020058079D /* main.m */; };
+		F75E3DC0171DAC020058079D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F75E3DBF171DAC020058079D /* AppDelegate.m */; };
+		F75E3DC2171DAC020058079D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC1171DAC020058079D /* Default.png */; };
+		F75E3DC4171DAC020058079D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC3171DAC020058079D /* Default@2x.png */; };
+		F75E3DC6171DAC020058079D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC5171DAC020058079D /* Default-568h@2x.png */; };
+		F75E3DC9171DAC020058079D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F75E3DC8171DAC020058079D /* ViewController.m */; };
+		F75E3DCC171DAC020058079D /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DCA171DAC020058079D /* ViewController_iPhone.xib */; };
+		F75E3DCF171DAC020058079D /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DCD171DAC020058079D /* ViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F75E3DAC171DAC020058079D /* Wordle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F75E3DAF171DAC020058079D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F75E3DB1171DAC020058079D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F75E3DB3171DAC020058079D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F75E3DB7171DAC020058079D /* Wordle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wordle-Info.plist"; sourceTree = "<group>"; };
+		F75E3DB9171DAC020058079D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F75E3DBB171DAC020058079D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F75E3DBD171DAC020058079D /* Wordle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wordle-Prefix.pch"; sourceTree = "<group>"; };
+		F75E3DBE171DAC020058079D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F75E3DBF171DAC020058079D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F75E3DC1171DAC020058079D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F75E3DC3171DAC020058079D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F75E3DC5171DAC020058079D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F75E3DC7171DAC020058079D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F75E3DC8171DAC020058079D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F75E3DCB171DAC020058079D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		F75E3DCE171DAC020058079D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F75E3DA9171DAC020058079D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F75E3DB0171DAC020058079D /* UIKit.framework in Frameworks */,
+				F75E3DB2171DAC020058079D /* Foundation.framework in Frameworks */,
+				F75E3DB4171DAC020058079D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F75E3DA3171DAC020058079D = {
+			isa = PBXGroup;
+			children = (
+				F75E3DB5171DAC020058079D /* Wordle */,
+				F75E3DAE171DAC020058079D /* Frameworks */,
+				F75E3DAD171DAC020058079D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F75E3DAD171DAC020058079D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F75E3DAC171DAC020058079D /* Wordle.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F75E3DAE171DAC020058079D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F75E3DAF171DAC020058079D /* UIKit.framework */,
+				F75E3DB1171DAC020058079D /* Foundation.framework */,
+				F75E3DB3171DAC020058079D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F75E3DB5171DAC020058079D /* Wordle */ = {
+			isa = PBXGroup;
+			children = (
+				F75E3DBE171DAC020058079D /* AppDelegate.h */,
+				F75E3DBF171DAC020058079D /* AppDelegate.m */,
+				F75E3DC7171DAC020058079D /* ViewController.h */,
+				F75E3DC8171DAC020058079D /* ViewController.m */,
+				F75E3DCA171DAC020058079D /* ViewController_iPhone.xib */,
+				F75E3DCD171DAC020058079D /* ViewController_iPad.xib */,
+				F75E3DB6171DAC020058079D /* Supporting Files */,
+			);
+			path = Wordle;
+			sourceTree = "<group>";
+		};
+		F75E3DB6171DAC020058079D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F75E3DB7171DAC020058079D /* Wordle-Info.plist */,
+				F75E3DB8171DAC020058079D /* InfoPlist.strings */,
+				F75E3DBB171DAC020058079D /* main.m */,
+				F75E3DBD171DAC020058079D /* Wordle-Prefix.pch */,
+				F75E3DC1171DAC020058079D /* Default.png */,
+				F75E3DC3171DAC020058079D /* Default@2x.png */,
+				F75E3DC5171DAC020058079D /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F75E3DAB171DAC020058079D /* Wordle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F75E3DD2171DAC020058079D /* Build configuration list for PBXNativeTarget "Wordle" */;
+			buildPhases = (
+				F75E3DA8171DAC020058079D /* Sources */,
+				F75E3DA9171DAC020058079D /* Frameworks */,
+				F75E3DAA171DAC020058079D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Wordle;
+			productName = Wordle;
+			productReference = F75E3DAC171DAC020058079D /* Wordle.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F75E3DA4171DAC020058079D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Quan Xiaosha";
+			};
+			buildConfigurationList = F75E3DA7171DAC020058079D /* Build configuration list for PBXProject "Wordle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F75E3DA3171DAC020058079D;
+			productRefGroup = F75E3DAD171DAC020058079D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F75E3DAB171DAC020058079D /* Wordle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F75E3DAA171DAC020058079D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F75E3DBA171DAC020058079D /* InfoPlist.strings in Resources */,
+				F75E3DC2171DAC020058079D /* Default.png in Resources */,
+				F75E3DC4171DAC020058079D /* Default@2x.png in Resources */,
+				F75E3DC6171DAC020058079D /* Default-568h@2x.png in Resources */,
+				F75E3DCC171DAC020058079D /* ViewController_iPhone.xib in Resources */,
+				F75E3DCF171DAC020058079D /* ViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F75E3DA8171DAC020058079D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F75E3DBC171DAC020058079D /* main.m in Sources */,
+				F75E3DC0171DAC020058079D /* AppDelegate.m in Sources */,
+				F75E3DC9171DAC020058079D /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F75E3DB8171DAC020058079D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F75E3DB9171DAC020058079D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F75E3DCA171DAC020058079D /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F75E3DCB171DAC020058079D /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		F75E3DCD171DAC020058079D /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F75E3DCE171DAC020058079D /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F75E3DD0171DAC020058079D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F75E3DD1171DAC020058079D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F75E3DD3171DAC020058079D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Wordle/Wordle-Prefix.pch";
+				INFOPLIST_FILE = "Wordle/Wordle-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F75E3DD4171DAC020058079D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Wordle/Wordle-Prefix.pch";
+				INFOPLIST_FILE = "Wordle/Wordle-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F75E3DA7171DAC020058079D /* Build configuration list for PBXProject "Wordle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F75E3DD0171DAC020058079D /* Debug */,
+				F75E3DD1171DAC020058079D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F75E3DD2171DAC020058079D /* Build configuration list for PBXNativeTarget "Wordle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F75E3DD3171DAC020058079D /* Debug */,
+				F75E3DD4171DAC020058079D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F75E3DA4171DAC020058079D /* Project object */;
+}
