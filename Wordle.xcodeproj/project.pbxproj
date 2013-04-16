@@ -17,8 +17,7 @@
 		F75E3DC4171DAC020058079D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC3171DAC020058079D /* Default@2x.png */; };
 		F75E3DC6171DAC020058079D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC5171DAC020058079D /* Default-568h@2x.png */; };
 		F75E3DC9171DAC020058079D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F75E3DC8171DAC020058079D /* ViewController.m */; };
-		F75E3DCC171DAC020058079D /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DCA171DAC020058079D /* ViewController_iPhone.xib */; };
-		F75E3DCF171DAC020058079D /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DCD171DAC020058079D /* ViewController_iPad.xib */; };
+		F75E3DD7171DAD8C0058079D /* StringRenderingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F75E3DD6171DAD8C0058079D /* StringRenderingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +36,8 @@
 		F75E3DC5171DAC020058079D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F75E3DC7171DAC020058079D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		F75E3DC8171DAC020058079D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		F75E3DCB171DAC020058079D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		F75E3DCE171DAC020058079D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		F75E3DD5171DAD8C0058079D /* StringRenderingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringRenderingView.h; sourceTree = "<group>"; };
+		F75E3DD6171DAD8C0058079D /* StringRenderingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringRenderingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +88,8 @@
 				F75E3DBF171DAC020058079D /* AppDelegate.m */,
 				F75E3DC7171DAC020058079D /* ViewController.h */,
 				F75E3DC8171DAC020058079D /* ViewController.m */,
-				F75E3DCA171DAC020058079D /* ViewController_iPhone.xib */,
-				F75E3DCD171DAC020058079D /* ViewController_iPad.xib */,
+				F75E3DD5171DAD8C0058079D /* StringRenderingView.h */,
+				F75E3DD6171DAD8C0058079D /* StringRenderingView.m */,
 				F75E3DB6171DAC020058079D /* Supporting Files */,
 			);
 			path = Wordle;
@@ -165,8 +164,6 @@
 				F75E3DC2171DAC020058079D /* Default.png in Resources */,
 				F75E3DC4171DAC020058079D /* Default@2x.png in Resources */,
 				F75E3DC6171DAC020058079D /* Default-568h@2x.png in Resources */,
-				F75E3DCC171DAC020058079D /* ViewController_iPhone.xib in Resources */,
-				F75E3DCF171DAC020058079D /* ViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +177,7 @@
 				F75E3DBC171DAC020058079D /* main.m in Sources */,
 				F75E3DC0171DAC020058079D /* AppDelegate.m in Sources */,
 				F75E3DC9171DAC020058079D /* ViewController.m in Sources */,
+				F75E3DD7171DAD8C0058079D /* StringRenderingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,22 +190,6 @@
 				F75E3DB9171DAC020058079D /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		F75E3DCA171DAC020058079D /* ViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F75E3DCB171DAC020058079D /* en */,
-			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		F75E3DCD171DAC020058079D /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F75E3DCE171DAC020058079D /* en */,
-			);
-			name = ViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

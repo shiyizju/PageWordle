@@ -8,16 +8,22 @@
 
 #import "ViewController.h"
 
+#import "StringRenderingView.h"
+
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad
+- (void) loadView
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.view = [[[StringRenderingView alloc] initWithFrame:
+                  CGRectMake(0,
+                             0,
+                             [UIScreen mainScreen].bounds.size.width,
+                             [UIScreen mainScreen].bounds.size.height)] autorelease];
+    
 }
 
 - (void)didReceiveMemoryWarning
