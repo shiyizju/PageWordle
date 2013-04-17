@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class ViewController;
+@class RenderingController;
+@class InputTextController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) ViewController *viewController;
+@property (strong, nonatomic) RenderingController* renderingController;
+@property (strong, nonatomic) InputTextController* inputTextController;
 
 @end

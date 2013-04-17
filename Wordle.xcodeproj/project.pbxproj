@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F7152910171E436C008057C8 /* InputTextController.m in Sources */ = {isa = PBXBuildFile; fileRef = F715290E171E436C008057C8 /* InputTextController.m */; };
+		F7152955171E6B87008057C8 /* InputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7152954171E6B86008057C8 /* InputTextView.m */; };
 		F75E3DB0171DAC020058079D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DAF171DAC020058079D /* UIKit.framework */; };
 		F75E3DB2171DAC020058079D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DB1171DAC020058079D /* Foundation.framework */; };
 		F75E3DB4171DAC020058079D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DB3171DAC020058079D /* CoreGraphics.framework */; };
@@ -16,11 +18,15 @@
 		F75E3DC2171DAC020058079D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC1171DAC020058079D /* Default.png */; };
 		F75E3DC4171DAC020058079D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC3171DAC020058079D /* Default@2x.png */; };
 		F75E3DC6171DAC020058079D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC5171DAC020058079D /* Default-568h@2x.png */; };
-		F75E3DC9171DAC020058079D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F75E3DC8171DAC020058079D /* ViewController.m */; };
+		F75E3DC9171DAC020058079D /* RenderingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F75E3DC8171DAC020058079D /* RenderingController.m */; };
 		F75E3DD7171DAD8C0058079D /* StringRenderingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F75E3DD6171DAD8C0058079D /* StringRenderingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F715290D171E436C008057C8 /* InputTextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextController.h; sourceTree = "<group>"; };
+		F715290E171E436C008057C8 /* InputTextController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTextController.m; sourceTree = "<group>"; };
+		F7152953171E6B86008057C8 /* InputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextView.h; sourceTree = "<group>"; };
+		F7152954171E6B86008057C8 /* InputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTextView.m; sourceTree = "<group>"; };
 		F75E3DAC171DAC020058079D /* Wordle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F75E3DAF171DAC020058079D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F75E3DB1171DAC020058079D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -34,8 +40,8 @@
 		F75E3DC1171DAC020058079D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F75E3DC3171DAC020058079D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F75E3DC5171DAC020058079D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		F75E3DC7171DAC020058079D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F75E3DC8171DAC020058079D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F75E3DC7171DAC020058079D /* RenderingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderingController.h; sourceTree = "<group>"; };
+		F75E3DC8171DAC020058079D /* RenderingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RenderingController.m; sourceTree = "<group>"; };
 		F75E3DD5171DAD8C0058079D /* StringRenderingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringRenderingView.h; sourceTree = "<group>"; };
 		F75E3DD6171DAD8C0058079D /* StringRenderingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringRenderingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,11 +92,15 @@
 			children = (
 				F75E3DBE171DAC020058079D /* AppDelegate.h */,
 				F75E3DBF171DAC020058079D /* AppDelegate.m */,
-				F75E3DC7171DAC020058079D /* ViewController.h */,
-				F75E3DC8171DAC020058079D /* ViewController.m */,
+				F75E3DC7171DAC020058079D /* RenderingController.h */,
+				F75E3DC8171DAC020058079D /* RenderingController.m */,
 				F75E3DD5171DAD8C0058079D /* StringRenderingView.h */,
 				F75E3DD6171DAD8C0058079D /* StringRenderingView.m */,
 				F75E3DB6171DAC020058079D /* Supporting Files */,
+				F715290D171E436C008057C8 /* InputTextController.h */,
+				F715290E171E436C008057C8 /* InputTextController.m */,
+				F7152953171E6B86008057C8 /* InputTextView.h */,
+				F7152954171E6B86008057C8 /* InputTextView.m */,
 			);
 			path = Wordle;
 			sourceTree = "<group>";
@@ -176,8 +186,10 @@
 			files = (
 				F75E3DBC171DAC020058079D /* main.m in Sources */,
 				F75E3DC0171DAC020058079D /* AppDelegate.m in Sources */,
-				F75E3DC9171DAC020058079D /* ViewController.m in Sources */,
+				F75E3DC9171DAC020058079D /* RenderingController.m in Sources */,
 				F75E3DD7171DAD8C0058079D /* StringRenderingView.m in Sources */,
+				F7152910171E436C008057C8 /* InputTextController.m in Sources */,
+				F7152955171E6B87008057C8 /* InputTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +304,7 @@
 				F75E3DD4171DAC020058079D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

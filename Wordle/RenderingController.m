@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Quan Xiaosha. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "RenderingController.h"
 
 #import "StringRenderingView.h"
 
-@interface ViewController ()
+@interface RenderingController ()
 
 @end
 
-@implementation ViewController
+@implementation RenderingController
 
 - (void) loadView
 {

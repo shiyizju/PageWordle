@@ -8,14 +8,27 @@
 
 #import "AppDelegate.h"
 
-#import "ViewController.h"
+#import "RenderingController.h"
+#import "InputTextController.h"
+
+@interface AppDelegate () <InputTextControllerDelegate>
+{
+    RenderingController *renderingController;
+    InputTextController *inputTextController;
+}
+
+@end
+
 
 @implementation AppDelegate
+
+@synthesize renderingController, inputTextController;
 
 - (void)dealloc
 {
     [_window release];
-    [_viewController release];
+    [inputTextController release];
+    
     [super dealloc];
 }
 
@@ -23,15 +36,13 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil] autorelease];
-    } else {
-        self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil] autorelease];
-    }
     
-    self.viewController = [[ViewController alloc] init];
+//  if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     
-    self.window.rootViewController = self.viewController;
+    inputTextController = [[InputTextController alloc] init];
+    [inputTextController setDelegate:self];
+    
+    [self.window addSubview:inputTextController.view];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -61,6 +72,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - InputTextControllerDelegate
+
+- (void) inputTextController:(InputTextController *)inputTextController endInputWithString:(NSString *)inputString
+{
+    
 }
 
 @end
