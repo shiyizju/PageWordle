@@ -10,6 +10,7 @@
 
 #import "RenderingController.h"
 #import "InputTextController.h"
+#import "StringProcessor.h"
 
 @interface AppDelegate () <InputTextControllerDelegate>
 {

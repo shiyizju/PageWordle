@@ -20,6 +20,7 @@
 		F75E3DC6171DAC020058079D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC5171DAC020058079D /* Default-568h@2x.png */; };
 		F75E3DC9171DAC020058079D /* RenderingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F75E3DC8171DAC020058079D /* RenderingController.m */; };
 		F75E3DD7171DAD8C0058079D /* StringRenderingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F75E3DD6171DAD8C0058079D /* StringRenderingView.m */; };
+		F76AFE95171F7E7A002EB809 /* StringProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F76AFE93171F7E7A002EB809 /* StringProcessor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		F75E3DC8171DAC020058079D /* RenderingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RenderingController.m; sourceTree = "<group>"; };
 		F75E3DD5171DAD8C0058079D /* StringRenderingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringRenderingView.h; sourceTree = "<group>"; };
 		F75E3DD6171DAD8C0058079D /* StringRenderingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringRenderingView.m; sourceTree = "<group>"; };
+		F76AFE93171F7E7A002EB809 /* StringProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringProcessor.cpp; sourceTree = "<group>"; };
+		F76AFE94171F7E7A002EB809 /* StringProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringProcessor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,8 @@
 				F715290E171E436C008057C8 /* InputTextController.m */,
 				F7152953171E6B86008057C8 /* InputTextView.h */,
 				F7152954171E6B86008057C8 /* InputTextView.m */,
+				F76AFE94171F7E7A002EB809 /* StringProcessor.h */,
+				F76AFE93171F7E7A002EB809 /* StringProcessor.cpp */,
 			);
 			path = Wordle;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				F75E3DD7171DAD8C0058079D /* StringRenderingView.m in Sources */,
 				F7152910171E436C008057C8 /* InputTextController.m in Sources */,
 				F7152955171E6B87008057C8 /* InputTextView.m in Sources */,
+				F76AFE95171F7E7A002EB809 /* StringProcessor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
