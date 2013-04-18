@@ -10,7 +10,7 @@
 
 #import "RenderingController.h"
 #import "InputTextController.h"
-#import "StringProcessor.h"
+#import "TextProcessor.h"
 
 @interface AppDelegate () <InputTextControllerDelegate>
 {
@@ -79,7 +79,8 @@
 
 - (void) inputTextController:(InputTextController *)inputTextController endInputWithString:(NSString *)inputString
 {
-    
+    TextProcessor textProcessor([inputString UTF8String]);
+    textProcessor.process();
 }
 
 @end
