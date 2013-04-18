@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Quan Xiaosha. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface StringRenderingView : UIView
+@interface WordsRenderingView : UIView
 
 @end

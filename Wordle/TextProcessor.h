@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <string>
+#include <map>
 
 class TextProcessor
 {
@@ -19,6 +20,8 @@ class TextProcessor
     int pos;
     
     char token[256];
+    
+    std::map<std::string, int> wordmap;
     
 public:
     TextProcessor(const char* ipText)
@@ -32,21 +35,20 @@ public:
     
     ~TextProcessor()
     {
-        delete text;
+        delete []text;
     }
     
-    void process()
+    void process();
+    
+    std::map<std::string, int>& getWordMap()
     {
-        while (getNextToken())
-        {
-            ;
-        }
+        return wordmap;
     }
     
 private:
     bool getNextToken()
     {
-        memset(token, 0, sizeof(int)*256);
+        memset(token, 0, sizeof(char)*256);
         
         int len = 0;
         for (;;pos++)
@@ -55,7 +57,7 @@ private:
                 break;
             
             if (isCharacter(text[pos]))
-                token[len++] = text[pos];
+                token[len++] = tolower(text[pos]);
             else if (len!=0)    // have started finding token
             {
                 break;

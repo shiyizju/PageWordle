@@ -10,7 +10,6 @@
 
 #import "RenderingController.h"
 #import "InputTextController.h"
-#import "TextProcessor.h"
 
 @interface AppDelegate () <InputTextControllerDelegate>
 {
@@ -28,7 +27,9 @@
 - (void)dealloc
 {
     [_window release];
-    [inputTextController release];
+    
+    [self setRenderingController:nil];
+    [self setInputTextController:nil];
     
     [super dealloc];
 }
@@ -40,7 +41,7 @@
     
 //  if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     
-    inputTextController = [[InputTextController alloc] init];
+    self.inputTextController = [[[InputTextController alloc] init] autorelease];
     [inputTextController setDelegate:self];
     
     [self.window addSubview:inputTextController.view];
@@ -79,8 +80,9 @@
 
 - (void) inputTextController:(InputTextController *)inputTextController endInputWithString:(NSString *)inputString
 {
-    TextProcessor textProcessor([inputString UTF8String]);
-    textProcessor.process();
+    self.renderingController = [[[RenderingController alloc] init] autorelease];
+    
+    [renderingController renderingWithInputText:inputString];
 }
 
 @end

@@ -7,3 +7,17 @@
 //
 
 #include "TextProcessor.h"
+
+void TextProcessor::process()
+{
+    wordmap.clear();
+    while (getNextToken())
+    {
+        std::string str = token;
+        std::map<std::string, int>::iterator iter = wordmap.find(str);
+        if (iter == wordmap.end())
+            wordmap.insert(std::pair<std::string, int>(str, 1));
+        else
+            iter->second++;
+    }
+}

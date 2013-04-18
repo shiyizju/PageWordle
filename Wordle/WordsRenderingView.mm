@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Quan Xiaosha. All rights reserved.
 //
 
-#import "StringRenderingView.h"
+#import "WordsRenderingView.h"
 
-@interface StringRenderingView ()
+@interface WordsRenderingView ()
 {
     NSArray* strings;
     NSArray* fonts;
@@ -18,7 +18,7 @@
 @end
 
 
-@implementation StringRenderingView
+@implementation WordsRenderingView
 
 - (id)initWithFrame:(CGRect)frame
 {
