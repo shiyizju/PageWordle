@@ -75,7 +75,6 @@ class BitmapNode
     friend class Bitmap;
     
 public:
-    
     BitmapNode(MIRect rect)
     {
         this->rect = rect;
@@ -88,15 +87,35 @@ public:
     
     void createSubNode()
     {
+        if (dataFlag == kDataFlagMixed)
+        {
+            assert(false);
+            return;
+        }
+        
         MIRect subRect1, subRect2;
         
         if (rect.width > rect.height)
         {
-            subRect1 = 
+            subRect1 = { rect.x, rect.y, rect.width/2, rect.height };
+            subRect2 = { rect.x + subRect1.width, rect.y, rect.width - subRect1.width, rect.height };
         }
+        else
+        {
+            subRect1 = { rect.x, rect.y, rect.width, rect.height/2 };
+            subRect2 = { rect.x, rect.y + subRect1.height, rect.width, rect.height - subRect1.height };
+        }
+        
+        subNode1 = new BitmapNode(subRect1);
+        subNode1->dataFlag = dataFlag;
+        
+        subNode2 = new BitmapNode(subRect2);
+        subNode2->dataFlag = dataFlag;
+        
+        dataFlag = kDataFlagMixed;
     }
-    
-    BitmapNode()
+
+    ~BitmapNode()
     {
         delete subNode1;
         delete subNode2;
@@ -134,11 +153,6 @@ public:
     }
     
 private:
-
-    void createSubnode(BitmapNode node)
-    {
-        
-    }
     
     void _initWithPixelData(BitmapNode* node, const char* pixelData, int widthStep)
     {
@@ -195,6 +209,9 @@ private:
         }
         else
         {
+            if (node->subNode1 == NULL || node->subNode2 == NULL)
+                node->createSubNode();
+            
             MIRect subRect1 = rect.overlapRect(node->subNode1->rect);
             MIRect subRect2 = rect.overlapRect(node->subNode2->rect);
             
