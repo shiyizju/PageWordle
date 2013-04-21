@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F7152910171E436C008057C8 /* InputTextController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F715290E171E436C008057C8 /* InputTextController.mm */; };
 		F7152955171E6B87008057C8 /* InputTextView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7152954171E6B86008057C8 /* InputTextView.mm */; };
+		F7409E14172245B100490FEA /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7409E12172245B100490FEA /* Bitmap.cpp */; };
 		F75E3DB0171DAC020058079D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DAF171DAC020058079D /* UIKit.framework */; };
 		F75E3DB2171DAC020058079D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DB1171DAC020058079D /* Foundation.framework */; };
 		F75E3DB4171DAC020058079D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DB3171DAC020058079D /* CoreGraphics.framework */; };
@@ -30,6 +31,8 @@
 		F715290E171E436C008057C8 /* InputTextController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InputTextController.mm; sourceTree = "<group>"; };
 		F7152953171E6B86008057C8 /* InputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextView.h; sourceTree = "<group>"; };
 		F7152954171E6B86008057C8 /* InputTextView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InputTextView.mm; sourceTree = "<group>"; };
+		F7409E12172245B100490FEA /* Bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
+		F7409E13172245B100490FEA /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		F75E3DAC171DAC020058079D /* Wordle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F75E3DAF171DAC020058079D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F75E3DB1171DAC020058079D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -114,6 +117,8 @@
 				F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */,
 				F7C7A6D41720E5AE00F14C22 /* SpaceController.h */,
 				F7C7A6D31720E5AE00F14C22 /* SpaceController.cpp */,
+				F7409E13172245B100490FEA /* Bitmap.h */,
+				F7409E12172245B100490FEA /* Bitmap.cpp */,
 				F75E3DB6171DAC020058079D /* Supporting Files */,
 			);
 			path = Wordle;
@@ -206,6 +211,7 @@
 				F7152955171E6B87008057C8 /* InputTextView.mm in Sources */,
 				F7C7A6CD171FDD5B00F14C22 /* TextProcessor.cpp in Sources */,
 				F7C7A6D51720E5B000F14C22 /* SpaceController.cpp in Sources */,
+				F7409E14172245B100490FEA /* Bitmap.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
