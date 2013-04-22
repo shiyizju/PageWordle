@@ -10,15 +10,21 @@
 
 @interface WordsRenderingView ()
 {
-    NSArray* strings;
-    NSArray* fonts;
-    NSArray* colors;
+    NSMutableArray *words;
+    NSMutableArray *fonts;
+    NSMutableArray *rects;
 }
+
+- (void) doubleTapped:(id) sender;
 
 @end
 
 
 @implementation WordsRenderingView
+
+@synthesize words;
+@synthesize fonts;
+@synthesize rects;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -26,18 +32,36 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
+        
+        UITapGestureRecognizer *tapGuesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                      action:@selector(doubleTapped:)];
+        [self addGestureRecognizer:tapGuesture];
+        [tapGuesture release];
     }
     return self;
 }
 
+- (void) dealloc
+{
+    self.words = nil;
+    self.fonts = nil;
+    self.rects = nil;
+    
+    [super dealloc];
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-    NSString* str = @"Hello World";
-    [str drawAtPoint:self.center withFont:[UIFont systemFontOfSize:20]];
+    for (int i=0;i<[words count];i++)
+        [[words objectAtIndex:i] drawInRect:[(NSValue*)[rects objectAtIndex:i] CGRectValue] withFont:[fonts objectAtIndex:i]];
+}
+
+- (void) doubleTapped:(id)sender
+{
+    [self removeFromSuperview];
 }
 
 @end

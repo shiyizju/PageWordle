@@ -92,6 +92,8 @@
     self.renderingController = [[[RenderingController alloc] init] autorelease];
     
     [renderingController renderingWithInputText:inputString];
+    
+    [self.window addSubview:renderingController.view];
 }
 
 @end

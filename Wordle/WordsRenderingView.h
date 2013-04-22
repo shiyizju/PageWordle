@@ -10,4 +10,8 @@
 
 @interface WordsRenderingView : UIView
 
+@property (nonatomic, retain) NSArray* words;
+@property (nonatomic, retain) NSArray* fonts;
+@property (nonatomic, retain) NSArray* rects;
+
 @end
