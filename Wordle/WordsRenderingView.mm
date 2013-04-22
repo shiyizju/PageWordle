@@ -35,6 +35,7 @@
         
         UITapGestureRecognizer *tapGuesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                       action:@selector(doubleTapped:)];
+        [tapGuesture setNumberOfTapsRequired:2];
         [self addGestureRecognizer:tapGuesture];
         [tapGuesture release];
     }

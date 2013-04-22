@@ -16,7 +16,6 @@
 
 @interface RenderingController ()
 
-- (CGPoint) getRandomPosition;
 
 @end
 
@@ -62,10 +61,12 @@
         NSString* word = [NSString stringWithUTF8String: iter->first.c_str()];
         UIFont*   font = [UIFont systemFontOfSize: iter->second * 10];
         
-        CGSize size = [word sizeWithFont:font];
-        CGPoint origin = [self getRandomPosition];
+        CGSize wordSize = [word sizeWithFont:font];
         
-        CGRect rect = CGRectMake(origin.x, origin.y, size.width, size.height);
+        float x = rand() % (int)(self.view.bounds.size.width  - wordSize.width);
+        float y = rand() % (int)(self.view.bounds.size.height - wordSize.height);
+
+        CGRect rect = CGRectMake(x, y, wordSize.width, wordSize.height);
         
         [words addObject:word];
         [fonts addObject:font];
@@ -76,14 +77,5 @@
     [(WordsRenderingView*)self.view setFonts:fonts];
     [(WordsRenderingView*)self.view setRects:rects];
 }
-
-- (CGPoint) getRandomPosition
-{
-    int x = rand() % (int)self.view.bounds.size.width;
-    int y = rand() % (int)self.view.bounds.size.height;
-    
-    return CGPointMake(x, y);
-}
-
 
 @end
