@@ -23,7 +23,6 @@
 		F75E3DD7171DAD8C0058079D /* WordsRenderingView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F75E3DD6171DAD8C0058079D /* WordsRenderingView.mm */; };
 		F7C7A6CD171FDD5B00F14C22 /* TextProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */; };
 		F7C7A6CF171FE0B000F14C22 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C7A6CE171FE0B000F14C22 /* libc++.dylib */; };
-		F7C7A6D51720E5B000F14C22 /* SpaceController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C7A6D31720E5AE00F14C22 /* SpaceController.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,8 +52,6 @@
 		F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextProcessor.cpp; sourceTree = "<group>"; };
 		F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = TextProcessor.h; sourceTree = "<group>"; };
 		F7C7A6CE171FE0B000F14C22 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		F7C7A6D31720E5AE00F14C22 /* SpaceController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpaceController.cpp; sourceTree = "<group>"; };
-		F7C7A6D41720E5AE00F14C22 /* SpaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +112,6 @@
 				F7152954171E6B86008057C8 /* InputTextView.mm */,
 				F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */,
 				F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */,
-				F7C7A6D41720E5AE00F14C22 /* SpaceController.h */,
-				F7C7A6D31720E5AE00F14C22 /* SpaceController.cpp */,
 				F7409E13172245B100490FEA /* Bitmap.h */,
 				F7409E12172245B100490FEA /* Bitmap.cpp */,
 				F75E3DB6171DAC020058079D /* Supporting Files */,
@@ -210,7 +205,6 @@
 				F7152910171E436C008057C8 /* InputTextController.mm in Sources */,
 				F7152955171E6B87008057C8 /* InputTextView.mm in Sources */,
 				F7C7A6CD171FDD5B00F14C22 /* TextProcessor.cpp in Sources */,
-				F7C7A6D51720E5B000F14C22 /* SpaceController.cpp in Sources */,
 				F7409E14172245B100490FEA /* Bitmap.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -63,19 +63,19 @@ enum EnumDataFlag {
 //    kDataFlagUnknown
 };
 
-class BitmapNode
+class BSPBitmapNode
 {
     MIRect rect;
 
-    BitmapNode* subNode1;
-    BitmapNode* subNode2;
+    BSPBitmapNode* subNode1;
+    BSPBitmapNode* subNode2;
     
     EnumDataFlag dataFlag;
     
     friend class Bitmap;
     
 public:
-    BitmapNode(MIRect rect)
+    BSPBitmapNode(MIRect rect)
     {
         this->rect = rect;
         
@@ -106,16 +106,16 @@ public:
             subRect2 = { rect.x, rect.y + subRect1.height, rect.width, rect.height - subRect1.height };
         }
         
-        subNode1 = new BitmapNode(subRect1);
+        subNode1 = new BSPBitmapNode(subRect1);
         subNode1->dataFlag = dataFlag;
         
-        subNode2 = new BitmapNode(subRect2);
+        subNode2 = new BSPBitmapNode(subRect2);
         subNode2->dataFlag = dataFlag;
         
         dataFlag = kDataFlagMixed;
     }
 
-    ~BitmapNode()
+    ~BSPBitmapNode()
     {
         delete subNode1;
         delete subNode2;
@@ -124,22 +124,24 @@ public:
 
 class Bitmap
 {
-    BitmapNode* root;
+    BSPBitmapNode* root;
     
 public:
     Bitmap (int width, int height)
     {
-        root = new BitmapNode( { 0, 0, width, height } );
+        root = new BSPBitmapNode( { 0, 0, width, height } );
     }
     
     Bitmap (int width, int height, const char* pixelData)
     {
-        root = new BitmapNode( { 0, 0, width, height } );
+        root = new BSPBitmapNode( { 0, 0, width, height } );
+        
+        _initWithPixelData(root, pixelData, width);
     }
     
     EnumDataFlag dataFlagOfRect(MIRect rect)
     {
-        return kDataFlagEmperty;
+        return _dataFlagOfRect(rect, root);
     }
     
     void addBitmapInRect(MIRect rect, Bitmap* bitmap)
@@ -153,86 +155,56 @@ public:
     }
     
 private:
-    
-    void _initWithPixelData(BitmapNode* node, const char* pixelData, int widthStep)
+    void _initWithPixelData(BSPBitmapNode* node, const char* pixelData, int widthStep)
     {
         EnumDataFlag dataFlag = _dataFlagOfRectWithPixelData(node->rect, pixelData, widthStep);
         
         if (dataFlag == kDataFlagEmperty)
         {
+            node->dataFlag = kDataFlagEmperty;
+        }
+        else if (dataFlag == kDataFlagOccupied)
+        {
+            node->dataFlag = kDataFlagOccupied;
+        }
+        else
+        {
+            node->createSubNode();
             
+            _initWithPixelData(node->subNode1, pixelData, widthStep);
+            _initWithPixelData(node->subNode2, pixelData, widthStep);
         }
     }
     
     EnumDataFlag _dataFlagOfRectWithPixelData(MIRect rect, const char* pixelData, int widthStep)
     {
-        int isEmperty = (pixelData[0]==0);
+        bool findEmperty  = false;
+        bool findOccupied = false;
         
         for (int y=rect.y; y<rect.y+rect.height; y++)
         {
             const char* pdata = pixelData + y*widthStep;
             
             for (int x=rect.x; x<rect.x+rect.width; x++)
-            {                
-                if (isEmperty != (pdata[x]==0))
+            {
+                if (pdata[x] == 0)
+                    findEmperty = true;
+                else
+                    findOccupied = true;
+                
+                if (findEmperty && findOccupied)
                     return kDataFlagMixed;
             }
         }
         
-        if (isEmperty)
+        if (findEmperty)
             return kDataFlagEmperty;
         
         return kDataFlagOccupied;
     }
     
-    EnumDataFlag _dataFlagOfRect(MIRect rect, BitmapNode* node);
-    
-    void _addBitmapInRect(MIRect rect, BitmapNode* node, MIRect rectInBitmap, Bitmap* bitmap)
-    {
-        EnumDataFlag dataFlag = bitmap->dataFlagOfRect(rectInBitmap);
-        
-        if (dataFlag == kDataFlagEmperty)
-        {
-            if (node->dataFlag == kDataFlagEmperty)
-                return;
-            
-            else if (rect.isEqual(node->rect))
-                node->dataFlag = kDataFlagEmperty;
-        }
-        else if (dataFlag == kDataFlagOccupied)
-        {
-            if (node->dataFlag == kDataFlagOccupied)
-                return;
-            
-            else if (rect.isEqual(node->rect))
-                node->dataFlag = kDataFlagOccupied;
-        }
-        else
-        {
-            if (node->subNode1 == NULL || node->subNode2 == NULL)
-                node->createSubNode();
-            
-            MIRect subRect1 = rect.overlapRect(node->subNode1->rect);
-            MIRect subRect2 = rect.overlapRect(node->subNode2->rect);
-            
-            int xoffset = rectInBitmap.x - rect.x;
-            int yoffset = rectInBitmap.y - rect.y;
-            
-            if (!subRect1.isNull())
-            {
-                MIRect subBitmapRect1 = { subRect1.x+xoffset, subRect1.y+yoffset, subRect1.width, subRect1.height };
-                
-                _addBitmapInRect(subRect1, node->subNode1, subBitmapRect1, bitmap);
-            }
-            
-            if (!subRect2.isNull())
-            {
-                MIRect subBitmapRect2 = { subRect2.x+xoffset, subRect2.y+yoffset, subRect2.width, subRect2.height };
-                
-                _addBitmapInRect(subRect2, node->subNode2, subBitmapRect2, bitmap);
-            }
-        }
-    }
+    EnumDataFlag _dataFlagOfRect(MIRect rect, BSPBitmapNode* node);
+    void _addBitmapInRect(MIRect rect, BSPBitmapNode* node, MIRect rectInBitmap, Bitmap* bitmap);
 };
 
 

@@ -9,7 +9,10 @@
 #import "RenderingController.h"
 #import "TextProcessor.h"
 
+#import "Bitmap.h"
+
 #import "WordsRenderingView.h"
+
 
 @interface RenderingController ()
 {
@@ -58,7 +61,10 @@
         [self.count addObject:[NSNumber numberWithInt:iter->second]];
     }
     
+    
+    
 }
+
 
 
 

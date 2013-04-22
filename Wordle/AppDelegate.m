@@ -11,8 +11,6 @@
 #import "RenderingController.h"
 #import "InputTextController.h"
 
-#import "SpaceController.h"
-
 @interface AppDelegate () <InputTextControllerDelegate>
 {
     RenderingController *renderingController;
@@ -42,12 +40,16 @@
     // Override point for customization after application launch.
     
 //  if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+   
+/*
+    char pixels[25] = { 0, 1, 0, 0, 0,
+                        0, 0, 0, 0, 0,
+                        1, 0, 1, 1, 0,
+                        0, 0, 1, 0, 0,
+                        0, 0, 0, 0, 0 };
     
-    
-    SpaceController spaceController(4, 4);
-    char bitmap[1] = { 1 };
-    spaceController.insertRectangle({ 1, 1, 1, 1}, bitmap);
-    
+    Bitmap bitmap(5, 5, pixels);
+*/    
     self.inputTextController = [[[InputTextController alloc] init] autorelease];
     [inputTextController setDelegate:self];
     
