@@ -70,30 +70,31 @@ void Bitmap::_addBitmapInRect(MIRect rect, BSPBitmapNode* node, MIRect rectInBit
         else if (rect.isEqual(node->rect))
             node->dataFlag = kDataFlagOccupied;
     }
-    else
+
+    if (node->dataFlag != kDataFlagMixed)
     {
-        if (node->subNode1 == NULL || node->subNode2 == NULL)
-            node->createSubNode();
+        node->createSubNode();
+        node->dataFlag = kDataFlagMixed;
+    }
+    
+    MIRect subRect1 = rect.overlapRect(node->subNode1->rect);
+    MIRect subRect2 = rect.overlapRect(node->subNode2->rect);
+    
+    int xoffset = rectInBitmap.x - rect.x;
+    int yoffset = rectInBitmap.y - rect.y;
+    
+    if (!subRect1.isNull())
+    {
+        MIRect subBitmapRect1 = { subRect1.x+xoffset, subRect1.y+yoffset, subRect1.width, subRect1.height };
         
-        MIRect subRect1 = rect.overlapRect(node->subNode1->rect);
-        MIRect subRect2 = rect.overlapRect(node->subNode2->rect);
+        _addBitmapInRect(subRect1, node->subNode1, subBitmapRect1, bitmap);
+    }
+    
+    if (!subRect2.isNull())
+    {
+        MIRect subBitmapRect2 = { subRect2.x+xoffset, subRect2.y+yoffset, subRect2.width, subRect2.height };
         
-        int xoffset = rectInBitmap.x - rect.x;
-        int yoffset = rectInBitmap.y - rect.y;
-        
-        if (!subRect1.isNull())
-        {
-            MIRect subBitmapRect1 = { subRect1.x+xoffset, subRect1.y+yoffset, subRect1.width, subRect1.height };
-            
-            _addBitmapInRect(subRect1, node->subNode1, subBitmapRect1, bitmap);
-        }
-        
-        if (!subRect2.isNull())
-        {
-            MIRect subBitmapRect2 = { subRect2.x+xoffset, subRect2.y+yoffset, subRect2.width, subRect2.height };
-            
-            _addBitmapInRect(subRect2, node->subNode2, subBitmapRect2, bitmap);
-        }
+        _addBitmapInRect(subRect2, node->subNode2, subBitmapRect2, bitmap);
     }
 }
 

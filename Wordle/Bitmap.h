@@ -127,9 +127,12 @@ class Bitmap
     BSPBitmapNode* root;
     
 public:
-    Bitmap (int width, int height)
+    Bitmap (int width, int height, EnumDataFlag dataFlag = kDataFlagEmperty)
     {
         root = new BSPBitmapNode( { 0, 0, width, height } );
+        
+        if (dataFlag != kDataFlagMixed)
+            root->dataFlag = dataFlag;
     }
     
     Bitmap (int width, int height, const char* pixelData)

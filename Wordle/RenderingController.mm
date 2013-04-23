@@ -13,10 +13,15 @@
 
 
 @interface RenderingController ()
+{
+    Bitmap* bitmap;
+}
 
-- (UIImage*) imageOfString:(NSString*)string WithSize:(CGSize)size WithFont:(UIFont*)font;
+- (UIImage*) imageOfString:(NSString*)string WithFont:(UIFont*)font;
 
 - (unsigned char*) newRawDataOfUIImage:(UIImage*)image;
+
+- (CGRect) getAvailableRectWithSize:(CGSize)size;
 
 @end
 
@@ -24,19 +29,20 @@
 
 @implementation RenderingController
 
-/*
 - (id) init
 {
     self = [super init];
     if (self)
     {
-        
+        bitmap = new Bitmap(self.view.bounds.size.width, self.view.bounds.size.height);
     }
     return self;
-}*/
+}
 
 - (void) dealloc
 {
+    delete bitmap;
+    
     [super dealloc];
 }
 
@@ -51,8 +57,6 @@
     NSMutableArray* fonts = [NSMutableArray array];
     NSMutableArray* rects = [NSMutableArray array];
     
-    Bitmap bitmap(self.view.bounds.size.width, self.view.bounds.size.height);
-
     TextProcessor textProcessor([text UTF8String]);
     textProcessor.process();
 
@@ -64,12 +68,11 @@
         NSString* word = [NSString stringWithUTF8String: iter->first.c_str()];
         UIFont*   font = [UIFont systemFontOfSize: iter->second * 10];
         
-        CGSize wordSize = [word sizeWithFont:font];
+        UIImage* wordImage = [self imageOfString:word WithFont:font];
         
-        float x = rand() % (int)(self.view.bounds.size.width  - wordSize.width);
-        float y = rand() % (int)(self.view.bounds.size.height - wordSize.height);
-
-        CGRect rect = CGRectMake(x, y, wordSize.width, wordSize.height);
+        CGRect rect = [self getAvailableRectWithSize:[wordImage size]];
+        Bitmap wordBitmap(rect.size.width, rect.size.height, kDataFlagOccupied);
+        bitmap->addBitmapInRect( { (int)rect.origin.x, (int)rect.origin.y, (int)rect.size.width, (int)rect.size.height }, &wordBitmap);
         
         [words addObject:word];
         [fonts addObject:font];
@@ -81,8 +84,27 @@
     [(WordsRenderingView*)self.view setRects:rects];
 }
 
-- (UIImage*) imageOfString:(NSString *)string WithSize:(CGSize)size WithFont:(UIFont *)font
+- (CGRect) getAvailableRectWithSize:(CGSize)size
 {
+    int count = 0;
+    while (count++ < 100)
+    {
+        int x = rand() % (int)(self.view.bounds.size.width  - size.width);
+        int y = rand() % (int)(self.view.bounds.size.height - size.height);
+    
+        if (kDataFlagEmperty == bitmap->dataFlagOfRect({ x, y, (int)size.width, (int)size.height }))
+            return CGRectMake(x, y, size.width, size.height);
+    }
+    
+    NSLog(@"Fail to get available area");
+    
+    return CGRectZero;
+}
+
+- (UIImage*) imageOfString:(NSString *)string WithFont:(UIFont *)font
+{
+    CGSize size = [string sizeWithFont:font];
+    
 	UIGraphicsBeginImageContext(size);
 	CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -95,6 +117,7 @@
 	// UIGraphicsGetImageFromCurrentImageContext() return an autoreleased UIImage
 	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
+    
 	return image;
 }
 
@@ -104,7 +127,7 @@
     NSUInteger width  = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
+    unsigned char *rawData = new unsigned char[height * width * 4];
     NSUInteger bytesPerPixel = 4;
     NSUInteger bytesPerRow = bytesPerPixel * width;
     NSUInteger bitsPerComponent = 8;
@@ -116,7 +139,22 @@
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
     CGContextRelease(context);
     
-    return rawData;
+    unsigned char *binaryData = new unsigned char[height * width];
+    for (int h=0;h<height;h++)
+    {
+        unsigned char* pchar1 = binaryData + width*h;
+        unsigned char* pchar2 = rawData + width*h*4;
+        for (int w=0;w<width;w++)
+        {
+            if (!pchar2[4*w] && !pchar2[4*w+1] && !pchar2[4*w+2])
+                pchar1[w] = 0;
+            else
+                pchar1[w] = 1;
+        }
+    }
+    delete rawData;
+    
+    return binaryData;
 }
 
 
