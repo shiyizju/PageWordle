@@ -10,6 +10,11 @@
 
 using namespace std;
 
+bool comparePair(std::pair<std::string, int> p1, std::pair<std::string, int> p2)
+{
+    return p1.second > p2.second;
+}
+
 void TextProcessor::process()
 {
     wordmap.clear();
@@ -26,14 +31,9 @@ void TextProcessor::process()
 
 vector<pair<string, int> >* TextProcessor::newWordsVectorSortedByCount()
 {
-    vector<pair<string, int> >* words = new std::vector<std::pair<std::string, int> >;
+    vector<pair<string, int> >* words = new std::vector<std::pair<std::string, int> >(wordmap.begin(), wordmap.end());
     
-    //        std::map<std::string, int>::iterator iter = wordmap.begin();
-    //        for (;iter!=wordmap.end();iter++)
-    //        {
-    //            words->push_back(*iter);
-    //        }
+    std::sort(words->begin(), words->end(), comparePair);
     
-    //        std::sort(words->begin(), words->end(), &TextProcessor::comparePair);
     return words;
 }

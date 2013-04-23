@@ -42,12 +42,7 @@ public:
     void process();
     
     std::vector<std::pair<std::string, int> >* newWordsVectorSortedByCount();
-    
-    bool comparePair(std::pair<std::string, int> p1, std::pair<std::string, int> p2)
-    {
-        return p1.second > p2.second;
-    }
-    
+
 private:
     bool getNextToken()
     {

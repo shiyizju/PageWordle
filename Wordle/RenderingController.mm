@@ -57,7 +57,7 @@
     textProcessor.process();
 
     std::vector<std::pair<std::string, int> >* wordsVector = textProcessor.newWordsVectorSortedByCount();
-    std::vector<std::string, int>::iterator iter;
+    std::vector<std::pair<std::string, int> >::iterator iter;
     
     for (iter = wordsVector->begin(); iter!=wordsVector->end(); iter++)
     {
