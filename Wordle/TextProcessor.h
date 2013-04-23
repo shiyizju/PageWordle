@@ -41,20 +41,8 @@ public:
     
     void process();
     
-    std::vector<std::pair<std::string, int> >* getWordsVectorSortedByCount()
-    {
-        std::vector<std::pair<std::string, int> >* vector = new std::vector<std::pair<std::string, int> >(wordmap.begin(), wordmap.end());
-        
-//        std::sort(vector->begin(), vector->end(), &TextProcessor::pairCompare);
-        
-        return vector;
-    }
-    
-    bool pairCompare(std::pair<std::string, int> pair1, std::pair<std::string, int> pair2)
-    {
-        return pair1.second > pair2.second;
-    }
-    
+    std::vector<std::pair<std::string, int> >* newWordsVectorSortedByCount();
+
 private:
     bool getNextToken()
     {

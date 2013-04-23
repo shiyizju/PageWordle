@@ -8,6 +8,13 @@
 
 #include "TextProcessor.h"
 
+using namespace std;
+
+bool comparePair(std::pair<std::string, int> p1, std::pair<std::string, int> p2)
+{
+    return p1.second > p2.second;
+}
+
 void TextProcessor::process()
 {
     wordmap.clear();
@@ -20,4 +27,13 @@ void TextProcessor::process()
         else
             iter->second++;
     }
+}
+
+vector<pair<string, int> >* TextProcessor::newWordsVectorSortedByCount()
+{
+    vector<pair<string, int> >* words = new std::vector<std::pair<std::string, int> >(wordmap.begin(), wordmap.end());
+    
+    std::sort(words->begin(), words->end(), comparePair);
+    
+    return words;
 }
