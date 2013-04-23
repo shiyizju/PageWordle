@@ -54,9 +54,11 @@
 
     TextProcessor textProcessor([text UTF8String]);
     textProcessor.process();
-    std::map<std::string, int> wordmap = textProcessor.getWordMap();
-    std::map<std::string, int>::iterator iter;
-    for (iter = wordmap.begin(); iter!=wordmap.end(); iter++)
+    
+    std::vector<std::pair<std::string, int> >* wordVector = textProcessor.getWordsVectorSortedByCount();
+    std::vector<std::pair<std::string, int> >::iterator iter;
+    
+    for (iter = wordVector->begin(); iter!=wordVector->end(); iter++)
     {
         NSString* word = [NSString stringWithUTF8String: iter->first.c_str()];
         UIFont*   font = [UIFont systemFontOfSize: iter->second * 10];
