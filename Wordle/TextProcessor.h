@@ -12,6 +12,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <vector>
 
 class TextProcessor
 {
@@ -40,9 +41,11 @@ public:
     
     void process();
     
-    std::map<std::string, int>& getWordMap()
+    std::vector<std::pair<std::string, int> >* newWordsVectorSortedByCount();
+    
+    bool comparePair(std::pair<std::string, int> p1, std::pair<std::string, int> p2)
     {
-        return wordmap;
+        return p1.second > p2.second;
     }
     
 private:
