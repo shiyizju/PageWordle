@@ -56,7 +56,7 @@
 //    [inputTextController setDelegate:self];
 //    [self.window addSubview:inputTextController.view];
     
-    NSString* inputString = @"On 26 November 1945 his nomination as Chief of Naval Operations was confirmed by the US Senate, and on 15 December 1945 he relieved Fleet Admiral Ernest J. King. He had assured the President that he was willing to serve as the CNO for one two-year term, but no longer. He tackled the difficult task of reducing the most powerful navy in the world to a fraction of its war-time strength, while establishing and overseeing active and reserve fleets with the strength and readiness required to support national policy.";
+    NSString* inputString = @"On 26 November 1945 his nomination as Chief of Naval Operations was confirmed by the US Senate, and on 15 December 1945 he relieved Fleet Admiral Ernest J. King. He had assured the President that he was willing to serve as the CNO for one two-year term, but no longer. He tackled the difficult task of reducing the most powerful navy in the world to a fraction of its war-time strength, while establishing and overseeing active and reserve fleets with the strength and readiness required to support national policy. The The The The The The The The The The The";
     
     self.renderingController = [[[RenderingController alloc] init] autorelease];
     [renderingController renderingWithInputText:inputString];

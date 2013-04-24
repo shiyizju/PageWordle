@@ -126,6 +126,8 @@ class Bitmap
 {
     BSPBitmapNode* root;
     
+    int _w, _h;
+    
 public:
     Bitmap (int width, int height, EnumDataFlag dataFlag = kDataFlagEmperty)
     {
@@ -133,18 +135,33 @@ public:
         
         if (dataFlag != kDataFlagMixed)
             root->dataFlag = dataFlag;
+        
+        _w = width;
+        _h = height;
     }
     
-    Bitmap (int width, int height, const char* pixelData)
+    Bitmap (int width, int height, const unsigned char* pixelData)
     {
         root = new BSPBitmapNode( { 0, 0, width, height } );
         
         _initWithPixelData(root, pixelData, width);
+        
+        _w = width;
+        _h = height;
     }
+    
+    int width() { return _w; }
+    
+    int height() { return _h; }
     
     EnumDataFlag dataFlagOfRect(MIRect rect)
     {
         return _dataFlagOfRect(rect, root);
+    }
+    
+    bool canAddBitmapAtEmpertyArea(MIRect rect, Bitmap* bitmap)
+    {
+        return _canAddBitmapAtEmpertyArea(rect, root, { 0, 0, rect.width, rect.height }, bitmap);
     }
     
     void addBitmapInRect(MIRect rect, Bitmap* bitmap)
@@ -158,7 +175,7 @@ public:
     }
     
 private:
-    void _initWithPixelData(BSPBitmapNode* node, const char* pixelData, int widthStep)
+    void _initWithPixelData(BSPBitmapNode* node, const unsigned char* pixelData, int widthStep)
     {
         EnumDataFlag dataFlag = _dataFlagOfRectWithPixelData(node->rect, pixelData, widthStep);
         
@@ -179,14 +196,14 @@ private:
         }
     }
     
-    EnumDataFlag _dataFlagOfRectWithPixelData(MIRect rect, const char* pixelData, int widthStep)
+    EnumDataFlag _dataFlagOfRectWithPixelData(MIRect rect, const unsigned char* pixelData, int widthStep)
     {
         bool findEmperty  = false;
         bool findOccupied = false;
         
         for (int y=rect.y; y<rect.y+rect.height; y++)
         {
-            const char* pdata = pixelData + y*widthStep;
+            const unsigned char* pdata = pixelData + y*widthStep;
             
             for (int x=rect.x; x<rect.x+rect.width; x++)
             {
@@ -207,6 +224,58 @@ private:
     }
     
     EnumDataFlag _dataFlagOfRect(MIRect rect, BSPBitmapNode* node);
+    
+    bool _canAddBitmapAtEmpertyArea(MIRect rect, BSPBitmapNode* node, MIRect rectInBitmap, Bitmap* bitmap)
+    {
+        EnumDataFlag dataFlag = bitmap->dataFlagOfRect(rectInBitmap);
+        
+        if (node->dataFlag == kDataFlagEmperty)
+            return true;
+        else if (node->dataFlag == kDataFlagOccupied)
+        {
+            if (dataFlag == kDataFlagEmperty)
+                return true;
+            else
+                return false;
+        }
+        else
+        {
+            if (dataFlag == kDataFlagEmperty)
+                return true;
+        
+            else if (dataFlag == kDataFlagOccupied)
+            {
+                if (rect.isEqual(node->rect))
+                    return false;
+            }
+            
+            MIRect subRect1 = rect.overlapRect(node->subNode1->rect);
+            MIRect subRect2 = rect.overlapRect(node->subNode2->rect);
+            
+            int xoffset = rectInBitmap.x - rect.x;
+            int yoffset = rectInBitmap.y - rect.y;
+            
+            if (!subRect1.isNull())
+            {
+                MIRect subBitmapRect1 = { subRect1.x+xoffset, subRect1.y+yoffset, subRect1.width, subRect1.height };
+                
+                if (!_canAddBitmapAtEmpertyArea(subRect1, node->subNode1, subBitmapRect1, bitmap))
+                    return false;                    
+            }
+            
+            if (!subRect2.isNull())
+            {
+                MIRect subBitmapRect2 = { subRect2.x+xoffset, subRect2.y+yoffset, subRect2.width, subRect2.height };
+                
+                if (! _canAddBitmapAtEmpertyArea(subRect2, node->subNode2, subBitmapRect2, bitmap))
+                    return false;
+            }
+                    
+            return true;
+        }
+        
+    }
+    
     void _addBitmapInRect(MIRect rect, BSPBitmapNode* node, MIRect rectInBitmap, Bitmap* bitmap);
 };
 

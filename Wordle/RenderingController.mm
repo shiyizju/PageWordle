@@ -18,10 +18,8 @@
 }
 
 - (UIImage*) imageOfString:(NSString*)string WithFont:(UIFont*)font;
-
 - (unsigned char*) newRawDataOfUIImage:(UIImage*)image;
-
-- (CGRect) getAvailableRectWithSize:(CGSize)size;
+- (CGRect) getAvailableRectForBitmap:(Bitmap*)ipBitmap;
 
 @end
 
@@ -69,14 +67,17 @@
         UIFont*   font = [UIFont systemFontOfSize: iter->second * 10];
         
         UIImage* wordImage = [self imageOfString:word WithFont:font];
+        const unsigned char* binaryPixel = [self newRawDataOfUIImage:wordImage];
+        Bitmap wordBitmap(wordImage.size.width, wordImage.size.height, binaryPixel);
         
-        CGRect rect = [self getAvailableRectWithSize:[wordImage size]];
-        Bitmap wordBitmap(rect.size.width, rect.size.height, kDataFlagOccupied);
+        CGRect rect = [self getAvailableRectForBitmap:&wordBitmap];
         bitmap->addBitmapInRect( { (int)rect.origin.x, (int)rect.origin.y, (int)rect.size.width, (int)rect.size.height }, &wordBitmap);
         
         [words addObject:word];
         [fonts addObject:font];
         [rects addObject:[NSValue valueWithCGRect:rect]];
+        
+        delete []binaryPixel;
     }
     
     [(WordsRenderingView*)self.view setWords:words];
@@ -84,16 +85,17 @@
     [(WordsRenderingView*)self.view setRects:rects];
 }
 
-- (CGRect) getAvailableRectWithSize:(CGSize)size
+- (CGRect) getAvailableRectForBitmap:(Bitmap*)ipBitmap
 {
     int count = 0;
     while (count++ < 100)
     {
-        int x = rand() % (int)(self.view.bounds.size.width  - size.width);
-        int y = rand() % (int)(self.view.bounds.size.height - size.height);
+        int x = rand() % (int)(self.view.bounds.size.width  - ipBitmap->width());
+        int y = rand() % (int)(self.view.bounds.size.height - ipBitmap->height());
     
-        if (kDataFlagEmperty == bitmap->dataFlagOfRect({ x, y, (int)size.width, (int)size.height }))
-            return CGRectMake(x, y, size.width, size.height);
+//        if (kDataFlagEmperty == bitmap->dataFlagOfRect({ x, y, (int)size.width, (int)size.height }))
+        if (bitmap->canAddBitmapAtEmpertyArea( {x, y, ipBitmap->width(), ipBitmap->height() }, ipBitmap))
+            return CGRectMake(x, y, ipBitmap->width(), ipBitmap->height());
     }
     
     NSLog(@"Fail to get available area");
@@ -109,9 +111,11 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
-	CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, rect);
     
+    CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor]);
+    CGContextSetTextDrawingMode(context, kCGTextFill);
     [string drawInRect:rect withFont:font];
     
 	// UIGraphicsGetImageFromCurrentImageContext() return an autoreleased UIImage
@@ -142,14 +146,16 @@
     unsigned char *binaryData = new unsigned char[height * width];
     for (int h=0;h<height;h++)
     {
-        unsigned char* pchar1 = binaryData + width*h;
-        unsigned char* pchar2 = rawData + width*h*4;
+        unsigned char* pBinaryData = binaryData + width*h;
+        unsigned char* pRawData = rawData + bytesPerRow * h;
         for (int w=0;w<width;w++)
         {
-            if (!pchar2[4*w] && !pchar2[4*w+1] && !pchar2[4*w+2])
-                pchar1[w] = 0;
+            if (pRawData[w*4]==255 && pRawData[w*4+1]==255 && pRawData[w*4+2] == 255)
+            {
+                pBinaryData[w] = 0;
+            }
             else
-                pchar1[w] = 1;
+                pBinaryData[w] = 1;
         }
     }
     delete rawData;

@@ -59,16 +59,26 @@ void Bitmap::_addBitmapInRect(MIRect rect, BSPBitmapNode* node, MIRect rectInBit
         if (node->dataFlag == kDataFlagEmperty)
             return;
         
-        else if (rect.isEqual(node->rect))
+        if (rect.isEqual(node->rect))
+        {
             node->dataFlag = kDataFlagEmperty;
+            delete node->subNode1;
+            delete node->subNode2;
+            return;
+        }
     }
     else if (dataFlag == kDataFlagOccupied)
     {
         if (node->dataFlag == kDataFlagOccupied)
             return;
         
-        else if (rect.isEqual(node->rect))
+        if (rect.isEqual(node->rect))
+        {
             node->dataFlag = kDataFlagOccupied;
+            delete node->subNode1;
+            delete node->subNode2;
+            return;
+        }
     }
 
     if (node->dataFlag != kDataFlagMixed)
