@@ -33,6 +33,7 @@
     if (self)
     {
         bitmap = new Bitmap(self.view.bounds.size.width, self.view.bounds.size.height);
+        srand(time(0));
     }
     return self;
 }
@@ -86,7 +87,7 @@
 }
 
 - (CGRect) getAvailableRectForBitmap:(Bitmap*)ipBitmap
-{
+{    
     int count = 0;
     while (count++ < 100)
     {

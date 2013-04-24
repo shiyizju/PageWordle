@@ -34,6 +34,16 @@
     [super dealloc];
 }
 
+- (void) showWordsRenderingView
+{
+    static NSString* inputString = @"On 26 November 1945 his nomination as Chief of Naval Operations was confirmed by the US Senate, and on 15 December 1945 he relieved Fleet Admiral Ernest J. King. He had assured the President that he was willing to serve as the CNO for one two-year term, but no longer. He tackled the difficult task of reducing the most powerful navy in the world to a fraction of its war-time strength, while establishing and overseeing active and reserve fleets with the strength and readiness required to support national policy. The The The The The The The The The The The";
+    
+    [renderingController.view removeFromSuperview];
+    self.renderingController = [[[RenderingController alloc] init] autorelease];
+    [renderingController renderingWithInputText:inputString];
+    [self.window addSubview:renderingController.view];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
@@ -56,11 +66,7 @@
 //    [inputTextController setDelegate:self];
 //    [self.window addSubview:inputTextController.view];
     
-    NSString* inputString = @"On 26 November 1945 his nomination as Chief of Naval Operations was confirmed by the US Senate, and on 15 December 1945 he relieved Fleet Admiral Ernest J. King. He had assured the President that he was willing to serve as the CNO for one two-year term, but no longer. He tackled the difficult task of reducing the most powerful navy in the world to a fraction of its war-time strength, while establishing and overseeing active and reserve fleets with the strength and readiness required to support national policy. The The The The The The The The The The The";
-    
-    self.renderingController = [[[RenderingController alloc] init] autorelease];
-    [renderingController renderingWithInputText:inputString];
-    [self.window addSubview:renderingController.view];
+    [self showWordsRenderingView];
     
     [self.window makeKeyAndVisible];
     return YES;
@@ -74,6 +80,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    [self showWordsRenderingView];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }

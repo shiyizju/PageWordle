@@ -64,6 +64,8 @@ void Bitmap::_addBitmapInRect(MIRect rect, BSPBitmapNode* node, MIRect rectInBit
             node->dataFlag = kDataFlagEmperty;
             delete node->subNode1;
             delete node->subNode2;
+            node->subNode1 = NULL;
+            node->subNode2 = NULL;
             return;
         }
     }
@@ -77,6 +79,8 @@ void Bitmap::_addBitmapInRect(MIRect rect, BSPBitmapNode* node, MIRect rectInBit
             node->dataFlag = kDataFlagOccupied;
             delete node->subNode1;
             delete node->subNode2;
+            node->subNode1 = NULL;
+            node->subNode2 = NULL;
             return;
         }
     }
