@@ -72,7 +72,12 @@
         Bitmap wordBitmap(wordImage.size.width, wordImage.size.height, binaryPixel);
         
         CGRect rect = [self getAvailableRectForBitmap:&wordBitmap];
-        bitmap->addBitmapInRect( { (int)rect.origin.x, (int)rect.origin.y, (int)rect.size.width, (int)rect.size.height }, &wordBitmap);
+        MIRect miRect = { (int)rect.origin.x, (int)rect.origin.y, (int)rect.size.width, (int)rect.size.height };
+        
+        if (miRect.isNull())
+            continue;
+            
+        bitmap->addBitmapInRect( miRect, &wordBitmap);
         
         [words addObject:word];
         [fonts addObject:font];
@@ -94,8 +99,8 @@
         int x = rand() % (int)(self.view.bounds.size.width  - ipBitmap->width());
         int y = rand() % (int)(self.view.bounds.size.height - ipBitmap->height());
     
-//        if (kDataFlagEmperty == bitmap->dataFlagOfRect({ x, y, (int)size.width, (int)size.height }))
-        if (bitmap->canAddBitmapAtEmpertyArea( {x, y, ipBitmap->width(), ipBitmap->height() }, ipBitmap))
+        if (kDataFlagEmperty == bitmap->dataFlagOfRect({ x, y, ipBitmap->width(), ipBitmap->height() }))
+//        if (bitmap->canAddBitmapAtEmpertyArea( {x, y, ipBitmap->width(), ipBitmap->height() }, ipBitmap))
             return CGRectMake(x, y, ipBitmap->width(), ipBitmap->height());
     }
     
