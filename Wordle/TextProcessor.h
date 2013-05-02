@@ -28,7 +28,10 @@ public:
     TextProcessor(const char* ipText)
     {
         length = strlen(ipText);
-        text = new char[length];
+        text = new char[length+1];
+        
+        memset(text, 0, sizeof(char)*length+1);
+        
         pos = 0;
         
         memcpy(text, ipText, length);

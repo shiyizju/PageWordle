@@ -12,8 +12,8 @@
 
 #define TEXT_VIEW_MARGIN 20
 
-#define BUTTON_HEIGHT   40
-#define BUTTON_WIDTH    100
+#define BUTTON_HEIGHT   30
+#define BUTTON_WIDTH    80
 
 @interface InputTextView () <UITextViewDelegate>
 {
@@ -44,6 +44,7 @@
         [[textView layer] setCornerRadius:5.0f];
         [[textView layer] setBorderColor:[[UIColor grayColor] CGColor]];
         [[textView layer] setBorderWidth:1.0f];
+        [textView setFont:[UIFont systemFontOfSize:15.0f]];
         
         
         UISegmentedControl* segment = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Clear", @"Done", nil]];
@@ -51,7 +52,7 @@
         [segment setMomentary:YES];
         [segment addTarget:self action:@selector(segmentValueChange:) forControlEvents:UIControlEventValueChanged];
         [textView setInputAccessoryView:segment];
-        [segment setFrame:CGRectMake(0, 0, 80, 40)];
+        [segment setFrame:CGRectMake(0, 0, 80, 30)];
         [segment release];
         
         doneButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
