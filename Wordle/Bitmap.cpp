@@ -10,7 +10,7 @@
 
 EnumDataFlag Bitmap::_dataFlagOfRect(MIRect rect, BSPBitmapNode* node)
 {
-    assert(rect.isInside(node->rect));
+//    assert(rect.isInside(node->rect));
     
     if (node->dataFlag == kDataFlagEmperty)
     {

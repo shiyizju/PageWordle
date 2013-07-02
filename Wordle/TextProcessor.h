@@ -24,6 +24,8 @@ class TextProcessor
     
     std::map<std::string, int> wordmap;
     
+    static const char uselessTokens[][256];
+    
 public:
     TextProcessor(const char* ipText)
     {
@@ -47,26 +49,7 @@ public:
     std::vector<std::pair<std::string, int> >* newWordsVectorSortedByCount();
 
 private:
-    bool getNextToken()
-    {
-        memset(token, 0, sizeof(char)*256);
-        
-        int len = 0;
-        for (;;pos++)
-        {
-            if (text[pos]=='\0')
-                break;
-            
-            if (isCharacter(text[pos]))
-                token[len++] = tolower(text[pos]);
-            else if (len!=0)    // have started finding token
-            {
-                break;
-            }
-            // haven't started, continue.
-        }
-        return len!=0;
-    }
+    bool getNextToken();
     
     bool isCharacter(char c)
     {
@@ -75,6 +58,8 @@ private:
         
         return false;
     }
+    
+    bool isUselessToken();
 };
 
 #endif /* defined(__Wordle__TextProcessor__) */

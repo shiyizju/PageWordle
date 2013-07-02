@@ -50,6 +50,31 @@
     self.view = [[[WordsRenderingView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
 }
 
+- (float) fontSizeOfString:(NSString*)string withConstrainedSize:(CGSize)size maxFontSize:(float)maxFontSize
+{
+    UIImage* ipImage = [self imageOfString:string WithFont:[UIFont systemFontOfSize:maxFontSize]];
+    if (ipImage.size.width < size.width && ipImage.size.height < size.height)
+        return maxFontSize;
+    
+    int low = 0;
+    int up  = maxFontSize;
+    int fontSize = maxFontSize / 2;
+    
+    while (true)
+    {
+        if (up <= low+1)
+            return low;
+        
+        ipImage = [self imageOfString:string WithFont:[UIFont systemFontOfSize:fontSize]];
+        if (ipImage.size.width < size.width && ipImage.size.height < size.height)
+            low = fontSize;
+        else
+            up  = fontSize;
+        
+        fontSize = (low + up) / 2;
+    }
+}
+
 - (void) renderingWithInputText:(NSString *)text
 {
     NSMutableArray* words = [NSMutableArray array];
@@ -62,10 +87,22 @@
     std::vector<std::pair<std::string, int> >* wordsVector = textProcessor.newWordsVectorSortedByCount();
     std::vector<std::pair<std::string, int> >::iterator iter;
     
+    if (wordsVector->size() <= 0)
+        return;
+    
+    float maxFontSize = [self fontSizeOfString:[NSString stringWithUTF8String:wordsVector->begin()->first.c_str()]
+                           withConstrainedSize:self.view.frame.size
+                                   maxFontSize:(wordsVector->begin()->second-1)*5+10];
+    
     for (iter = wordsVector->begin(); iter!=wordsVector->end(); iter++)
     {
         NSString* word = [NSString stringWithUTF8String: iter->first.c_str()];
-        UIFont*   font = [UIFont systemFontOfSize: iter->second * 10];
+        
+        float fontSize = (iter->second - 1) * 5 + 10;
+        if (fontSize > maxFontSize)
+            fontSize = maxFontSize;
+        
+        UIFont*   font = [UIFont systemFontOfSize: fontSize];
         
         UIImage* wordImage = [self imageOfString:word WithFont:font];
         const unsigned char* binaryPixel = [self newRawDataOfUIImage:wordImage];
