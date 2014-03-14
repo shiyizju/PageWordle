@@ -15,8 +15,6 @@
     NSMutableArray *rects;
 }
 
-- (void) doubleTapped:(id) sender;
-
 @end
 
 
@@ -33,11 +31,15 @@
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
         
-        UITapGestureRecognizer *tapGuesture = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                      action:@selector(doubleTapped:)];
-        [tapGuesture setNumberOfTapsRequired:2];
-        [self addGestureRecognizer:tapGuesture];
-        [tapGuesture release];
+        UITapGestureRecognizer *tapGuesture1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap)];
+        [tapGuesture1 setNumberOfTapsRequired:1];
+        [self addGestureRecognizer:tapGuesture1];
+        [tapGuesture1 release];
+        
+        UITapGestureRecognizer *tapGuesture2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap)];
+        [tapGuesture2 setNumberOfTapsRequired:2];
+        [self addGestureRecognizer:tapGuesture2];
+        [tapGuesture2 release];
     }
     return self;
 }
@@ -60,9 +62,14 @@
         [[words objectAtIndex:i] drawInRect:[(NSValue*)[rects objectAtIndex:i] CGRectValue] withFont:[fonts objectAtIndex:i]];
 }
 
-- (void) doubleTapped:(id)sender
+- (void) singleTap
 {
-    [self removeFromSuperview];
+    [self.delegate singleTap];
+}
+
+- (void) doubleTap
+{
+    [self.delegate doubleTap];
 }
 
 @end

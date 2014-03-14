@@ -8,17 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class InputTextController;
-
-@protocol InputTextControllerDelegate
-
-- (void) inputTextController:(InputTextController*)inputTextController endInputWithString:(NSString*)inputString;
-
-@end
-
 
 @interface InputTextController : UIViewController
-
-@property (nonatomic, assign) id<InputTextControllerDelegate> delegate;
 
 @end

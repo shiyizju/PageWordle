@@ -7,43 +7,26 @@
 //
 
 #import "AppDelegate.h"
-
-#import "RenderingController.h"
 #import "InputTextController.h"
 
-@interface AppDelegate () <InputTextControllerDelegate>
+@interface AppDelegate ()
 {
-    RenderingController *renderingController;
-    InputTextController *inputTextController;
+    UINavigationController* navigationController;
 }
+
+@property (nonatomic, retain) UINavigationController* navigationController;
 
 @end
 
 
 @implementation AppDelegate
 
-@synthesize renderingController, inputTextController;
+@synthesize navigationController;
 
 - (void)dealloc
 {
     [_window release];
-    
-    [self setRenderingController:nil];
-    [self setInputTextController:nil];
-    
     [super dealloc];
-}
-
-- (void) showWordsRenderingView:(NSString*) inputString
-{
-    /*
-    static NSString* inputString = @"On 26 November 1945 his nomination as Chief of Naval Operations was confirmed by the US Senate, and on 15 December 1945 he relieved Fleet Admiral Ernest J. King. He had assured the President that he was willing to serve as the CNO for one two-year term, but no longer. He tackled the difficult task of reducing the most powerful navy in the world to a fraction of its war-time strength, while establishing and overseeing active and reserve fleets with the strength and readiness required to support national policy. The The The The The The The The The The The";
-    */
-    
-    [renderingController.view removeFromSuperview];
-    self.renderingController = [[[RenderingController alloc] init] autorelease];
-    [renderingController renderingWithInputText:inputString];
-    [self.window addSubview:renderingController.view];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -63,11 +46,9 @@
     Bitmap bitmap(5, 5, pixels);
 */
     
-    
-    self.inputTextController = [[[InputTextController alloc] init] autorelease];
-    [inputTextController setDelegate:self];
-    [self.window addSubview:inputTextController.view];
-    
+    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:[[[InputTextController alloc] init] autorelease]] autorelease];
+    [self.navigationController setNavigationBarHidden:YES];
+    [self.window setRootViewController:self.navigationController];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -97,13 +78,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-#pragma mark - InputTextControllerDelegate
-
-- (void) inputTextController:(InputTextController *)inputTextController endInputWithString:(NSString *)inputString
-{
-    [self showWordsRenderingView:inputString];
 }
 
 @end

@@ -12,7 +12,7 @@
 #import "WordsRenderingView.h"
 
 
-@interface RenderingController ()
+@interface RenderingController () <WordsRenderingViewDelegate>
 {
     Bitmap* bitmap;
 }
@@ -38,6 +38,36 @@
     return self;
 }
 
+- (BOOL) shouldAutorotate
+{
+    return YES;
+}
+
+- (UIInterfaceOrientationMask) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAll;
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void) singleTap
+{
+    [self.navigationController setNavigationBarHidden:!self.navigationController.navigationBarHidden animated:YES];
+}
+
+- (void) doubleTap
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void) dealloc
 {
     delete bitmap;
@@ -47,31 +77,38 @@
 
 - (void) loadView
 {
-    self.view = [[[WordsRenderingView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
+    WordsRenderingView* lpRenderingView = [[[WordsRenderingView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
+    [lpRenderingView setDelegate:self];
+    self.view = lpRenderingView;
 }
 
-- (float) fontSizeOfString:(NSString*)string withConstrainedSize:(CGSize)size maxFontSize:(float)maxFontSize
+
+- (float) fontSizeOfString:(NSString*)string withConstrainedSize:(CGSize)size
 {
-    UIImage* ipImage = [self imageOfString:string WithFont:[UIFont systemFontOfSize:maxFontSize]];
-    if (ipImage.size.width < size.width && ipImage.size.height < size.height)
-        return maxFontSize;
-    
     int low = 0;
-    int up  = maxFontSize;
-    int fontSize = maxFontSize / 2;
+    int up  = 15;
     
+    while (true)
+    {
+        CGSize lpSize = [string sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:up]}];
+        if (lpSize.width >= size.width || lpSize.height >= size.height)
+            break;
+        low = up;
+        up  = up*2;
+    }
+
     while (true)
     {
         if (up <= low+1)
             return low;
         
-        ipImage = [self imageOfString:string WithFont:[UIFont systemFontOfSize:fontSize]];
-        if (ipImage.size.width < size.width && ipImage.size.height < size.height)
+        int fontSize = (low + up) / 2;
+        
+        CGSize lpSize = [string sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}];
+        if (lpSize.width < size.width && lpSize.height < size.height)
             low = fontSize;
         else
             up  = fontSize;
-        
-        fontSize = (low + up) / 2;
     }
 }
 
@@ -91,18 +128,16 @@
         return;
     
     float maxFontSize = [self fontSizeOfString:[NSString stringWithUTF8String:wordsVector->begin()->first.c_str()]
-                           withConstrainedSize:self.view.frame.size
-                                   maxFontSize:(wordsVector->begin()->second-1)*5+10];
+                           withConstrainedSize:CGSizeMake(self.view.bounds.size.width,
+                                                          self.view.bounds.size.height)];
+    
+    float fontSizeRatio = maxFontSize / wordsVector->begin()->second;
     
     for (iter = wordsVector->begin(); iter!=wordsVector->end(); iter++)
     {
         NSString* word = [NSString stringWithUTF8String: iter->first.c_str()];
         
-        float fontSize = (iter->second - 1) * 5 + 10;
-        if (fontSize > maxFontSize)
-            fontSize = maxFontSize;
-        
-        UIFont*   font = [UIFont systemFontOfSize: fontSize];
+        UIFont* font = [UIFont systemFontOfSize: roundf((iter->second * fontSizeRatio))];
         
         UIImage* wordImage = [self imageOfString:word WithFont:font];
         const unsigned char* binaryPixel = [self newRawDataOfUIImage:wordImage];
@@ -131,14 +166,14 @@
 - (CGRect) getAvailableRectForBitmap:(Bitmap*)ipBitmap
 {    
     int count = 0;
-    while (count++ < 100)
+    while (count++ < 1000)
     {
-        int x = rand() % (int)(self.view.bounds.size.width  - ipBitmap->width());
-        int y = rand() % (int)(self.view.bounds.size.height - ipBitmap->height());
+        int x = rand() % (int)(self.view.bounds.size.width  - ipBitmap->Width() + 1);
+        int y = rand() % (int)(self.view.bounds.size.height - ipBitmap->Height()+ 1);
     
-        if (kDataFlagEmperty == bitmap->dataFlagOfRect({ x, y, ipBitmap->width(), ipBitmap->height() }))
-//        if (bitmap->canAddBitmapAtEmpertyArea( {x, y, ipBitmap->width(), ipBitmap->height() }, ipBitmap))
-            return CGRectMake(x, y, ipBitmap->width(), ipBitmap->height());
+//        if (kDataFlagEmperty == bitmap->dataFlagOfRect({ x, y, ipBitmap->Width(), ipBitmap->Height() }))
+        if (bitmap->canAddBitmapAtEmpertyArea( {x, y, ipBitmap->Width(), ipBitmap->Height() }, ipBitmap))
+            return CGRectMake(x, y, ipBitmap->Width(), ipBitmap->Height());
     }
     
     NSLog(@"Fail to get available area");

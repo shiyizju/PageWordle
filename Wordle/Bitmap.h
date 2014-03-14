@@ -28,6 +28,12 @@ struct BSPNode
     EnumDataFlag dataFlag;
     
     BSPNode(MIRect iRect): rect(iRect), subnode1(NULL), subnode2(NULL), dataFlag(kDataFlagEmperty) { }
+    
+    ~BSPNode()
+    {
+        delete subnode1;
+        delete subnode2;
+    }
 };
 
 class Bitmap
@@ -41,7 +47,7 @@ public:
     Bitmap (int iWidth, int iHeight, EnumDataFlag dataFlag = kDataFlagEmperty) :
         width(iWidth), height(iHeight)
     {
-        assert(dataFlag == kDataFlagMixed);
+        assert(dataFlag != kDataFlagMixed);
         
         root = new BSPNode( { 0, 0, width, height } );
         root->dataFlag = dataFlag;
@@ -63,6 +69,11 @@ public:
         return height;
     }
     
+    ~Bitmap()
+    {
+        delete root;
+    }
+    
     EnumDataFlag dataFlagOfRect(MIRect rect)
     {
         return _dataFlagOfRect(rect, root);
@@ -70,18 +81,18 @@ public:
     
     bool canAddBitmapAtEmpertyArea(MIRect rect, Bitmap* bitmap)
     {
-        return _canAddBitmapAtEmpertyArea(rect, root, { 0, 0, rect.width, rect.height }, bitmap);
+        return _canAddBitmapAtEmpertyArea(root, rect, bitmap, { 0, 0, rect.width, rect.height });
     }
     
     void addBitmapInRect(MIRect rect, Bitmap* bitmap)
     {
-        _addBitmapInRect(rect, root, { 0, 0, rect.width, rect.height }, bitmap);
+        _addBitmapInRect(root, rect, bitmap, { 0, 0, rect.width, rect.height });
     }
     
-    ~Bitmap()
-    {
-        delete root;
-    }
+private:
+    EnumDataFlag _dataFlagOfRect(MIRect rect, BSPNode* node);
+    bool _canAddBitmapAtEmpertyArea(BSPNode* node, MIRect rect, Bitmap* bitmap, MIRect rectInBitmap);
+    void _addBitmapInRect(BSPNode* node, MIRect rect, Bitmap* bitmap, MIRect rectInBitmap);
     
 private:
     void initNodeWithPixelData(BSPNode* node, const unsigned char* pixelData, int widthStep)
@@ -107,7 +118,8 @@ private:
     
     void splitNode(BSPNode* node)
     {
-        assert(node->subnode1 || node->subnode2);
+        assert(!node->subnode1 && !node->subnode2);
+        assert(node->dataFlag!=kDataFlagMixed);
         
         MIRect subRect1, subRect2;
         MIRect rect = node->rect;
@@ -158,12 +170,6 @@ private:
         
         return kDataFlagOccupied;
     }
-    
-    EnumDataFlag _dataFlagOfRect(MIRect rect, BSPNode* node);
-    
-    bool _canAddBitmapAtEmpertyArea(MIRect rect, BSPNode* node, MIRect rectInBitmap, Bitmap* bitmap);
-    
-    void _addBitmapInRect(MIRect rect, BSPNode* node, MIRect rectInBitmap, Bitmap* bitmap);
 };
 
 
