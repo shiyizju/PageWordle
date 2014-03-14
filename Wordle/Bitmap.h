@@ -11,148 +11,57 @@
 
 #include <iostream>
 #include <assert.h>
+#include "MIRect.h"
 
-class MIRect {
-public:
-
-    int x, y, width, height;
-    
-    int left()   { return x; }
-    int right()  { return x + width; }
-    int bottom() { return y; }
-    int top()    { return y + height; }
-    
-    bool isEqual(MIRect rect)
-    {
-        return x == rect.x && y == rect.y && width == rect.width && height == rect.height;
-    }
-    
-    bool isInside(MIRect rect)
-    {
-        return  x >= rect.x &&
-                y >= rect.y &&
-                x + width  <= rect.x + rect.width &&
-                y + height <= rect.y + rect.height;
-    }
-    
-    bool isNull()
-    {
-        return width <= 0 || height <= 0;
-    }
-    
-    MIRect overlapRect(MIRect rect)
-    {
-        int left   = x > rect.x ? x : rect.x;
-        int right  = x + width  > rect.x + rect.width  ? rect.x + rect.width  : x + width;
-        int bottom = y > rect.y ? y : rect.y;
-        int top    = y + height > rect.y + rect.height ? rect.y + rect.height : y + height;
-        
-        return { left, bottom, right - left, top - bottom };
-    }
-    
-    bool operator == (MIRect rect)
-    {
-        return isEqual(rect);
-    }
-};
 
 enum EnumDataFlag {
     kDataFlagEmperty,
     kDataFlagOccupied,
     kDataFlagMixed,
-//    kDataFlagUnknown
 };
 
-class BSPBitmapNode
+struct BSPNode
 {
     MIRect rect;
-
-    BSPBitmapNode* subNode1;
-    BSPBitmapNode* subNode2;
-    
+    BSPNode* subnode1;
+    BSPNode* subnode2;
     EnumDataFlag dataFlag;
     
-    friend class Bitmap;
-    
-public:
-    BSPBitmapNode(MIRect rect)
-    {
-        this->rect = rect;
-        
-        subNode1 = NULL;
-        subNode2 = NULL;
-        
-        dataFlag = kDataFlagEmperty;
-    }
-    
-    void createSubNode()
-    {
-        if (dataFlag == kDataFlagMixed)
-        {
-            assert(false);
-            return;
-        }
-        
-        MIRect subRect1, subRect2;
-        
-        if (rect.width > rect.height)
-        {
-            subRect1 = { rect.x, rect.y, rect.width/2, rect.height };
-            subRect2 = { rect.x + subRect1.width, rect.y, rect.width - subRect1.width, rect.height };
-        }
-        else
-        {
-            subRect1 = { rect.x, rect.y, rect.width, rect.height/2 };
-            subRect2 = { rect.x, rect.y + subRect1.height, rect.width, rect.height - subRect1.height };
-        }
-        
-        subNode1 = new BSPBitmapNode(subRect1);
-        subNode1->dataFlag = dataFlag;
-        
-        subNode2 = new BSPBitmapNode(subRect2);
-        subNode2->dataFlag = dataFlag;
-        
-        dataFlag = kDataFlagMixed;
-    }
-
-    ~BSPBitmapNode()
-    {
-        delete subNode1;
-        delete subNode2;
-    }
+    BSPNode(MIRect iRect): rect(iRect), subnode1(NULL), subnode2(NULL), dataFlag(kDataFlagEmperty) { }
 };
 
 class Bitmap
 {
-    BSPBitmapNode* root;
+    BSPNode* root;
     
-    int _w, _h;
+    int width;
+    int height;
     
 public:
-    Bitmap (int width, int height, EnumDataFlag dataFlag = kDataFlagEmperty)
+    Bitmap (int iWidth, int iHeight, EnumDataFlag dataFlag = kDataFlagEmperty) :
+        width(iWidth), height(iHeight)
     {
-        root = new BSPBitmapNode( { 0, 0, width, height } );
+        assert(dataFlag == kDataFlagMixed);
         
-        if (dataFlag != kDataFlagMixed)
-            root->dataFlag = dataFlag;
-        
-        _w = width;
-        _h = height;
+        root = new BSPNode( { 0, 0, width, height } );
+        root->dataFlag = dataFlag;
     }
     
-    Bitmap (int width, int height, const unsigned char* pixelData)
+    Bitmap (int iWidth, int iHeight, const unsigned char* pixelData) :
+        width(iWidth), height(iHeight)
     {
-        root = new BSPBitmapNode( { 0, 0, width, height } );
+        root = new BSPNode( { 0, 0, width, height } );
         
-        _initWithPixelData(root, pixelData, width);
-        
-        _w = width;
-        _h = height;
+        initNodeWithPixelData(root, pixelData, width);
     }
     
-    int width() { return _w; }
+    int Width() {
+        return width;
+    }
     
-    int height() { return _h; }
+    int Height() {
+        return height;
+    }
     
     EnumDataFlag dataFlagOfRect(MIRect rect)
     {
@@ -175,7 +84,7 @@ public:
     }
     
 private:
-    void _initWithPixelData(BSPBitmapNode* node, const unsigned char* pixelData, int widthStep)
+    void initNodeWithPixelData(BSPNode* node, const unsigned char* pixelData, int widthStep)
     {
         EnumDataFlag dataFlag = _dataFlagOfRectWithPixelData(node->rect, pixelData, widthStep);
         
@@ -189,11 +98,38 @@ private:
         }
         else
         {
-            node->createSubNode();
+            splitNode(node);
             
-            _initWithPixelData(node->subNode1, pixelData, widthStep);
-            _initWithPixelData(node->subNode2, pixelData, widthStep);
+            initNodeWithPixelData(node->subnode1, pixelData, widthStep);
+            initNodeWithPixelData(node->subnode2, pixelData, widthStep);
         }
+    }
+    
+    void splitNode(BSPNode* node)
+    {
+        assert(node->subnode1 || node->subnode2);
+        
+        MIRect subRect1, subRect2;
+        MIRect rect = node->rect;
+        
+        if (rect.width > rect.height)
+        {
+            subRect1 = { rect.x, rect.y, rect.width/2, rect.height };
+            subRect2 = { rect.x + subRect1.width, rect.y, rect.width - subRect1.width, rect.height };
+        }
+        else
+        {
+            subRect1 = { rect.x, rect.y, rect.width, rect.height/2 };
+            subRect2 = { rect.x, rect.y + subRect1.height, rect.width, rect.height - subRect1.height };
+        }
+        
+        node->subnode1 = new BSPNode(subRect1);
+        node->subnode1->dataFlag = node->dataFlag;
+        
+        node->subnode2 = new BSPNode(subRect2);
+        node->subnode2->dataFlag = node->dataFlag;
+        
+        node->dataFlag = kDataFlagMixed;
     }
     
     EnumDataFlag _dataFlagOfRectWithPixelData(MIRect rect, const unsigned char* pixelData, int widthStep)
@@ -223,11 +159,11 @@ private:
         return kDataFlagOccupied;
     }
     
-    EnumDataFlag _dataFlagOfRect(MIRect rect, BSPBitmapNode* node);
+    EnumDataFlag _dataFlagOfRect(MIRect rect, BSPNode* node);
     
-    bool _canAddBitmapAtEmpertyArea(MIRect rect, BSPBitmapNode* node, MIRect rectInBitmap, Bitmap* bitmap);
+    bool _canAddBitmapAtEmpertyArea(MIRect rect, BSPNode* node, MIRect rectInBitmap, Bitmap* bitmap);
     
-    void _addBitmapInRect(MIRect rect, BSPBitmapNode* node, MIRect rectInBitmap, Bitmap* bitmap);
+    void _addBitmapInRect(MIRect rect, BSPNode* node, MIRect rectInBitmap, Bitmap* bitmap);
 };
 
 
