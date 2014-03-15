@@ -45,13 +45,16 @@ EnumDataFlag Bitmap::_dataFlagOfRect(MIRect rect, BSPNode* node)
 void Bitmap::_addBitmapInRect(BSPNode* node, MIRect rect, Bitmap* bitmap, MIRect rectInBitmap)
 {
     assert(rect.isInside(node->rect));
+    assert(node->dataFlag != kDataFlagOccupied);
     
     EnumDataFlag dataFlag = bitmap->dataFlagOfRect(rectInBitmap);
     
     if (dataFlag == kDataFlagEmperty)
     {
         if (node->dataFlag == kDataFlagEmperty)
+        {
             return;
+        }
         
         if (rect.isEqual(node->rect))
         {
@@ -66,7 +69,9 @@ void Bitmap::_addBitmapInRect(BSPNode* node, MIRect rect, Bitmap* bitmap, MIRect
     else if (dataFlag == kDataFlagOccupied)
     {
         if (node->dataFlag == kDataFlagOccupied)
+        {
             return;
+        }
         
         if (rect.isEqual(node->rect))
         {
