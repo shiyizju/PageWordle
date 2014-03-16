@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol WordsRenderingViewDelegate
+@protocol RenderingViewDelegate
 
 - (void) singleTap;
 - (void) doubleTap;
 
 @end
 
-@interface WordsRenderingView : UIView
+@interface RenderingView : UIView
 
-@property (nonatomic, assign) id<WordsRenderingViewDelegate> delegate;
+@property (nonatomic, assign) id<RenderingViewDelegate> delegate;
 
 @property (nonatomic, retain) NSArray* words;
 @property (nonatomic, retain) NSArray* fonts;

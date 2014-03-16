@@ -62,9 +62,8 @@
 - (void) endInputWithString:(NSString *)string
 {
     RenderingController* lpRenderingController = [[[RenderingController alloc] init] autorelease];
-    [lpRenderingController renderingWithInputText:string];
-    
     [self.navigationController pushViewController:lpRenderingController animated:YES];
+    [lpRenderingController setText:string];
 }
 
 @end

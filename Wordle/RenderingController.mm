@@ -9,17 +9,13 @@
 #import "RenderingController.h"
 #import "TextProcessor.h"
 #import "Bitmap.h"
-#import "WordsRenderingView.h"
+#import "RenderingView.h"
 
 
-@interface RenderingController () <WordsRenderingViewDelegate>
-{
-    Bitmap* bitmap;
-}
+@interface RenderingController () <RenderingViewDelegate>
 
 - (UIImage*) imageOfString:(NSString*)string WithFont:(UIFont*)font;
 - (unsigned char*) newRawDataOfUIImage:(UIImage*)image;
-- (CGRect) getAvailableRectForBitmap:(Bitmap*)ipBitmap;
 
 @end
 
@@ -27,12 +23,15 @@
 
 @implementation RenderingController
 
+
+@synthesize text;
+
+
 - (id) init
 {
     self = [super init];
     if (self)
     {
-        bitmap = new Bitmap(self.view.bounds.size.width, self.view.bounds.size.height);
         srand(time(0));
     }
     return self;
@@ -55,7 +54,22 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
+    [self showNavigationBarAndHide];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self rendering];
+    });
+}
+
+- (void) showNavigationBarAndHide
+{
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(hideNavigationBar) userInfo:nil repeats:NO];
+}
+
+- (void) hideNavigationBar
+{
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void) singleTap
@@ -70,14 +84,12 @@
 
 - (void) dealloc
 {
-    delete bitmap;
-    
     [super dealloc];
 }
 
 - (void) loadView
 {
-    WordsRenderingView* lpRenderingView = [[[WordsRenderingView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
+    RenderingView* lpRenderingView = [[[RenderingView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
     [lpRenderingView setDelegate:self];
     self.view = lpRenderingView;
 }
@@ -112,8 +124,13 @@
     }
 }
 
-- (void) renderingWithInputText:(NSString *)text
+- (void) rendering
 {
+    if (!self.text)
+        return;
+    
+    Bitmap* bitmap = new Bitmap(self.view.bounds.size.width, self.view.bounds.size.height);
+    
     NSMutableArray* words = [NSMutableArray array];
     NSMutableArray* fonts = [NSMutableArray array];
     NSMutableArray* rects = [NSMutableArray array];
@@ -128,8 +145,8 @@
         return;
     
     float maxFontSize = [self fontSizeOfString:[NSString stringWithUTF8String:wordsVector->begin()->first.c_str()]
-                           withConstrainedSize:CGSizeMake(self.view.bounds.size.width,
-                                                          self.view.bounds.size.height)];
+                           withConstrainedSize:CGSizeMake(self.view.bounds.size.width  / 1.5f,
+                                                          self.view.bounds.size.height / 1.5f)];
     
     float fontSizeRatio = maxFontSize / wordsVector->begin()->second;
     
@@ -143,7 +160,7 @@
         const unsigned char* binaryPixel = [self newRawDataOfUIImage:wordImage];
         Bitmap wordBitmap(wordImage.size.width, wordImage.size.height, binaryPixel);
         
-        CGRect rect = [self getAvailableRectForBitmap:&wordBitmap];
+        CGRect rect = [self getAvailableRectInBitmap:bitmap ForBitmap:&wordBitmap];
         MIRect miRect = { (int)rect.origin.x, (int)rect.origin.y, (int)rect.size.width, (int)rect.size.height };
         
         if (miRect.isNull())
@@ -158,25 +175,29 @@
         delete []binaryPixel;
     }
     
-    [(WordsRenderingView*)self.view setWords:words];
-    [(WordsRenderingView*)self.view setFonts:fonts];
-    [(WordsRenderingView*)self.view setRects:rects];
+    [(RenderingView*)self.view setWords:words];
+    [(RenderingView*)self.view setFonts:fonts];
+    [(RenderingView*)self.view setRects:rects];
+    
+    [self.view setNeedsDisplay];
+    
+    delete bitmap;
 }
 
-- (CGRect) getAvailableRectForBitmap:(Bitmap*)ipBitmap
+- (CGRect) getAvailableRectInBitmap:(Bitmap*)bitmap ForBitmap:(Bitmap*)bitmapTpAdd
 {    
     int count = 0;
     while (count++ < 1000)
     {
-        int x = rand() % (int)(self.view.bounds.size.width  - ipBitmap->Width() + 1);
-        int y = rand() % (int)(self.view.bounds.size.height - ipBitmap->Height()+ 1);
+        int x = rand() % (int)(self.view.bounds.size.width  - bitmapTpAdd->Width() + 1);
+        int y = rand() % (int)(self.view.bounds.size.height - bitmapTpAdd->Height()+ 1);
     
 //        if (kDataFlagEmperty == bitmap->dataFlagOfRect({ x, y, ipBitmap->Width(), ipBitmap->Height() }))
-        if (bitmap->canAddBitmapAtEmpertyArea( {x, y, ipBitmap->Width(), ipBitmap->Height() }, ipBitmap))
-            return CGRectMake(x, y, ipBitmap->Width(), ipBitmap->Height());
+        if (bitmap->canAddBitmapAtEmpertyArea( {x, y, bitmapTpAdd->Width(), bitmapTpAdd->Height() }, bitmapTpAdd))
+            return CGRectMake(x, y, bitmapTpAdd->Width(), bitmapTpAdd->Height());
     }
     
-    NSLog(@"Fail to get available area");
+//    NSLog(@"Fail to get available area");
     
     return CGRectZero;
 }

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Quan Xiaosha. All rights reserved.
 //
 
-#import "WordsRenderingView.h"
+#import "RenderingView.h"
 
-@interface WordsRenderingView ()
+@interface RenderingView ()
 {
     NSMutableArray *words;
     NSMutableArray *fonts;
@@ -18,7 +18,7 @@
 @end
 
 
-@implementation WordsRenderingView
+@implementation RenderingView
 
 @synthesize words;
 @synthesize fonts;

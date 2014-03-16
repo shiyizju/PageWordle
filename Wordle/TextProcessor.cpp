@@ -15,32 +15,26 @@ bool comparePair(std::pair<std::string, int> p1, std::pair<std::string, int> p2)
     return p1.second > p2.second;
 }
 
-const char TextProcessor::uselessTokens[][256] = {
+unordered_set<string> TextProcessor::infolessWords = {
     "a", "also", "am", "an", "and", "are", "as", "at",
-    "by", "be",
+    "by", "be", "been", "being",
     "can",
     "for", "from",
     "had", "has", "have", "he", "him",
     "i", "in", "into", "is", "it", "its",
+    "no", "not",
     "of", "on", "or", "out",
-    "she", "so",
+    "say,", "said", "she", "so",
     "that", "the", "their", "there", "they", "this", "to", "too",
-    "was", "with", "were",
-    0,
+    "was", "with", "were"
 };
 
 bool TextProcessor::isUselessToken()
 {
     if (strlen(token)<=1)
         return true;
-        
-    for (int i=0;uselessTokens[i][0];i++)
-    {
-        if (strcmp(uselessTokens[i], token) == 0)
-            return true;
-    }
     
-    return false;
+    return infolessWords.find(token)!=infolessWords.end();
 }
 
 bool TextProcessor::getNextToken()

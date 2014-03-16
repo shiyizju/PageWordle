@@ -10,6 +10,8 @@
 
 @interface RenderingController : UIViewController
 
-- (void) renderingWithInputText:(NSString*) text;
+@property (nonatomic, retain) NSString* text;
+
+- (void) rendering;
 
 @end

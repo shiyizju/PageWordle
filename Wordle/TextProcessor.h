@@ -13,6 +13,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <unordered_set>
 
 class TextProcessor
 {
@@ -23,8 +24,7 @@ class TextProcessor
     char token[256];
     
     std::map<std::string, int> wordmap;
-    
-    static const char uselessTokens[][256];
+    static std::unordered_set<std::string> infolessWords;
     
 public:
     TextProcessor(const char* ipText)
