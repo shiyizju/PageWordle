@@ -15,6 +15,7 @@ bool comparePair(std::pair<std::string, int> p1, std::pair<std::string, int> p2)
     return p1.second > p2.second;
 }
 
+// Exclude unless tokens.
 unordered_set<string> TextProcessor::infolessWords = {
     "a", "also", "am", "an", "and", "are", "as", "at",
     "by", "be", "been", "being",
