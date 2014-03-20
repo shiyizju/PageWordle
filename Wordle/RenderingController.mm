@@ -47,6 +47,23 @@
     return UIInterfaceOrientationMaskAll;
 }
 
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [(RenderingView*)self.view clear];
+}
+
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    
+}
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self rendering];
+    });
+}
+
 - (void) viewWillAppear:(BOOL)animated
 {
     

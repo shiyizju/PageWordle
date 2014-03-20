@@ -44,6 +44,15 @@
     return self;
 }
 
+- (void) clear
+{
+    self.words = nil;
+    self.fonts = nil;
+    self.rects = nil;
+    
+    [self setNeedsDisplay];
+}
+
 - (void) dealloc
 {
     self.words = nil;

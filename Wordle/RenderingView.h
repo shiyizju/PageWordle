@@ -23,4 +23,6 @@
 @property (nonatomic, retain) NSArray* fonts;
 @property (nonatomic, retain) NSArray* rects;
 
+- (void) clear;
+
 @end
