@@ -32,6 +32,7 @@ unordered_set<string> TextProcessor::infolessWords = {
 
 // different
 
+
 bool TextProcessor::isUselessToken()
 {
     if (strlen(token)<=1)
