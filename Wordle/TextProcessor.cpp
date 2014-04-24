@@ -23,9 +23,9 @@ unordered_set<string> TextProcessor::infolessWords = {
     "had", "has", "have", "he", "him",
     "i", "in", "into", "is", "it", "its",
     "no", "not",
-    "of", "on", "or", "out",
+    "of", "on", "or", "out", "over",
     "say,", "said", "she", "so",
-    "th", "that", "the", "their", "there", "they", "this", "to", "too",
+    "th", "than", "that", "the", "their", "there", "they", "this", "to", "too",
     "was", "with", "were"
 };
 
