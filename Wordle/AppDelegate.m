@@ -19,6 +19,7 @@
 @end
 
 
+
 @implementation AppDelegate
 
 @synthesize navigationController;
@@ -34,6 +35,7 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     
+    
 //  if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
    
 /*
@@ -43,6 +45,7 @@
                         0, 0, 1, 0, 0,
                         0, 0, 0, 0, 0 };
     
+ 
     Bitmap bitmap(5, 5, pixels);
 */
     
