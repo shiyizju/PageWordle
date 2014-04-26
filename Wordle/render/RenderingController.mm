@@ -162,8 +162,8 @@
         return;
     
     float maxFontSize = [self fontSizeOfString:[NSString stringWithUTF8String:wordsVector->begin()->first.c_str()]
-                           withConstrainedSize:CGSizeMake(self.view.bounds.size.width  / 1.5f,
-                                                          self.view.bounds.size.height / 1.5f)];
+                           withConstrainedSize:CGSizeMake(self.view.bounds.size.width  / 2.0f,
+                                                          self.view.bounds.size.height / 2.0f)];
     
     float fontSizeRatio = maxFontSize / wordsVector->begin()->second;
     
