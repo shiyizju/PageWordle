@@ -18,10 +18,16 @@
 		F75E3DC2171DAC020058079D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC1171DAC020058079D /* Default.png */; };
 		F75E3DC4171DAC020058079D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC3171DAC020058079D /* Default@2x.png */; };
 		F75E3DC6171DAC020058079D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC5171DAC020058079D /* Default-568h@2x.png */; };
+		F7B64591190D63B500436D9C /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B6458C190D63B500436D9C /* TFHpple.m */; };
+		F7B64592190D63B500436D9C /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B6458E190D63B500436D9C /* TFHppleElement.m */; };
+		F7B64593190D63B500436D9C /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B64590190D63B500436D9C /* XPathQuery.m */; };
+		F7B64595190D63FF00436D9C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B64594190D63FF00436D9C /* libxml2.dylib */; };
 		F7B76F5B190BCC3B0078E1CF /* RenderingController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F58190BCC3B0078E1CF /* RenderingController.mm */; };
 		F7B76F5C190BCC3B0078E1CF /* RenderingView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F5A190BCC3B0078E1CF /* RenderingView.mm */; };
-		F7B76F62190BCCE70078E1CF /* InputTextController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F5F190BCCE70078E1CF /* InputTextController.mm */; };
-		F7B76F63190BCCE70078E1CF /* InputTextView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F61190BCCE70078E1CF /* InputTextView.mm */; };
+		F7B76F62190BCCE70078E1CF /* TextInputController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F5F190BCCE70078E1CF /* TextInputController.mm */; };
+		F7B76F63190BCCE70078E1CF /* TextInputView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F61190BCCE70078E1CF /* TextInputView.mm */; };
+		F7B76F66190BCE190078E1CF /* InputController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F65190BCE190078E1CF /* InputController.m */; };
+		F7B76F69190BCFE20078E1CF /* HttpInputController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F68190BCFE20078E1CF /* HttpInputController.mm */; };
 		F7C7A6CD171FDD5B00F14C22 /* TextProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */; };
 		F7C7A6CF171FE0B000F14C22 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C7A6CE171FE0B000F14C22 /* libc++.dylib */; };
 /* End PBXBuildFile section */
@@ -44,14 +50,25 @@
 		F75E3DC1171DAC020058079D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F75E3DC3171DAC020058079D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F75E3DC5171DAC020058079D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F7B6458B190D63B500436D9C /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		F7B6458C190D63B500436D9C /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		F7B6458D190D63B500436D9C /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		F7B6458E190D63B500436D9C /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		F7B6458F190D63B500436D9C /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		F7B64590190D63B500436D9C /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		F7B64594190D63FF00436D9C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		F7B76F57190BCC3B0078E1CF /* RenderingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingController.h; sourceTree = "<group>"; };
 		F7B76F58190BCC3B0078E1CF /* RenderingController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RenderingController.mm; sourceTree = "<group>"; };
 		F7B76F59190BCC3B0078E1CF /* RenderingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingView.h; sourceTree = "<group>"; };
 		F7B76F5A190BCC3B0078E1CF /* RenderingView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RenderingView.mm; sourceTree = "<group>"; };
-		F7B76F5E190BCCE70078E1CF /* InputTextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextController.h; sourceTree = "<group>"; };
-		F7B76F5F190BCCE70078E1CF /* InputTextController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InputTextController.mm; sourceTree = "<group>"; };
-		F7B76F60190BCCE70078E1CF /* InputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextView.h; sourceTree = "<group>"; };
-		F7B76F61190BCCE70078E1CF /* InputTextView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InputTextView.mm; sourceTree = "<group>"; };
+		F7B76F5E190BCCE70078E1CF /* TextInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputController.h; sourceTree = "<group>"; };
+		F7B76F5F190BCCE70078E1CF /* TextInputController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TextInputController.mm; sourceTree = "<group>"; };
+		F7B76F60190BCCE70078E1CF /* TextInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputView.h; sourceTree = "<group>"; };
+		F7B76F61190BCCE70078E1CF /* TextInputView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TextInputView.mm; sourceTree = "<group>"; };
+		F7B76F64190BCE190078E1CF /* InputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputController.h; sourceTree = "<group>"; };
+		F7B76F65190BCE190078E1CF /* InputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputController.m; sourceTree = "<group>"; };
+		F7B76F67190BCFE20078E1CF /* HttpInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpInputController.h; sourceTree = "<group>"; };
+		F7B76F68190BCFE20078E1CF /* HttpInputController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HttpInputController.mm; sourceTree = "<group>"; };
 		F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextProcessor.cpp; sourceTree = "<group>"; };
 		F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = TextProcessor.h; sourceTree = "<group>"; };
 		F7C7A6CE171FE0B000F14C22 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
@@ -62,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7B64595190D63FF00436D9C /* libxml2.dylib in Frameworks */,
 				F7C7A6CF171FE0B000F14C22 /* libc++.dylib in Frameworks */,
 				F75E3DB0171DAC020058079D /* UIKit.framework in Frameworks */,
 				F75E3DB2171DAC020058079D /* Foundation.framework in Frameworks */,
@@ -93,6 +111,7 @@
 		F75E3DAE171DAC020058079D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F7B64594190D63FF00436D9C /* libxml2.dylib */,
 				F75E3DAF171DAC020058079D /* UIKit.framework */,
 				F75E3DB1171DAC020058079D /* Foundation.framework */,
 				F75E3DB3171DAC020058079D /* CoreGraphics.framework */,
@@ -103,6 +122,7 @@
 		F75E3DB5171DAC020058079D /* Wordle */ = {
 			isa = PBXGroup;
 			children = (
+				F7B6458A190D63B500436D9C /* hpple */,
 				F7B76F5D190BCCE70078E1CF /* input */,
 				F7B76F56190BCC3B0078E1CF /* render */,
 				F75E3DBE171DAC020058079D /* AppDelegate.h */,
@@ -132,6 +152,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F7B6458A190D63B500436D9C /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				F7B6458B190D63B500436D9C /* TFHpple.h */,
+				F7B6458C190D63B500436D9C /* TFHpple.m */,
+				F7B6458D190D63B500436D9C /* TFHppleElement.h */,
+				F7B6458E190D63B500436D9C /* TFHppleElement.m */,
+				F7B6458F190D63B500436D9C /* XPathQuery.h */,
+				F7B64590190D63B500436D9C /* XPathQuery.m */,
+			);
+			path = hpple;
+			sourceTree = "<group>";
+		};
 		F7B76F56190BCC3B0078E1CF /* render */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,10 +179,14 @@
 		F7B76F5D190BCCE70078E1CF /* input */ = {
 			isa = PBXGroup;
 			children = (
-				F7B76F5E190BCCE70078E1CF /* InputTextController.h */,
-				F7B76F5F190BCCE70078E1CF /* InputTextController.mm */,
-				F7B76F60190BCCE70078E1CF /* InputTextView.h */,
-				F7B76F61190BCCE70078E1CF /* InputTextView.mm */,
+				F7B76F67190BCFE20078E1CF /* HttpInputController.h */,
+				F7B76F68190BCFE20078E1CF /* HttpInputController.mm */,
+				F7B76F5E190BCCE70078E1CF /* TextInputController.h */,
+				F7B76F5F190BCCE70078E1CF /* TextInputController.mm */,
+				F7B76F60190BCCE70078E1CF /* TextInputView.h */,
+				F7B76F61190BCCE70078E1CF /* TextInputView.mm */,
+				F7B76F64190BCE190078E1CF /* InputController.h */,
+				F7B76F65190BCE190078E1CF /* InputController.m */,
 			);
 			path = input;
 			sourceTree = "<group>";
@@ -220,14 +257,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7B76F5B190BCC3B0078E1CF /* RenderingController.mm in Sources */,
-				F7B76F63190BCCE70078E1CF /* InputTextView.mm in Sources */,
+				F7B76F63190BCCE70078E1CF /* TextInputView.mm in Sources */,
 				F75E3DBC171DAC020058079D /* main.m in Sources */,
+				F7B64592190D63B500436D9C /* TFHppleElement.m in Sources */,
 				F7B76F5C190BCC3B0078E1CF /* RenderingView.mm in Sources */,
+				F7B76F69190BCFE20078E1CF /* HttpInputController.mm in Sources */,
 				F75E3DC0171DAC020058079D /* AppDelegate.m in Sources */,
 				F747623A18978D9B00E98669 /* MIRect.cpp in Sources */,
+				F7B64593190D63B500436D9C /* XPathQuery.m in Sources */,
+				F7B64591190D63B500436D9C /* TFHpple.m in Sources */,
+				F7B76F66190BCE190078E1CF /* InputController.m in Sources */,
 				F7C7A6CD171FDD5B00F14C22 /* TextProcessor.cpp in Sources */,
 				F7409E14172245B100490FEA /* Bitmap.cpp in Sources */,
-				F7B76F62190BCCE70078E1CF /* InputTextController.mm in Sources */,
+				F7B76F62190BCCE70078E1CF /* TextInputController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +348,11 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wordle/Wordle-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "Wordle/Wordle-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -317,6 +364,11 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wordle/Wordle-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "Wordle/Wordle-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

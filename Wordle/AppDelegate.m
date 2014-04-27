@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "InputTextController.h"
+#import "TextInputController.h"
+#import "HttpInputController.h"
 
 @interface AppDelegate ()
 {
@@ -49,10 +50,13 @@
     Bitmap bitmap(5, 5, pixels);
 */
     
-    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:[[[InputTextController alloc] init] autorelease]] autorelease];
+//    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:[[[TextInputController alloc] init] autorelease]] autorelease];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:[[[HttpInputController alloc] init] autorelease]];
+    
     [self.navigationController setNavigationBarHidden:YES];
     [self.window setRootViewController:self.navigationController];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

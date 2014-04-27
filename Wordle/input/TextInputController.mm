@@ -1,29 +1,29 @@
 //
-//  InputTextController.m
+//  TextInputController.m
 //  Wordle
 //
 //  Created by Quan, Xiaosha on 4/17/13.
 //  Copyright (c) 2013 Quan Xiaosha. All rights reserved.
 //
 
-#import "InputTextController.h"
-#import "InputTextView.h"
+#import "TextInputController.h"
+#import "TextInputView.h"
 
 #import "RenderingController.h"
 
-@interface InputTextController () <InputTextViewDelegate>
+@interface TextInputController () <TextInputViewDelegate>
 
 @end
 
 
-@implementation InputTextController
+@implementation TextInputController
 
 
 - (void) loadView
 {
-    self.view = [[[InputTextView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
+    self.view = [[[TextInputView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
     
-    [(InputTextView*)[self view] setDelegate:self];
+    [(TextInputView*)[self view] setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning

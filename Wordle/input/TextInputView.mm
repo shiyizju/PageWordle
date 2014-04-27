@@ -1,5 +1,5 @@
 //
-//  InputTextView.m
+//  TextInputView.m
 //  Wordle
 //
 //  Created by Quan, Xiaosha on 4/17/13.
@@ -7,7 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import "InputTextView.h"
+#import "TextInputView.h"
 
 
 #define TEXT_VIEW_PADDING   20
@@ -15,9 +15,9 @@
 #define BUTTON_HEIGHT       30
 #define BUTTON_WIDTH        100
 
-@interface InputTextView () <UITextViewDelegate>
+@interface TextInputView () <UITextViewDelegate>
 {
-    id<InputTextViewDelegate> delegate;
+    id<TextInputViewDelegate> delegate;
     UITextView *textView;
     UIButton *doneButton;
 }
@@ -31,7 +31,7 @@
 @end
 
 
-@implementation InputTextView
+@implementation TextInputView
 
 @synthesize delegate;
 

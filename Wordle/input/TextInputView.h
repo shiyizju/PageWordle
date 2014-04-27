@@ -1,5 +1,5 @@
 //
-//  InputTextView.h
+//  TextInputView.h
 //  Wordle
 //
 //  Created by Quan, Xiaosha on 4/17/13.
@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol InputTextViewDelegate
+@protocol TextInputViewDelegate
 
 - (void) endInputWithString:(NSString*)string;
 
 @end
 
-@interface InputTextView : UIView
+@interface TextInputView : UIView
 
-@property (nonatomic, assign) id<InputTextViewDelegate> delegate;
+@property (nonatomic, assign) id<TextInputViewDelegate> delegate;
 
 @end

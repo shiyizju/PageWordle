@@ -1,5 +1,5 @@
 //
-//  InputTextController.h
+//  TextInputController.h
 //  Wordle
 //
 //  Created by Quan, Xiaosha on 4/17/13.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 
-@interface InputTextController : UIViewController
+@interface TextInputController : UIViewController
 
 @end

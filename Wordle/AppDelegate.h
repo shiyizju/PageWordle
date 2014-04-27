@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class RenderingController;
-@class InputTextController;
+@class TextInputController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
