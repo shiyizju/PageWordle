@@ -79,7 +79,8 @@
     [self.view setBackgroundColor:[UIColor colorWithWhite:0.9f alpha:1.0f]];
     
     self.urlField = [[[UITextField alloc] initWithFrame:[self frameOfUriBox]] autorelease];
-    [self.urlField setBorderStyle:UITextBorderStyleRoundedRect];
+    self.urlField.borderStyle = UITextBorderStyleRoundedRect;
+    self.urlField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.urlField.delegate = self;
     [self.view addSubview:urlField];
     
@@ -145,19 +146,22 @@
 
 - (void) handleData
 {
-    TFHpple *htmlParser = [TFHpple hppleWithHTMLData:self.responseData];
-    NSArray* arr1 = [htmlParser searchWithXPathQuery:@"//text()[not(ancestor::script) and not(ancestor::style)]"];
-    
-    NSMutableString* htmlText = [NSMutableString string];
-    
-    for (TFHppleElement* element in arr1)
-        if (element.content)
-            [htmlText appendString:element.content];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        RenderingController* lpRenderingController = [[[RenderingController alloc] init] autorelease];
-        [self.navigationController pushViewController:lpRenderingController animated:YES];
-        [lpRenderingController setText:htmlText];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        TFHpple *htmlParser = [TFHpple hppleWithHTMLData:self.responseData];
+        NSArray* arr1 = [htmlParser searchWithXPathQuery:@"//text()[not(ancestor::script) and not(ancestor::style)]"];
+        
+        NSMutableString* htmlText = [NSMutableString string];
+        
+        for (TFHppleElement* element in arr1)
+            if (element.content)
+                [htmlText appendString:element.content];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            RenderingController* lpRenderingController = [[[RenderingController alloc] init] autorelease];
+            [self.navigationController pushViewController:lpRenderingController animated:YES];
+            [lpRenderingController setText:htmlText];
+        });
     });
 }
 
@@ -199,11 +203,6 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [self handleData];
-    /*
-    TFHpple *htmlParser = [TFHpple hppleWithHTMLData:self.responseData];
-    NSString* queryString = @"//p/text()";
-    NSArray* arr = [htmlParser searchWithXPathQuery:queryString];
-     */
 }
 
 @end
