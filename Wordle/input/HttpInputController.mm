@@ -7,7 +7,10 @@
 //
 
 #import "HttpInputController.h"
+#import "UrlConnectionManager.h"
 #import "TFHpple.h"
+#import "RenderingController.h"
+
 
 #define URI_BOX_WIDTH_RATIO 0.8
 #define URI_BOX_TOP_RATIO   0.3
@@ -18,17 +21,20 @@
 #define BUTTON_WIDTH    100
 #define BUTTON_HEIGHT   44
 
+
 @interface HttpInputController () <UITextFieldDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {
     UITextField* urlField;
     UIButton* goButton;
     
     NSMutableData* responseData;
+    NSURLConnection* urlConnection;
 }
 
 @property (nonatomic, retain) UITextField* urlField;
 @property (nonatomic, retain) UIButton* goButton;
 @property (nonatomic, retain) NSMutableData* responseData;
+@property (nonatomic, retain) NSURLConnection* urlConnection;
 
 @end
 
@@ -37,12 +43,32 @@
 @synthesize urlField;
 @synthesize goButton;
 @synthesize responseData;
+@synthesize urlConnection;
+- (void) setUrlConnection:(NSURLConnection *)_urlConnection
+{
+    if (urlConnection != _urlConnection)
+    {
+        [_urlConnection cancel];
+        urlConnection = [_urlConnection retain];
+    }
+}
+
+- (id) init
+{
+    self = [super init];
+    if (self)
+    {
+        
+    }
+    return self;
+}
 
 - (void) dealloc
 {
     self.urlField = nil;
     self.goButton = nil;
     self.responseData = nil;
+    self.urlConnection = nil;
     
     [super dealloc];
 }
@@ -67,11 +93,19 @@
 {
     [self layoutView];
 }
-
+/*
+- (void) viewDidAppear:(BOOL)animated
+{
+    // for test
+    [self getHttpUrlContent:@"http://en.wikipedia.org/wiki/time_machine"];
+}
+*/
 - (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [self layoutView];
 }
+
+#pragma mark - private method
 
 - (void) buttonTapped:(id)sender
 {
@@ -103,28 +137,45 @@
 - (void) getHttpUrlContent:(NSString*)urlStr
 {
     NSURLConnection* lpConnection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]]
-                                                                    delegate:self];
-    [lpConnection start];
+                                                                    delegate:self
+                                                            startImmediately:NO];
+    
+    [[UrlConnectionManager getInstance] startUrlConnection:lpConnection];
 }
 
-#pragma mark - NSURLConnectionDelegate
+- (void) handleData
+{
+    TFHpple *htmlParser = [TFHpple hppleWithHTMLData:self.responseData];
+    NSArray* arr1 = [htmlParser searchWithXPathQuery:@"//text()[not(ancestor::script) and not(ancestor::style)]"];
+    
+    NSMutableString* htmlText = [NSMutableString string];
+    
+    for (TFHppleElement* element in arr1)
+        if (element.content)
+            [htmlText appendString:element.content];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        RenderingController* lpRenderingController = [[[RenderingController alloc] init] autorelease];
+        [self.navigationController pushViewController:lpRenderingController animated:YES];
+        [lpRenderingController setText:htmlText];
+    });
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL) textFieldShouldReturn:(UITextField *)ipTextField
+{
+    [self getHttpUrlContent:self.urlField.text];
+    
+    return YES;
+}
+
+#pragma mark - NSURLConnectionDelegate, NSURLConnectionDataDelegate
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"http request failed");
 }
-
-- (BOOL)connectionShouldUseCredentialStorage:(NSURLConnection *)connection
-{
-    return NO;
-}
-
-- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-{
-    
-}
-
-#pragma mark - NSURLConnectionDataDelegate
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -133,12 +184,10 @@
     if ([httpResponse statusCode] == 200)
     {
         self.responseData = [NSMutableData dataWithCapacity:0];
-        NSLog(@"http request OK");
     }
     else
     {
         self.responseData = nil;
-        NSLog(@"http request error");
     }
 }
 
@@ -149,21 +198,12 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    [self handleData];
+    /*
     TFHpple *htmlParser = [TFHpple hppleWithHTMLData:self.responseData];
-    
-    NSString* queryString = @"//div[@class='content-wrapper']/ul/li/a";
-    
+    NSString* queryString = @"//p/text()";
     NSArray* arr = [htmlParser searchWithXPathQuery:queryString];
-    
-    NSLog(@"http request finish");
-}
-
-#pragma mark - UITextFieldDelegate
-
-- (BOOL) textFieldShouldReturn:(UITextField *)ipTextField
-{
-    [self getHttpUrlContent:self.urlField.text];
-    return YES;
+     */
 }
 
 @end
