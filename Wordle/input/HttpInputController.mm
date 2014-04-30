@@ -25,25 +25,28 @@
 @interface HttpInputController () <UITextFieldDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 {
     UITextField* urlField;
-    UIButton* goButton;
+    UIButton* viewButton;
     
     NSMutableData* responseData;
     NSURLConnection* urlConnection;
 }
 
 @property (nonatomic, retain) UITextField* urlField;
-@property (nonatomic, retain) UIButton* goButton;
+@property (nonatomic, retain) UIButton* viewButton;
 @property (nonatomic, retain) NSMutableData* responseData;
 @property (nonatomic, retain) NSURLConnection* urlConnection;
+@property (nonatomic, retain) UIActivityIndicatorView* indicatorView;
 
 @end
 
 @implementation HttpInputController
 
 @synthesize urlField;
-@synthesize goButton;
+@synthesize viewButton;
 @synthesize responseData;
 @synthesize urlConnection;
+@synthesize indicatorView;
+
 - (void) setUrlConnection:(NSURLConnection *)_urlConnection
 {
     if (urlConnection != _urlConnection)
@@ -58,7 +61,6 @@
     self = [super init];
     if (self)
     {
-        
     }
     return self;
 }
@@ -66,7 +68,7 @@
 - (void) dealloc
 {
     self.urlField = nil;
-    self.goButton = nil;
+    self.viewButton = nil;
     self.responseData = nil;
     self.urlConnection = nil;
     
@@ -84,10 +86,14 @@
     self.urlField.delegate = self;
     [self.view addSubview:urlField];
     
-    self.goButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.goButton setBackgroundColor:[UIColor whiteColor]];
-    [self.goButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:goButton];
+    self.viewButton = [[[UIButton alloc] init] autorelease];
+    [[viewButton layer] setCornerRadius:0.5f];
+    [[viewButton layer] setBorderColor:[[UIColor grayColor] CGColor]];
+    [[viewButton layer] setBorderWidth:1.0f];
+    [viewButton setTitle:@"View" forState:UIControlStateNormal];
+    [viewButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.viewButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:viewButton];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -116,7 +122,7 @@
 - (void) layoutView
 {
     [self.urlField setFrame:[self frameOfUriBox]];
-    [self.goButton setFrame:[self frameOfButton]];
+    [self.viewButton setFrame:[self frameOfButton]];
 }
 
 - (CGRect) frameOfUriBox
@@ -141,6 +147,11 @@
                                                                     delegate:self
                                                             startImmediately:NO];
     
+    self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [indicatorView setFrame:self.view.bounds];
+    [self.view addSubview:indicatorView];
+    [indicatorView startAnimating];
+    
     [[UrlConnectionManager getInstance] startUrlConnection:lpConnection];
 }
 
@@ -149,15 +160,21 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         TFHpple *htmlParser = [TFHpple hppleWithHTMLData:self.responseData];
-        NSArray* arr1 = [htmlParser searchWithXPathQuery:@"//text()[not(ancestor::script) and not(ancestor::style)]"];
+        
+        NSArray* arr = [htmlParser searchWithXPathQuery:@"//p//text()"];    //@"//text()[not(ancestor::script)][not(ancestor::style)]"
         
         NSMutableString* htmlText = [NSMutableString string];
         
-        for (TFHppleElement* element in arr1)
+        for (TFHppleElement* element in arr)
             if (element.content)
                 [htmlText appendString:element.content];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.indicatorView stopAnimating];
+            self.indicatorView = nil;
+            [indicatorView removeFromSuperview];
+            
             RenderingController* lpRenderingController = [[[RenderingController alloc] init] autorelease];
             [self.navigationController pushViewController:lpRenderingController animated:YES];
             [lpRenderingController setText:htmlText];
@@ -169,8 +186,8 @@
 
 - (BOOL) textFieldShouldReturn:(UITextField *)ipTextField
 {
+    [self.urlField resignFirstResponder];
     [self getHttpUrlContent:self.urlField.text];
-    
     return YES;
 }
 
@@ -185,12 +202,9 @@
 {
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
     
-    if ([httpResponse statusCode] == 200)
-    {
+    if ([httpResponse statusCode] == 200) {
         self.responseData = [NSMutableData dataWithCapacity:0];
-    }
-    else
-    {
+    } else {
         self.responseData = nil;
     }
 }

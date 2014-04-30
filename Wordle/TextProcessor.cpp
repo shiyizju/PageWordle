@@ -21,13 +21,14 @@ unordered_set<string> TextProcessor::infolessWords = {
     "by", "be", "been", "being",
     "can",
     "for", "from",
-    "had", "has", "have", "he", "him",
+    "had", "has", "have", "he", "her", "him",
     "i", "in", "into", "is", "it", "its",
     "no", "not",
     "of", "on", "or", "out", "over",
     "say,", "said", "she", "so",
     "th", "than", "that", "the", "their", "there", "they", "this", "to", "too",
-    "was", "with", "were"
+    "was", "with", "were",
+    "you", "your"
 };
 
 // different
