@@ -40,11 +40,12 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [self.view setNeedsLayout];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

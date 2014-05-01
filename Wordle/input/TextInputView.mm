@@ -12,7 +12,7 @@
 
 #define TEXT_VIEW_PADDING   20
 
-#define BUTTON_HEIGHT       30
+#define BUTTON_HEIGHT       44
 #define BUTTON_WIDTH        100
 
 @interface TextInputView () <UITextViewDelegate>
@@ -55,7 +55,7 @@
         [segment release];
         
         doneButton = [[UIButton alloc] init];
-        [[doneButton layer] setCornerRadius:0.5f];
+        [[doneButton layer] setCornerRadius:5.0f];
         [[doneButton layer] setBorderColor:[[UIColor grayColor] CGColor]];
         [[doneButton layer] setBorderWidth:1.0f];
         [doneButton setTitle:@"OK" forState:UIControlStateNormal];
@@ -89,10 +89,12 @@
 
 - (CGRect) textViewFrame
 {
+    float top = 64 + TEXT_VIEW_PADDING;
+    
     return CGRectMake(TEXT_VIEW_PADDING,
-                      TEXT_VIEW_PADDING,
+                      top,
                       self.frame.size.width  - 2*TEXT_VIEW_PADDING,
-                      self.frame.size.height - 3*TEXT_VIEW_PADDING - BUTTON_HEIGHT);
+                      self.frame.size.height - 2*TEXT_VIEW_PADDING - BUTTON_HEIGHT - top);
 }
 
 - (CGRect) buttonFrame

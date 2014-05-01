@@ -70,7 +70,6 @@ static UrlConnectionManager* pInstance = nil;
     // This function should run on work thread
     [connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [connection start];
-    NSLog(@"%@ started", [connection description]);
 }
 
 
