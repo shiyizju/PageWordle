@@ -21,16 +21,11 @@
 
 #define BUTTON_WIDTH    120
 #define BUTTON_HEIGHT   44
-#define BUTTON_GAP      BUTTON_WIDTH
+#define BUTTON_GAP      60
 
 
-@interface HttpInputController () <UITextFieldDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
-{
-    UITextField* urlField;
-    UIButton* viewButton;
-    
-    NSMutableData* responseData;
-    NSURLConnection* urlConnection;
+@interface HttpInputController () <UITextFieldDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
+
 }
 
 @property (nonatomic, retain) UITextField* urlField;
@@ -44,30 +39,25 @@
 
 @implementation HttpInputController
 
-@synthesize urlField;
-@synthesize viewButton;
-@synthesize typeButton;
-@synthesize responseData;
-@synthesize urlConnection;
-
-@synthesize indicatorView;
-- (void) setIndicatorView:(UIActivityIndicatorView *)newIndicatorView
+@synthesize indicatorView = _indicatorView;
+- (void) setIndicatorView:(UIActivityIndicatorView *)indicatorView
 {
-    if (indicatorView != newIndicatorView)
+    if (_indicatorView != indicatorView)
     {
-        [indicatorView stopAnimating];
-        [indicatorView removeFromSuperview];
-        [indicatorView release];
-        indicatorView = [newIndicatorView retain];
+        [_indicatorView stopAnimating];
+        [_indicatorView removeFromSuperview];
+        [_indicatorView release];
+        _indicatorView = [indicatorView retain];
     }
 }
 
-- (void) setUrlConnection:(NSURLConnection *)_urlConnection
+@synthesize urlConnection = _urlConnection;
+- (void) setUrlConnection:(NSURLConnection *)urlConnection
 {
-    if (urlConnection != _urlConnection)
+    if (_urlConnection != urlConnection)
     {
         [_urlConnection cancel];
-        urlConnection = [_urlConnection retain];
+        _urlConnection = [urlConnection retain];
     }
 }
 
@@ -100,25 +90,25 @@
     self.urlField.borderStyle = UITextBorderStyleRoundedRect;
     self.urlField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.urlField.delegate = self;
-    [self.view addSubview:urlField];
+    [self.view addSubview:self.urlField];
     
     self.viewButton = [[[UIButton alloc] init] autorelease];
-    [[viewButton layer] setCornerRadius:5.0f];
-    [[viewButton layer] setBorderColor:[[UIColor grayColor] CGColor]];
-    [[viewButton layer] setBorderWidth:1.0f];
-    [viewButton setTitle:@"View" forState:UIControlStateNormal];
-    [viewButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [[self.viewButton layer] setCornerRadius:5.0f];
+    [[self.viewButton layer] setBorderColor:[[UIColor grayColor] CGColor]];
+    [[self.viewButton layer] setBorderWidth:1.0f];
+    [self.viewButton setTitle:@"View" forState:UIControlStateNormal];
+    [self.viewButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.viewButton addTarget:self action:@selector(viewButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:viewButton];
+    [self.view addSubview:self.viewButton];
     
     self.typeButton = [[[UIButton alloc] init] autorelease];
-    [[typeButton layer] setCornerRadius:5.0f];
-    [[typeButton layer] setBorderColor:[[UIColor grayColor] CGColor]];
-    [[typeButton layer] setBorderWidth:1.0f];
-    [typeButton setTitle:@"Manual Input" forState:UIControlStateNormal];
-    [typeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [[self.typeButton layer] setCornerRadius:5.0f];
+    [[self.typeButton layer] setBorderColor:[[UIColor grayColor] CGColor]];
+    [[self.typeButton layer] setBorderWidth:1.0f];
+    [self.typeButton setTitle:@"Manual Input" forState:UIControlStateNormal];
+    [self.typeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.typeButton addTarget:self action:@selector(typeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:typeButton];
+    [self.view addSubview:self.typeButton];
     
 }
 
@@ -192,9 +182,9 @@
                                                             startImmediately:NO];
     
     self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [indicatorView setFrame:self.view.bounds];
-    [self.view addSubview:indicatorView];
-    [indicatorView startAnimating];
+    [_indicatorView setFrame:self.view.bounds];
+    [self.view addSubview:_indicatorView];
+    [_indicatorView startAnimating];
     
     [[UrlConnectionManager getInstance] startUrlConnection:lpConnection];
 }
@@ -217,7 +207,7 @@
             
             [self.indicatorView stopAnimating];
             self.indicatorView = nil;
-            [indicatorView removeFromSuperview];
+            [_indicatorView removeFromSuperview];
             
             RenderingController* lpRenderingController = [[[RenderingController alloc] init] autorelease];
             [self.navigationController pushViewController:lpRenderingController animated:YES];
