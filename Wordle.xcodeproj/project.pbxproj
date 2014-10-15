@@ -90,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F71D992819EE0E0000998951 /* textprocessor */ = {
+			isa = PBXGroup;
+			children = (
+				F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */,
+				F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */,
+			);
+			name = textprocessor;
+			sourceTree = "<group>";
+		};
 		F75E3DA3171DAC020058079D = {
 			isa = PBXGroup;
 			children = (
@@ -122,17 +131,16 @@
 		F75E3DB5171DAC020058079D /* Wordle */ = {
 			isa = PBXGroup;
 			children = (
-				F7CDC1CC190E9D3B0089433C /* bsp */,
 				F7B6458A190D63B500436D9C /* hpple */,
+				F7CDC1CC190E9D3B0089433C /* bsp */,
 				F7B76F5D190BCCE70078E1CF /* input */,
+				F71D992819EE0E0000998951 /* textprocessor */,
 				F7B76F56190BCC3B0078E1CF /* render */,
-				F75E3DBE171DAC020058079D /* AppDelegate.h */,
-				F75E3DBF171DAC020058079D /* AppDelegate.m */,
-				F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */,
-				F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */,
-				F75E3DB6171DAC020058079D /* Supporting Files */,
 				F7CDC1C9190E7E3A0089433C /* UrlConnectionManager.h */,
 				F7CDC1CA190E7E3A0089433C /* UrlConnectionManager.m */,
+				F75E3DBE171DAC020058079D /* AppDelegate.h */,
+				F75E3DBF171DAC020058079D /* AppDelegate.m */,
+				F75E3DB6171DAC020058079D /* Supporting Files */,
 			);
 			path = Wordle;
 			sourceTree = "<group>";
@@ -191,10 +199,10 @@
 		F7CDC1CC190E9D3B0089433C /* bsp */ = {
 			isa = PBXGroup;
 			children = (
-				F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */,
 				F7CDC1CE190E9D3B0089433C /* Bitmap.h */,
-				F7CDC1CF190E9D3B0089433C /* MIRect.cpp */,
+				F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */,
 				F7CDC1D0190E9D3B0089433C /* MIRect.h */,
+				F7CDC1CF190E9D3B0089433C /* MIRect.cpp */,
 			);
 			path = bsp;
 			sourceTree = "<group>";

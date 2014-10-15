@@ -52,10 +52,9 @@ bool TextProcessor::getNextToken()
         if (text[pos]=='\0')
             break;
         
-        if (isCharacter(text[pos]) || text[pos] == '-')
+        if (isCharacter(text[pos]) || text[pos] == '-') {
             token[len++] = tolower(text[pos]);
-        else if (len!=0)    // have started finding token
-        {
+        } else if (len!=0) {    // have started finding token
             break;
         }
         // haven't started, continue.

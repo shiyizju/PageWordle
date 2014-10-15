@@ -90,6 +90,8 @@
     self.urlField.borderStyle = UITextBorderStyleRoundedRect;
     self.urlField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.urlField.delegate = self;
+    // demo url.
+    self.urlField.text = @"http://en.wikipedia.org/wiki/time_machine";
     [self.view addSubview:self.urlField];
     
     self.viewButton = [[[UIButton alloc] init] autorelease];
@@ -199,10 +201,12 @@
         
         NSMutableString* htmlText = [NSMutableString string];
         
-        for (TFHppleElement* element in arr)
-            if (element.content)
+        for (TFHppleElement* element in arr) {
+            if (element.content) {
                 [htmlText appendString:element.content];
-        
+            }
+        }
+            
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [self.indicatorView stopAnimating];
