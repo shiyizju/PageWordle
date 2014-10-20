@@ -27,7 +27,7 @@
 		F7B76F69190BCFE20078E1CF /* HttpInputController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F68190BCFE20078E1CF /* HttpInputController.mm */; };
 		F7C7A6CD171FDD5B00F14C22 /* TextProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */; };
 		F7C7A6CF171FE0B000F14C22 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C7A6CE171FE0B000F14C22 /* libc++.dylib */; };
-		F7CDC1CB190E7E3A0089433C /* UrlConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CA190E7E3A0089433C /* UrlConnectionManager.m */; };
+		F7CDC1CB190E7E3A0089433C /* NetworkRunLoopThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */; };
 		F7CDC1D1190E9D3B0089433C /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */; };
 		F7CDC1D2190E9D3B0089433C /* MIRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CF190E9D3B0089433C /* MIRect.cpp */; };
 /* End PBXBuildFile section */
@@ -66,8 +66,8 @@
 		F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextProcessor.cpp; sourceTree = "<group>"; };
 		F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = TextProcessor.h; sourceTree = "<group>"; };
 		F7C7A6CE171FE0B000F14C22 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		F7CDC1C9190E7E3A0089433C /* UrlConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlConnectionManager.h; sourceTree = "<group>"; };
-		F7CDC1CA190E7E3A0089433C /* UrlConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlConnectionManager.m; sourceTree = "<group>"; };
+		F7CDC1C9190E7E3A0089433C /* NetworkRunLoopThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkRunLoopThread.h; path = ../NetworkRunLoopThread.h; sourceTree = "<group>"; };
+		F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkRunLoopThread.m; path = ../NetworkRunLoopThread.m; sourceTree = "<group>"; };
 		F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
 		F7CDC1CE190E9D3B0089433C /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		F7CDC1CF190E9D3B0089433C /* MIRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MIRect.cpp; sourceTree = "<group>"; };
@@ -136,8 +136,6 @@
 				F7B76F5D190BCCE70078E1CF /* input */,
 				F71D992819EE0E0000998951 /* textprocessor */,
 				F7B76F56190BCC3B0078E1CF /* render */,
-				F7CDC1C9190E7E3A0089433C /* UrlConnectionManager.h */,
-				F7CDC1CA190E7E3A0089433C /* UrlConnectionManager.m */,
 				F75E3DBE171DAC020058079D /* AppDelegate.h */,
 				F75E3DBF171DAC020058079D /* AppDelegate.m */,
 				F75E3DB6171DAC020058079D /* Supporting Files */,
@@ -188,6 +186,8 @@
 			children = (
 				F7B76F67190BCFE20078E1CF /* HttpInputController.h */,
 				F7B76F68190BCFE20078E1CF /* HttpInputController.mm */,
+				F7CDC1C9190E7E3A0089433C /* NetworkRunLoopThread.h */,
+				F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */,
 				F7B76F5E190BCCE70078E1CF /* TextInputController.h */,
 				F7B76F5F190BCCE70078E1CF /* TextInputController.mm */,
 				F7B76F60190BCCE70078E1CF /* TextInputView.h */,
@@ -283,7 +283,7 @@
 				F7B64591190D63B500436D9C /* TFHpple.m in Sources */,
 				F7CDC1D2190E9D3B0089433C /* MIRect.cpp in Sources */,
 				F7C7A6CD171FDD5B00F14C22 /* TextProcessor.cpp in Sources */,
-				F7CDC1CB190E7E3A0089433C /* UrlConnectionManager.m in Sources */,
+				F7CDC1CB190E7E3A0089433C /* NetworkRunLoopThread.m in Sources */,
 				F7CDC1D1190E9D3B0089433C /* Bitmap.cpp in Sources */,
 				F7B76F62190BCCE70078E1CF /* TextInputController.mm in Sources */,
 			);

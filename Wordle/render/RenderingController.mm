@@ -30,8 +30,7 @@
 - (id) init
 {
     self = [super init];
-    if (self)
-    {
+    if (self) {
         srand(time(0));
     }
     return self;
@@ -112,23 +111,25 @@
     self.view = lpRenderingView;
 }
 
-
+// Find the font size for the word with highest frequency
 - (float) fontSizeOfString:(NSString*)string withConstrainedSize:(CGSize)size
 {
     int low = 0;
     int up  = 15;
     
-    while (true)
-    {
+    // Find a range
+    while (true) {
         CGSize lpSize = [string sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:up]}];
-        if (lpSize.width >= size.width || lpSize.height >= size.height)
+        if (lpSize.width >= size.width || lpSize.height >= size.height) {
             break;
+        }
         low = up;
         up  = up*2;
     }
-
-    while (true)
-    {
+    
+    // Binary search in the range
+    while (true) {
+        
         if (up <= low+1)
             return low;
         
@@ -159,8 +160,9 @@
     std::vector<std::pair<std::string, int> >* wordsVector = textProcessor.newWordsVectorSortedByCount();
     std::vector<std::pair<std::string, int> >::iterator iter;
     
-    if (wordsVector->size() <= 0)
+    if (wordsVector->size() <= 0) {
         return;
+    }
     
     float maxFontSize = [self fontSizeOfString:[NSString stringWithUTF8String:wordsVector->begin()->first.c_str()]
                            withConstrainedSize:CGSizeMake(self.view.bounds.size.width  / 2.0f,
@@ -175,15 +177,21 @@
         UIFont* font = [UIFont systemFontOfSize: roundf((iter->second * fontSizeRatio))];
         
         UIImage* wordImage = [self imageOfString:word WithFont:font];
+        
+        if (!wordImage) {
+            break;
+        }
+        
         const unsigned char* binaryPixel = [self newRawDataOfUIImage:wordImage];
         Bitmap wordBitmap(wordImage.size.width, wordImage.size.height, binaryPixel);
         
         CGRect rect = [self getAvailableRectInBitmap:bitmap ForBitmap:&wordBitmap];
         MIRect miRect = { (int)rect.origin.x, (int)rect.origin.y, (int)rect.size.width, (int)rect.size.height };
         
-        if (miRect.isNull())
+        if (miRect.isNull()) {
             continue;
-            
+        }
+        
         bitmap->addBitmapInRect( miRect, &wordBitmap);
         
         [words addObject:word];
@@ -224,10 +232,15 @@
 {
     CGSize size = [string sizeWithFont:font];
     
+    if ( CGSizeEqualToSize(size, CGSizeZero)) {
+        return nil;
+    }
+    
 	UIGraphicsBeginImageContext(size);
 	CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    
 	CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
 	CGContextFillRect(context, rect);
     
@@ -265,16 +278,15 @@
     {
         unsigned char* pBinaryData = binaryData + width*h;
         unsigned char* pRawData = rawData + bytesPerRow * h;
-        for (int w=0;w<width;w++)
-        {
-            if (pRawData[w*4]==255 && pRawData[w*4+1]==255 && pRawData[w*4+2] == 255)
-            {
+        for (int w=0;w<width;w++) {
+            if (pRawData[w*4]==255 && pRawData[w*4+1]==255 && pRawData[w*4+2] == 255) {
                 pBinaryData[w] = 0;
-            }
-            else
+            } else {
                 pBinaryData[w] = 1;
+            }
         }
     }
+    
     delete rawData;
     
     return binaryData;

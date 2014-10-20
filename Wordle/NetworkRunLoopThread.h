@@ -8,10 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UrlConnectionManager : NSObject
+@interface NetworkRunLoopThread : NSThread
 
-+ (UrlConnectionManager*) getInstance;
-
-- (void) startUrlConnection:(NSURLConnection*)connection;
++ (NSRunLoop*) networkRunLoop;
 
 @end

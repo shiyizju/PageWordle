@@ -7,7 +7,7 @@
 //
 
 #import "HttpInputController.h"
-#import "UrlConnectionManager.h"
+#import "NetworkRunLoopThread.h"
 #import "TFHpple.h"
 #import "RenderingController.h"
 #import "TextInputController.h"
@@ -188,7 +188,8 @@
     [self.view addSubview:_indicatorView];
     [_indicatorView startAnimating];
     
-    [[UrlConnectionManager getInstance] startUrlConnection:lpConnection];
+    [lpConnection scheduleInRunLoop:[NetworkRunLoopThread networkRunLoop] forMode:NSDefaultRunLoopMode];
+    [lpConnection start];
 }
 
 - (void) handleData
