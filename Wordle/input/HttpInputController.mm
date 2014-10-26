@@ -26,11 +26,11 @@
     
 }
 
-@property (nonatomic, retain) UITextField* urlField;
-@property (nonatomic, retain) UIButton* viewButton;
-@property (nonatomic, retain) NSMutableData* responseData;
-@property (nonatomic, retain) NSURLConnection* urlConnection;
-@property (nonatomic, retain) UIActivityIndicatorView* indicatorView;
+@property (nonatomic, strong) UITextField* urlField;
+@property (nonatomic, strong) UIButton* viewButton;
+@property (nonatomic, strong) NSMutableData* responseData;
+@property (nonatomic, strong) NSURLConnection* urlConnection;
+@property (nonatomic, strong) UIActivityIndicatorView* indicatorView;
 
 @end
 
@@ -60,8 +60,7 @@
 - (id) init
 {
     self = [super init];
-    if (self)
-    {
+    if (self) {
     }
     return self;
 }
