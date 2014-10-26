@@ -29,7 +29,7 @@ class TextProcessor
 public:
     TextProcessor(const char* ipText)
     {
-        length = strlen(ipText);
+        length = (int)strlen(ipText);
         text = new char[length+1];
         
         memset(text, 0, sizeof(char)*length+1);

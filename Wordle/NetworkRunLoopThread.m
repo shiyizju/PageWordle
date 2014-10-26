@@ -36,8 +36,8 @@
 @synthesize runLoop = _runLoop;
 - (NSRunLoop*) runLoop
 {
-    // Use dispatch group to make sure the thread is started.
-    dispatch_wait(_waitGroup, DISPATCH_TIME_FOREVER);
+    // use dispatch group to make sure the thread is started.
+    dispatch_group_wait(_waitGroup, DISPATCH_TIME_FOREVER);
     
     return _runLoop;
 }
@@ -49,7 +49,7 @@
     {
         _waitGroup = dispatch_group_create();
         
-        // enter the group.
+        // enter the group manually.
         dispatch_group_enter(_waitGroup);
     }
     return self;
@@ -60,21 +60,18 @@
     @autoreleasepool {
         
         _runLoop = [NSRunLoop currentRunLoop];
+        
+        // leave group manually.
         dispatch_group_leave(_waitGroup);
         
-        while (true) {
-            [_runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-        }
+        // runMode:beforeDate: will exit immdediately if no input source is attached to it.
+        NSTimer *timer = [[NSTimer alloc] initWithFireDate:[NSDate distantFuture] interval:0.0 target:nil selector:nil userInfo:nil repeats:NO];
+        [_runLoop addTimer:timer forMode:NSDefaultRunLoopMode];
+        
+        while ([_runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
         
         assert(NO);
     }
-}
-
-- (void) dealloc
-{
-    dispatch_release(_waitGroup);
-    
-    [super dealloc];
 }
 
 @end

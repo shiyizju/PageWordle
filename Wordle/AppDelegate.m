@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "TextInputController.h"
 #import "HttpInputController.h"
 
 @interface AppDelegate ()
@@ -25,15 +24,10 @@
 
 @synthesize navigationController;
 
-- (void)dealloc
-{
-    [_window release];
-    [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
     
@@ -51,7 +45,7 @@
 */
     
 //    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:[[[TextInputController alloc] init] autorelease]] autorelease];
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:[[[HttpInputController alloc] init] autorelease]];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:[[HttpInputController alloc] init]];
     
     [self.navigationController setNavigationBarHidden:YES];
     [self.window setRootViewController:self.navigationController];

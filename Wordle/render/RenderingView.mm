@@ -34,12 +34,11 @@
         UITapGestureRecognizer *tapGuesture1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap)];
         [tapGuesture1 setNumberOfTapsRequired:1];
         [self addGestureRecognizer:tapGuesture1];
-        [tapGuesture1 release];
-        
+        /*
         UITapGestureRecognizer *tapGuesture2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap)];
         [tapGuesture2 setNumberOfTapsRequired:2];
         [self addGestureRecognizer:tapGuesture2];
-        [tapGuesture2 release];
+         */
     }
     return self;
 }
@@ -53,22 +52,14 @@
     [self setNeedsDisplay];
 }
 
-- (void) dealloc
-{
-    self.words = nil;
-    self.fonts = nil;
-    self.rects = nil;
-    
-    [super dealloc];
-}
-
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-    for (int i=0;i<[words count];i++)
+    for (int i=0;i<[words count];i++) {
         [[words objectAtIndex:i] drawInRect:[(NSValue*)[rects objectAtIndex:i] CGRectValue] withFont:[fonts objectAtIndex:i]];
+    }
 }
 
 - (void) singleTap

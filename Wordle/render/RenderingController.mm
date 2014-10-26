@@ -31,7 +31,7 @@
 {
     self = [super init];
     if (self) {
-        srand(time(0));
+        srand((unsigned int)time(0));
     }
     return self;
 }
@@ -99,14 +99,9 @@
 //    [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) dealloc
-{
-    [super dealloc];
-}
-
 - (void) loadView
 {
-    RenderingView* lpRenderingView = [[[RenderingView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
+    RenderingView* lpRenderingView = [[RenderingView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     [lpRenderingView setDelegate:self];
     self.view = lpRenderingView;
 }
@@ -161,6 +156,9 @@
     std::vector<std::pair<std::string, int> >::iterator iter;
     
     if (wordsVector->size() <= 0) {
+        
+        delete wordsVector;
+        
         return;
     }
     
@@ -207,6 +205,7 @@
     
     [self.view setNeedsDisplay];
     
+    delete wordsVector;
     delete bitmap;
 }
 

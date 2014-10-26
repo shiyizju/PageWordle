@@ -22,8 +22,6 @@
 		F7B64595190D63FF00436D9C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B64594190D63FF00436D9C /* libxml2.dylib */; };
 		F7B76F5B190BCC3B0078E1CF /* RenderingController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F58190BCC3B0078E1CF /* RenderingController.mm */; };
 		F7B76F5C190BCC3B0078E1CF /* RenderingView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F5A190BCC3B0078E1CF /* RenderingView.mm */; };
-		F7B76F62190BCCE70078E1CF /* TextInputController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F5F190BCCE70078E1CF /* TextInputController.mm */; };
-		F7B76F63190BCCE70078E1CF /* TextInputView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F61190BCCE70078E1CF /* TextInputView.mm */; };
 		F7B76F69190BCFE20078E1CF /* HttpInputController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F68190BCFE20078E1CF /* HttpInputController.mm */; };
 		F7C7A6CD171FDD5B00F14C22 /* TextProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */; };
 		F7C7A6CF171FE0B000F14C22 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C7A6CE171FE0B000F14C22 /* libc++.dylib */; };
@@ -57,10 +55,6 @@
 		F7B76F58190BCC3B0078E1CF /* RenderingController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RenderingController.mm; sourceTree = "<group>"; };
 		F7B76F59190BCC3B0078E1CF /* RenderingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingView.h; sourceTree = "<group>"; };
 		F7B76F5A190BCC3B0078E1CF /* RenderingView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RenderingView.mm; sourceTree = "<group>"; };
-		F7B76F5E190BCCE70078E1CF /* TextInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputController.h; sourceTree = "<group>"; };
-		F7B76F5F190BCCE70078E1CF /* TextInputController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TextInputController.mm; sourceTree = "<group>"; };
-		F7B76F60190BCCE70078E1CF /* TextInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputView.h; sourceTree = "<group>"; };
-		F7B76F61190BCCE70078E1CF /* TextInputView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TextInputView.mm; sourceTree = "<group>"; };
 		F7B76F67190BCFE20078E1CF /* HttpInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpInputController.h; sourceTree = "<group>"; };
 		F7B76F68190BCFE20078E1CF /* HttpInputController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HttpInputController.mm; sourceTree = "<group>"; };
 		F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextProcessor.cpp; sourceTree = "<group>"; };
@@ -68,10 +62,10 @@
 		F7C7A6CE171FE0B000F14C22 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		F7CDC1C9190E7E3A0089433C /* NetworkRunLoopThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkRunLoopThread.h; path = ../NetworkRunLoopThread.h; sourceTree = "<group>"; };
 		F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkRunLoopThread.m; path = ../NetworkRunLoopThread.m; sourceTree = "<group>"; };
-		F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
-		F7CDC1CE190E9D3B0089433C /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
-		F7CDC1CF190E9D3B0089433C /* MIRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MIRect.cpp; sourceTree = "<group>"; };
-		F7CDC1D0190E9D3B0089433C /* MIRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIRect.h; sourceTree = "<group>"; };
+		F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bitmap.cpp; path = bsp/Bitmap.cpp; sourceTree = "<group>"; };
+		F7CDC1CE190E9D3B0089433C /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bitmap.h; path = bsp/Bitmap.h; sourceTree = "<group>"; };
+		F7CDC1CF190E9D3B0089433C /* MIRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MIRect.cpp; path = bsp/MIRect.cpp; sourceTree = "<group>"; };
+		F7CDC1D0190E9D3B0089433C /* MIRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIRect.h; path = bsp/MIRect.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,15 +84,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F71D992819EE0E0000998951 /* textprocessor */ = {
-			isa = PBXGroup;
-			children = (
-				F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */,
-				F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */,
-			);
-			name = textprocessor;
-			sourceTree = "<group>";
-		};
 		F75E3DA3171DAC020058079D = {
 			isa = PBXGroup;
 			children = (
@@ -132,9 +117,13 @@
 			isa = PBXGroup;
 			children = (
 				F7B6458A190D63B500436D9C /* hpple */,
-				F7CDC1CC190E9D3B0089433C /* bsp */,
+				F7CDC1CE190E9D3B0089433C /* Bitmap.h */,
+				F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */,
+				F7CDC1D0190E9D3B0089433C /* MIRect.h */,
+				F7CDC1CF190E9D3B0089433C /* MIRect.cpp */,
+				F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */,
+				F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */,
 				F7B76F5D190BCCE70078E1CF /* input */,
-				F71D992819EE0E0000998951 /* textprocessor */,
 				F7B76F56190BCC3B0078E1CF /* render */,
 				F75E3DBE171DAC020058079D /* AppDelegate.h */,
 				F75E3DBF171DAC020058079D /* AppDelegate.m */,
@@ -188,23 +177,8 @@
 				F7B76F68190BCFE20078E1CF /* HttpInputController.mm */,
 				F7CDC1C9190E7E3A0089433C /* NetworkRunLoopThread.h */,
 				F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */,
-				F7B76F5E190BCCE70078E1CF /* TextInputController.h */,
-				F7B76F5F190BCCE70078E1CF /* TextInputController.mm */,
-				F7B76F60190BCCE70078E1CF /* TextInputView.h */,
-				F7B76F61190BCCE70078E1CF /* TextInputView.mm */,
 			);
 			path = input;
-			sourceTree = "<group>";
-		};
-		F7CDC1CC190E9D3B0089433C /* bsp */ = {
-			isa = PBXGroup;
-			children = (
-				F7CDC1CE190E9D3B0089433C /* Bitmap.h */,
-				F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */,
-				F7CDC1D0190E9D3B0089433C /* MIRect.h */,
-				F7CDC1CF190E9D3B0089433C /* MIRect.cpp */,
-			);
-			path = bsp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,7 +247,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7B76F5B190BCC3B0078E1CF /* RenderingController.mm in Sources */,
-				F7B76F63190BCCE70078E1CF /* TextInputView.mm in Sources */,
 				F75E3DBC171DAC020058079D /* main.m in Sources */,
 				F7B64592190D63B500436D9C /* TFHppleElement.m in Sources */,
 				F7B76F5C190BCC3B0078E1CF /* RenderingView.mm in Sources */,
@@ -285,7 +258,6 @@
 				F7C7A6CD171FDD5B00F14C22 /* TextProcessor.cpp in Sources */,
 				F7CDC1CB190E7E3A0089433C /* NetworkRunLoopThread.m in Sources */,
 				F7CDC1D1190E9D3B0089433C /* Bitmap.cpp in Sources */,
-				F7B76F62190BCCE70078E1CF /* TextInputController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +281,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -340,6 +313,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;

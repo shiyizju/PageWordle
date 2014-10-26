@@ -10,7 +10,6 @@
 #import "NetworkRunLoopThread.h"
 #import "TFHpple.h"
 #import "RenderingController.h"
-#import "TextInputController.h"
 
 
 #define URI_BOX_WIDTH_RATIO 0.8
@@ -21,16 +20,14 @@
 
 #define BUTTON_WIDTH    120
 #define BUTTON_HEIGHT   44
-#define BUTTON_GAP      60
 
 
 @interface HttpInputController () <UITextFieldDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
-
+    
 }
 
 @property (nonatomic, retain) UITextField* urlField;
 @property (nonatomic, retain) UIButton* viewButton;
-@property (nonatomic, retain) UIButton* typeButton;
 @property (nonatomic, retain) NSMutableData* responseData;
 @property (nonatomic, retain) NSURLConnection* urlConnection;
 @property (nonatomic, retain) UIActivityIndicatorView* indicatorView;
@@ -46,8 +43,7 @@
     {
         [_indicatorView stopAnimating];
         [_indicatorView removeFromSuperview];
-        [_indicatorView release];
-        _indicatorView = [indicatorView retain];
+        _indicatorView = indicatorView;
     }
 }
 
@@ -57,7 +53,7 @@
     if (_urlConnection != urlConnection)
     {
         [_urlConnection cancel];
-        _urlConnection = [urlConnection retain];
+        _urlConnection = urlConnection;
     }
 }
 
@@ -70,23 +66,12 @@
     return self;
 }
 
-- (void) dealloc
-{
-    self.urlField = nil;
-    self.viewButton = nil;
-    self.typeButton = nil;
-    self.responseData = nil;
-    self.urlConnection = nil;
-    
-    [super dealloc];
-}
-
 - (void) loadView
 {
-    self.view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     [self.view setBackgroundColor:[UIColor colorWithWhite:0.9f alpha:1.0f]];
     
-    self.urlField = [[[UITextField alloc] initWithFrame:[self frameOfUriBox]] autorelease];
+    self.urlField = [[UITextField alloc] initWithFrame:[self frameOfUriBox]];
     self.urlField.borderStyle = UITextBorderStyleRoundedRect;
     self.urlField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.urlField.delegate = self;
@@ -94,7 +79,7 @@
     self.urlField.text = @"http://en.wikipedia.org/wiki/time_machine";
     [self.view addSubview:self.urlField];
     
-    self.viewButton = [[[UIButton alloc] init] autorelease];
+    self.viewButton = [[UIButton alloc] init];
     [[self.viewButton layer] setCornerRadius:5.0f];
     [[self.viewButton layer] setBorderColor:[[UIColor grayColor] CGColor]];
     [[self.viewButton layer] setBorderWidth:1.0f];
@@ -102,16 +87,6 @@
     [self.viewButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.viewButton addTarget:self action:@selector(viewButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.viewButton];
-    
-    self.typeButton = [[[UIButton alloc] init] autorelease];
-    [[self.typeButton layer] setCornerRadius:5.0f];
-    [[self.typeButton layer] setBorderColor:[[UIColor grayColor] CGColor]];
-    [[self.typeButton layer] setBorderWidth:1.0f];
-    [self.typeButton setTitle:@"Manual Input" forState:UIControlStateNormal];
-    [self.typeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.typeButton addTarget:self action:@selector(typeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.typeButton];
-    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -139,18 +114,11 @@
     [self getHttpUrlContent:self.urlField.text];
 }
 
-- (void) typeButtonTapped:(id)sender
-{
-    TextInputController *inputController = [[[TextInputController alloc] init] autorelease];
-    [self.navigationController pushViewController:inputController animated:YES];
-}
-
 - (void) layoutView
 {
     [self.urlField setFrame:[self frameOfUriBox]];
 
     [self.viewButton setFrame:[self frameOfViewButton]];
-    [self.typeButton setFrame:[self frameOfTypeButton]];
 }
 
 - (CGRect) frameOfUriBox
@@ -163,18 +131,10 @@
 
 - (CGRect) frameOfViewButton
 {
-    return CGRectMake((self.view.frame.size.width - (BUTTON_WIDTH*2+BUTTON_GAP)) / 2.0f,
-                      self.view.frame.size.height * URI_BOX_TOP_RATIO + + URI_BOX_HEIGHT + URI_BUTTON_GAP,
-                      BUTTON_WIDTH,
-                      BUTTON_HEIGHT);
-}
-
-- (CGRect) frameOfTypeButton
-{
-    return CGRectMake((self.view.frame.size.width + BUTTON_GAP) / 2.0f,
-                      self.view.frame.size.height * URI_BOX_TOP_RATIO + + URI_BOX_HEIGHT + URI_BUTTON_GAP,
-                      BUTTON_WIDTH,
-                      BUTTON_HEIGHT);
+    return CGRectMake((self.view.frame.size.width  - BUTTON_WIDTH) / 2.0f,
+                       self.view.frame.size.height * URI_BOX_TOP_RATIO + + URI_BOX_HEIGHT + URI_BUTTON_GAP,
+                       BUTTON_WIDTH,
+                       BUTTON_HEIGHT );
 }
 
 - (void) getHttpUrlContent:(NSString*)urlStr
@@ -214,7 +174,7 @@
             self.indicatorView = nil;
             [_indicatorView removeFromSuperview];
             
-            RenderingController* lpRenderingController = [[[RenderingController alloc] init] autorelease];
+            RenderingController* lpRenderingController = [[RenderingController alloc] init];
             [self.navigationController pushViewController:lpRenderingController animated:YES];
             [lpRenderingController setText:htmlText];
         });

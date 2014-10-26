@@ -21,7 +21,7 @@ unordered_set<string> TextProcessor::infolessWords = {
     "by", "be", "been", "being",
     "can",
     "for", "from",
-    "had", "has", "have", "he", "her", "him",
+    "had", "has", "have", "he", "her", "him", "his",
     "i", "in", "into", "is", "it", "its",
     "no", "not",
     "of", "on", "or", "out", "over",
@@ -88,3 +88,9 @@ vector<pair<string, int> >* TextProcessor::newWordsVectorSortedByCount()
     
     return words;
 }
+
+
+
+
+
+
