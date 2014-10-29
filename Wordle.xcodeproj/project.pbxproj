@@ -84,6 +84,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F74D2A6319FCFAB800ED5268 /* bsp */ = {
+			isa = PBXGroup;
+			children = (
+				F7CDC1CE190E9D3B0089433C /* Bitmap.h */,
+				F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */,
+				F7CDC1D0190E9D3B0089433C /* MIRect.h */,
+				F7CDC1CF190E9D3B0089433C /* MIRect.cpp */,
+			);
+			name = bsp;
+			sourceTree = "<group>";
+		};
 		F75E3DA3171DAC020058079D = {
 			isa = PBXGroup;
 			children = (
@@ -117,10 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				F7B6458A190D63B500436D9C /* hpple */,
-				F7CDC1CE190E9D3B0089433C /* Bitmap.h */,
-				F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */,
-				F7CDC1D0190E9D3B0089433C /* MIRect.h */,
-				F7CDC1CF190E9D3B0089433C /* MIRect.cpp */,
+				F74D2A6319FCFAB800ED5268 /* bsp */,
 				F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */,
 				F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */,
 				F7B76F5D190BCCE70078E1CF /* input */,

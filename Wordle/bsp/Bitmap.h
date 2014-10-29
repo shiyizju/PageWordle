@@ -99,16 +99,13 @@ private:
     {
         EnumDataFlag dataFlag = _dataFlagOfRectWithPixelData(node->rect, pixelData, widthStep);
         
-        if (dataFlag == kDataFlagEmperty)
-        {
+        if (dataFlag == kDataFlagEmperty) {
             node->dataFlag = kDataFlagEmperty;
         }
-        else if (dataFlag == kDataFlagOccupied)
-        {
+        else if (dataFlag == kDataFlagOccupied) {
             node->dataFlag = kDataFlagOccupied;
         }
-        else
-        {
+        else {
             splitNode(node);
             
             initNodeWithPixelData(node->subnode1, pixelData, widthStep);
@@ -124,13 +121,11 @@ private:
         MIRect subRect1, subRect2;
         MIRect rect = node->rect;
         
-        if (rect.width > rect.height)
-        {
+        if (rect.width > rect.height) {
             subRect1 = { rect.x, rect.y, rect.width/2, rect.height };
             subRect2 = { rect.x + subRect1.width, rect.y, rect.width - subRect1.width, rect.height };
         }
-        else
-        {
+        else {
             subRect1 = { rect.x, rect.y, rect.width, rect.height/2 };
             subRect2 = { rect.x, rect.y + subRect1.height, rect.width, rect.height - subRect1.height };
         }
@@ -149,25 +144,29 @@ private:
         bool findEmperty  = false;
         bool findOccupied = false;
         
-        for (int y=rect.y; y<rect.y+rect.height; y++)
-        {
+        for (int y=rect.y; y<rect.y+rect.height; y++) {
+            
             const unsigned char* pdata = pixelData + y*widthStep;
             
-            for (int x=rect.x; x<rect.x+rect.width; x++)
-            {
-                if (pdata[x] == 0)
-                    findEmperty = true;
-                else
-                    findOccupied = true;
+            for (int x=rect.x; x<rect.x+rect.width; x++) {
                 
-                if (findEmperty && findOccupied)
+                if (pdata[x] == 0) {
+                    findEmperty = true;
+                }
+                else {
+                    findOccupied = true;
+                }
+                
+                if (findEmperty && findOccupied) {
                     return kDataFlagMixed;
+                }
             }
         }
         
-        if (findEmperty)
+        if (findEmperty) {
             return kDataFlagEmperty;
-        
+        }
+            
         return kDataFlagOccupied;
     }
 };

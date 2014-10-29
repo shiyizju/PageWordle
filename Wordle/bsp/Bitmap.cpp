@@ -18,18 +18,16 @@ EnumDataFlag Bitmap::_dataFlagOfRect(MIRect rect, BSPNode* node)
     MIRect subRect1 = rect.overlapRect(node->subnode1->rect);
     MIRect subRect2 = rect.overlapRect(node->subnode2->rect);
     
-    if (subRect1.isNull() && subRect2.isNull())
+    if (subRect1.isNull() && subRect2.isNull()) {
         assert(false);
-    else if (subRect1.isNull())
-    {
+    }
+    else if (subRect1.isNull()) {
         return _dataFlagOfRect(subRect2, node->subnode2);
     }
-    else if (subRect2.isNull())
-    {
+    else if (subRect2.isNull()) {
         return _dataFlagOfRect(subRect1, node->subnode1);
     }
-    else
-    {
+    else {
         EnumDataFlag flag1 = _dataFlagOfRect(subRect1, node->subnode1);
         if (flag1 == kDataFlagMixed)
             return kDataFlagMixed;
@@ -49,15 +47,13 @@ void Bitmap::_addBitmapInRect(BSPNode* node, MIRect rect, Bitmap* bitmap, MIRect
     
     EnumDataFlag dataFlag = bitmap->dataFlagOfRect(rectInBitmap);
     
-    if (dataFlag == kDataFlagEmperty)
-    {
-        if (node->dataFlag == kDataFlagEmperty)
-        {
+    if (dataFlag == kDataFlagEmperty) {
+        
+        if (node->dataFlag == kDataFlagEmperty) {
             return;
         }
         
-        if (rect.isEqual(node->rect))
-        {
+        if (rect.isEqual(node->rect)) {
             node->dataFlag = kDataFlagEmperty;
             delete node->subnode1;
             delete node->subnode2;
@@ -66,15 +62,13 @@ void Bitmap::_addBitmapInRect(BSPNode* node, MIRect rect, Bitmap* bitmap, MIRect
             return;
         }
     }
-    else if (dataFlag == kDataFlagOccupied)
-    {
-        if (node->dataFlag == kDataFlagOccupied)
-        {
+    else if (dataFlag == kDataFlagOccupied) {
+        
+        if (node->dataFlag == kDataFlagOccupied) {
             return;
         }
         
-        if (rect.isEqual(node->rect))
-        {
+        if (rect.isEqual(node->rect)) {
             node->dataFlag = kDataFlagOccupied;
             delete node->subnode1;
             delete node->subnode2;
@@ -84,8 +78,7 @@ void Bitmap::_addBitmapInRect(BSPNode* node, MIRect rect, Bitmap* bitmap, MIRect
         }
     }
 
-    if (node->dataFlag != kDataFlagMixed)
-    {
+    if (node->dataFlag != kDataFlagMixed) {
         splitNode(node);
     }
     
@@ -95,14 +88,12 @@ void Bitmap::_addBitmapInRect(BSPNode* node, MIRect rect, Bitmap* bitmap, MIRect
     int xoffset = rectInBitmap.x - rect.x;
     int yoffset = rectInBitmap.y - rect.y;
     
-    if (!subRect1.isNull())
-    {
+    if (!subRect1.isNull()) {
         MIRect subBitmapRect1 = { subRect1.x+xoffset, subRect1.y+yoffset, subRect1.width, subRect1.height };
         _addBitmapInRect(node->subnode1, subRect1, bitmap, subBitmapRect1);
     }
     
-    if (!subRect2.isNull())
-    {
+    if (!subRect2.isNull()) {
         MIRect subBitmapRect2 = { subRect2.x+xoffset, subRect2.y+yoffset, subRect2.width, subRect2.height };
         _addBitmapInRect(node->subnode2, subRect2, bitmap, subBitmapRect2);
     }
@@ -110,17 +101,21 @@ void Bitmap::_addBitmapInRect(BSPNode* node, MIRect rect, Bitmap* bitmap, MIRect
 // rect: rect in bitmap
 bool Bitmap::_canAddBitmapAtEmpertyArea( BSPNode* node, MIRect rect, Bitmap* bitmap, MIRect rectInBitmap)
 {
-    if (rectInBitmap.isNull())
+    if (rectInBitmap.isNull()) {
         return true;
+    }
     
-    if (!rect.isInside(root->rect))
+    if (!rect.isInside(root->rect)) {
         return false;
+    }
     
-    if (node->dataFlag == kDataFlagEmperty)
+    if (node->dataFlag == kDataFlagEmperty) {
         return true;
+    }
     
-    if (node->dataFlag == kDataFlagOccupied)
+    if (node->dataFlag == kDataFlagOccupied) {
         return false;
+    }
     
     MIRect subRect1 = rect.overlapRect(node->subnode1->rect);
     MIRect subRect2 = rect.overlapRect(node->subnode2->rect);
@@ -128,18 +123,18 @@ bool Bitmap::_canAddBitmapAtEmpertyArea( BSPNode* node, MIRect rect, Bitmap* bit
     int xoffset = rectInBitmap.x - rect.x;
     int yoffset = rectInBitmap.y - rect.y;
         
-    if (!subRect1.isNull())
-    {
+    if (!subRect1.isNull()) {
         MIRect subBitmapRect1 = { subRect1.x+xoffset, subRect1.y+yoffset, subRect1.width, subRect1.height };
-        if (!_canAddBitmapAtEmpertyArea(node->subnode1, subRect1, bitmap, subBitmapRect1))
+        if (!_canAddBitmapAtEmpertyArea(node->subnode1, subRect1, bitmap, subBitmapRect1)) {
             return false;
+        }
     }
         
-    if (!subRect2.isNull())
-    {
+    if (!subRect2.isNull()) {
         MIRect subBitmapRect2 = { subRect2.x+xoffset, subRect2.y+yoffset, subRect2.width, subRect2.height };
-        if (!_canAddBitmapAtEmpertyArea(node->subnode2, subRect2, bitmap, subBitmapRect2))
+        if (!_canAddBitmapAtEmpertyArea(node->subnode2, subRect2, bitmap, subBitmapRect2)) {
             return false;
+        }
     }
         
     return true;
