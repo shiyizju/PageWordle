@@ -96,9 +96,6 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
-    // for test
-    //[self getHttpUrlContent:@"http://en.wikipedia.org/wiki/time_machine"];
 }
 
 - (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

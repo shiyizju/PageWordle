@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>623E39E3-4E5A-4081-9652-6D26288189FC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Wordle</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DE539EBCD6D94510F6B758659EF5AB82BAC6D106</key>
+		<string>https://github.com/laopobing/PageWordle.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Wordle.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DE539EBCD6D94510F6B758659EF5AB82BAC6D106</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/laopobing/PageWordle.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DE539EBCD6D94510F6B758659EF5AB82BAC6D106</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DE539EBCD6D94510F6B758659EF5AB82BAC6D106</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PageWordle</string>
+		</dict>
+	</array>
+</dict>
+</plist>
