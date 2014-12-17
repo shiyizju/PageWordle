@@ -9,101 +9,87 @@
 #import "RenderingController.h"
 #import "TextProcessor.h"
 #import "Bitmap.h"
-#import "RenderingView.h"
+#import "AnimatedContentsDisplayLayer.h"
 
+#import <AsyncDisplayKit.h>
 
-@interface RenderingController () <RenderingViewDelegate>
-
-- (UIImage*) imageOfString:(NSString*)string WithFont:(UIFont*)font;
-- (unsigned char*) newRawDataOfUIImage:(UIImage*)image;
-
+@interface RenderingController ()
+@property (nonatomic, strong) ASDisplayNode* textNodeContainer;
 @end
 
 
 
 @implementation RenderingController
 
-
 @synthesize text;
 
-
-- (id) init
++ (dispatch_queue_t) renderingQueue
 {
-    self = [super init];
-    if (self) {
-        srand((unsigned int)time(0));
-    }
-    return self;
+    static dispatch_queue_t renderingQueue;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        renderingQueue = dispatch_queue_create("com.quanxiaosha.Worlde.Rendering", DISPATCH_QUEUE_CONCURRENT);
+        // Set target queu with high priority
+        dispatch_set_target_queue(renderingQueue, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
+    });
+    
+    return renderingQueue;
 }
 
-- (BOOL) shouldAutorotate
++ (void) initialize {
+    // set random seed.
+    srand((unsigned int)time(0));
+}
+
+- (void) viewDidLoad
 {
+    self.view.frame = [[UIScreen mainScreen] applicationFrame];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.textNodeContainer = [[ASDisplayNode alloc] init];
+    self.textNodeContainer.layerBacked = true;
+    [self.view.layer addSublayer:self.textNodeContainer.layer];
+    
+    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap)];
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (BOOL) shouldAutorotate {
     return YES;
 }
 
-- (UIInterfaceOrientationMask) supportedInterfaceOrientations
-{
+- (UIInterfaceOrientationMask) supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskAll;
 }
 
-- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [(RenderingView*)self.view clear];
-}
-
-- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self.textNodeContainer.layer removeFromSuperlayer];
+    self.textNodeContainer = [[ASDisplayNode alloc] init];
+    self.textNodeContainer.layerBacked = true;
+    [self.view.layer addSublayer:self.textNodeContainer.layer];
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async([RenderingController renderingQueue], ^{
         [self rendering];
     });
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    [self showNavigationBarAndHide];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async([RenderingController renderingQueue], ^{
         [self rendering];
     });
 }
 
-- (void) showNavigationBarAndHide
-{
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(hideNavigationBar) userInfo:nil repeats:NO];
-}
-
-- (void) hideNavigationBar
-{
+- (void) hideNavigationBar {
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (void) singleTap
-{
+- (void) singleTap {
     [self.navigationController setNavigationBarHidden:!self.navigationController.navigationBarHidden animated:YES];
-}
-
-- (void) doubleTap
-{
-    [self.navigationController popToRootViewControllerAnimated:YES];
-//    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void) loadView
-{
-    RenderingView* lpRenderingView = [[RenderingView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    [lpRenderingView setDelegate:self];
-    self.view = lpRenderingView;
 }
 
 // Find the font size for the word with highest frequency
@@ -145,10 +131,6 @@
     
     Bitmap* bitmap = new Bitmap(self.view.bounds.size.width, self.view.bounds.size.height);
     
-    NSMutableArray* words = [NSMutableArray array];
-    NSMutableArray* fonts = [NSMutableArray array];
-    NSMutableArray* rects = [NSMutableArray array];
-    
     TextProcessor textProcessor([text UTF8String]);
     textProcessor.process();
 
@@ -156,9 +138,7 @@
     std::vector<std::pair<std::string, int> >::iterator iter;
     
     if (wordsVector->size() <= 0) {
-        
         delete wordsVector;
-        
         return;
     }
     
@@ -174,7 +154,8 @@
         
         UIFont* font = [UIFont systemFontOfSize: roundf((iter->second * fontSizeRatio))];
         
-        UIImage* wordImage = [self imageOfString:word WithFont:font];
+        UIImage* wordImage = [self imageOfString:[NSString stringWithUTF8String: iter->first.c_str()]
+                                        WithFont:[UIFont systemFontOfSize: roundf((iter->second * fontSizeRatio))]];
         
         if (!wordImage) {
             break;
@@ -184,26 +165,27 @@
         Bitmap wordBitmap(wordImage.size.width, wordImage.size.height, binaryPixel);
         
         CGRect rect = [self getAvailableRectInBitmap:bitmap ForBitmap:&wordBitmap];
-        MIRect miRect = { (int)rect.origin.x, (int)rect.origin.y, (int)rect.size.width, (int)rect.size.height };
         
+        MIRect miRect = { (int)rect.origin.x, (int)rect.origin.y, (int)rect.size.width, (int)rect.size.height };
         if (miRect.isNull()) {
             continue;
         }
         
         bitmap->addBitmapInRect( miRect, &wordBitmap);
         
-        [words addObject:word];
-        [fonts addObject:font];
-        [rects addObject:[NSValue valueWithCGRect:rect]];
-        
         delete []binaryPixel;
+        
+        // Display string in main queue
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            ASTextNode* textNode = [[ASTextNode alloc] init];//WithLayerClass:[_ASDisplayLayer class]];
+            textNode.layerBacked = true;
+            textNode.frame = rect;
+            textNode.attributedString = [[NSAttributedString alloc] initWithString:word attributes:@{NSFontAttributeName:font}];
+            [self.textNodeContainer addSubnode:textNode];
+            
+        });
     }
-    
-    [(RenderingView*)self.view setWords:words];
-    [(RenderingView*)self.view setFonts:fonts];
-    [(RenderingView*)self.view setRects:rects];
-    
-    [self.view setNeedsDisplay];
     
     delete wordsVector;
     delete bitmap;
@@ -216,7 +198,7 @@
     {
         int x = rand() % (int)(self.view.bounds.size.width  - bitmapTpAdd->Width() + 1);
         int y = rand() % (int)(self.view.bounds.size.height - bitmapTpAdd->Height()+ 1);
-    
+        
 //        if (kDataFlagEmperty == bitmap->dataFlagOfRect({ x, y, ipBitmap->Width(), ipBitmap->Height() }))
         if (bitmap->canAddBitmapAtEmpertyArea( {x, y, bitmapTpAdd->Width(), bitmapTpAdd->Height() }, bitmapTpAdd))
             return CGRectMake(x, y, bitmapTpAdd->Width(), bitmapTpAdd->Height());
@@ -226,6 +208,9 @@
     
     return CGRectZero;
 }
+
+
+#pragma mark - String Bitmap
 
 - (UIImage*) imageOfString:(NSString *)string WithFont:(UIFont *)font
 {

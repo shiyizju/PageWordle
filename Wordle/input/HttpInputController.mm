@@ -68,7 +68,7 @@
 - (void) loadView
 {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    [self.view setBackgroundColor:[UIColor colorWithWhite:0.9f alpha:1.0f]];
+    [self.view setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0f]];
     
     self.urlField = [[UITextField alloc] initWithFrame:[self frameOfUriBox]];
     self.urlField.borderStyle = UITextBorderStyleRoundedRect;

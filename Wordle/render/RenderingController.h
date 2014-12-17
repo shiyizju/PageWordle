@@ -12,6 +12,4 @@
 
 @property (nonatomic, retain) NSString* text;
 
-- (void) rendering;
-
 @end

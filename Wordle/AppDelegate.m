@@ -30,27 +30,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    
-//  if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-   
-/*
-    char pixels[25] = { 0, 1, 0, 0, 0,
-                        0, 0, 0, 0, 0,
-                        1, 0, 1, 1, 0,
-                        0, 0, 1, 0, 0,
-                        0, 0, 0, 0, 0 };
-    
- 
-    Bitmap bitmap(5, 5, pixels);
-*/
-    
-//    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:[[[TextInputController alloc] init] autorelease]] autorelease];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:[[HttpInputController alloc] init]];
-    
     [self.navigationController setNavigationBarHidden:YES];
     [self.window setRootViewController:self.navigationController];
     [self.window makeKeyAndVisible];
-    
     return YES;
 }
 

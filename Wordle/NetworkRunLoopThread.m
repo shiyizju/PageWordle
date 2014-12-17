@@ -24,7 +24,7 @@
     
     dispatch_once(&onceToken, ^{
         workThread = [[NetworkRunLoopThread alloc] init];
-        workThread.name = @"com.laopobing.PageWordle.NetworkThread";
+        workThread.name = @"com.shiyizju.PageWordle.NetworkThread";
         [workThread start];
         
         networkRunLoop = [workThread runLoop];
