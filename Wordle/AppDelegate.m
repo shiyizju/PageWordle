@@ -9,31 +9,26 @@
 #import "AppDelegate.h"
 #import "HttpInputController.h"
 
-@interface AppDelegate ()
-{
-    UINavigationController* navigationController;
+@interface AppDelegate () {
+    UINavigationController* _navigationController;
 }
-
-@property (nonatomic, retain) UINavigationController* navigationController;
-
 @end
 
 
 
 @implementation AppDelegate
 
-@synthesize navigationController;
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:[[HttpInputController alloc] init]];
-    [self.navigationController setNavigationBarHidden:YES];
-    [self.window setRootViewController:self.navigationController];
+    _navigationController = [[UINavigationController alloc] initWithRootViewController:[[HttpInputController alloc] init]];
+    _navigationController.navigationBarHidden = YES;
+    self.window.rootViewController = _navigationController;
+    
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

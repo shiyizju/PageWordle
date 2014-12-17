@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class RenderingController;
-@class TextInputController;
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

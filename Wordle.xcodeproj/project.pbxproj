@@ -34,8 +34,8 @@
 /* Begin PBXFileReference section */
 		20BA9CEEA6AF0479E8922E5F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7002490500737AD11DA7A1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		F716B0B41A4171F800BEADF9 /* AnimatedContentsDisplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedContentsDisplayLayer.h; sourceTree = "<group>"; };
-		F716B0B51A4171F800BEADF9 /* AnimatedContentsDisplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedContentsDisplayLayer.m; sourceTree = "<group>"; };
+		F716B0B41A4171F800BEADF9 /* AnimatedContentsDisplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimatedContentsDisplayLayer.h; path = render/AnimatedContentsDisplayLayer.h; sourceTree = "<group>"; };
+		F716B0B51A4171F800BEADF9 /* AnimatedContentsDisplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnimatedContentsDisplayLayer.m; path = render/AnimatedContentsDisplayLayer.m; sourceTree = "<group>"; };
 		F75E3DAC171DAC020058079D /* Wordle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F75E3DAF171DAC020058079D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F75E3DB1171DAC020058079D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -56,15 +56,15 @@
 		F7B6458F190D63B500436D9C /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		F7B64590190D63B500436D9C /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		F7B64594190D63FF00436D9C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		F7B76F57190BCC3B0078E1CF /* RenderingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingController.h; sourceTree = "<group>"; };
-		F7B76F58190BCC3B0078E1CF /* RenderingController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RenderingController.mm; sourceTree = "<group>"; };
-		F7B76F67190BCFE20078E1CF /* HttpInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpInputController.h; sourceTree = "<group>"; };
-		F7B76F68190BCFE20078E1CF /* HttpInputController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HttpInputController.mm; sourceTree = "<group>"; };
+		F7B76F57190BCC3B0078E1CF /* RenderingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderingController.h; path = render/RenderingController.h; sourceTree = "<group>"; };
+		F7B76F58190BCC3B0078E1CF /* RenderingController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RenderingController.mm; path = render/RenderingController.mm; sourceTree = "<group>"; };
+		F7B76F67190BCFE20078E1CF /* HttpInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpInputController.h; path = input/HttpInputController.h; sourceTree = "<group>"; };
+		F7B76F68190BCFE20078E1CF /* HttpInputController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = HttpInputController.mm; path = input/HttpInputController.mm; sourceTree = "<group>"; };
 		F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextProcessor.cpp; sourceTree = "<group>"; };
 		F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = TextProcessor.h; sourceTree = "<group>"; };
 		F7C7A6CE171FE0B000F14C22 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		F7CDC1C9190E7E3A0089433C /* NetworkRunLoopThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkRunLoopThread.h; path = ../NetworkRunLoopThread.h; sourceTree = "<group>"; };
-		F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkRunLoopThread.m; path = ../NetworkRunLoopThread.m; sourceTree = "<group>"; };
+		F7CDC1C9190E7E3A0089433C /* NetworkRunLoopThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRunLoopThread.h; sourceTree = "<group>"; };
+		F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRunLoopThread.m; sourceTree = "<group>"; };
 		F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bitmap.cpp; path = bsp/Bitmap.cpp; sourceTree = "<group>"; };
 		F7CDC1CE190E9D3B0089433C /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bitmap.h; path = bsp/Bitmap.h; sourceTree = "<group>"; };
 		F7CDC1CF190E9D3B0089433C /* MIRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MIRect.cpp; path = bsp/MIRect.cpp; sourceTree = "<group>"; };
@@ -96,17 +96,6 @@
 				FBF4E218B68BC75B53532D36 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		F74D2A6319FCFAB800ED5268 /* bsp */ = {
-			isa = PBXGroup;
-			children = (
-				F7CDC1CE190E9D3B0089433C /* Bitmap.h */,
-				F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */,
-				F7CDC1D0190E9D3B0089433C /* MIRect.h */,
-				F7CDC1CF190E9D3B0089433C /* MIRect.cpp */,
-			);
-			name = bsp;
 			sourceTree = "<group>";
 		};
 		F75E3DA3171DAC020058079D = {
@@ -144,13 +133,20 @@
 			isa = PBXGroup;
 			children = (
 				F7B6458A190D63B500436D9C /* hpple */,
-				F74D2A6319FCFAB800ED5268 /* bsp */,
+				F7CDC1CE190E9D3B0089433C /* Bitmap.h */,
+				F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */,
+				F7CDC1D0190E9D3B0089433C /* MIRect.h */,
+				F7CDC1CF190E9D3B0089433C /* MIRect.cpp */,
 				F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */,
 				F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */,
-				F7B76F5D190BCCE70078E1CF /* input */,
-				F7B76F56190BCC3B0078E1CF /* rendering */,
-				F75E3DBE171DAC020058079D /* AppDelegate.h */,
-				F75E3DBF171DAC020058079D /* AppDelegate.m */,
+				F7B76F67190BCFE20078E1CF /* HttpInputController.h */,
+				F7B76F68190BCFE20078E1CF /* HttpInputController.mm */,
+				F7B76F57190BCC3B0078E1CF /* RenderingController.h */,
+				F7B76F58190BCC3B0078E1CF /* RenderingController.mm */,
+				F7CDC1C9190E7E3A0089433C /* NetworkRunLoopThread.h */,
+				F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */,
+				F716B0B41A4171F800BEADF9 /* AnimatedContentsDisplayLayer.h */,
+				F716B0B51A4171F800BEADF9 /* AnimatedContentsDisplayLayer.m */,
 				F75E3DB6171DAC020058079D /* Supporting Files */,
 			);
 			path = Wordle;
@@ -159,6 +155,8 @@
 		F75E3DB6171DAC020058079D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F75E3DBE171DAC020058079D /* AppDelegate.h */,
+				F75E3DBF171DAC020058079D /* AppDelegate.m */,
 				F75E3DB7171DAC020058079D /* Wordle-Info.plist */,
 				F75E3DB8171DAC020058079D /* InfoPlist.strings */,
 				F75E3DBB171DAC020058079D /* main.m */,
@@ -181,29 +179,6 @@
 				F7B64590190D63B500436D9C /* XPathQuery.m */,
 			);
 			path = hpple;
-			sourceTree = "<group>";
-		};
-		F7B76F56190BCC3B0078E1CF /* rendering */ = {
-			isa = PBXGroup;
-			children = (
-				F7B76F57190BCC3B0078E1CF /* RenderingController.h */,
-				F7B76F58190BCC3B0078E1CF /* RenderingController.mm */,
-				F716B0B41A4171F800BEADF9 /* AnimatedContentsDisplayLayer.h */,
-				F716B0B51A4171F800BEADF9 /* AnimatedContentsDisplayLayer.m */,
-			);
-			name = rendering;
-			path = render;
-			sourceTree = "<group>";
-		};
-		F7B76F5D190BCCE70078E1CF /* input */ = {
-			isa = PBXGroup;
-			children = (
-				F7B76F67190BCFE20078E1CF /* HttpInputController.h */,
-				F7B76F68190BCFE20078E1CF /* HttpInputController.mm */,
-				F7CDC1C9190E7E3A0089433C /* NetworkRunLoopThread.h */,
-				F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */,
-			);
-			path = input;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
