@@ -17,17 +17,17 @@ bool comparePair(std::pair<std::string, int> p1, std::pair<std::string, int> p2)
 
 // Exclude unless tokens.
 unordered_set<string> TextProcessor::infolessWords = {
-    "a", "also", "am", "an", "and", "are", "as", "at",
-    "by", "be", "been", "being",
+    "a", "about", "also", "am", "an", "and", "are", "as", "at",
+    "by", "be", "been", "being", "but",
     "can",
     "for", "from",
     "had", "has", "have", "he", "her", "him", "his",
-    "i", "in", "into", "is", "it", "its",
+    "i", "if", "in", "into", "is", "it", "its",
     "no", "not",
     "of", "on", "or", "out", "over",
-    "say,", "said", "she", "so",
-    "th", "than", "that", "the", "their", "there", "they", "this", "to", "too",
-    "was", "with", "were",
+    "say,", "said", "she", "so", "such",
+    "th", "than", "that", "the", "then", "their", "there", "they", "this", "to", "too",
+    "was", "with", "were", "which",
     "you", "your"
 };
 
@@ -44,7 +44,7 @@ bool TextProcessor::isUselessToken()
 
 bool TextProcessor::getNextToken()
 {
-    memset(token, 0, sizeof(char)*256);
+    memset(token, 0, sizeof(char) * 256);
     
     int len = 0;
     for (;;pos++)

@@ -117,10 +117,11 @@
         int fontSize = (low + up) / 2;
         
         CGSize lpSize = [string sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}];
-        if (lpSize.width < size.width && lpSize.height < size.height)
+        if (lpSize.width < size.width && lpSize.height < size.height) {
             low = fontSize;
-        else
+        } else {
             up  = fontSize;
+        }
     }
 }
 

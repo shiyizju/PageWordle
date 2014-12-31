@@ -9,22 +9,18 @@
 #import "AnimatedContentsDisplayLayer.h"
 
 @implementation AnimatedContentsDisplayLayer
-/*
+
 - (id<CAAction>)actionForKey:(NSString *)event
 {
-    id<CAAction> action = [super actionForKey:event];
-    if (action) {
-        return action;
-    }
-    
-    if ([event isEqualToString:@"contents"] && self.contents == nil) {
+    if ([event isEqualToString:@"contents"]) {
         CATransition* transition = [[CATransition alloc] init];
-        transition.duration = 0.3;
+        transition.duration = 1.0;
         transition.type = kCATransitionFade;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
         return transition;
     }
     
     return nil;
 }
-*/
+
 @end
