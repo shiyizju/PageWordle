@@ -171,8 +171,8 @@
             [_indicatorView removeFromSuperview];
             
             RenderingController* lpRenderingController = [[RenderingController alloc] init];
-            [self.navigationController pushViewController:lpRenderingController animated:YES];
             [lpRenderingController setText:htmlText];
+            [self.navigationController pushViewController:lpRenderingController animated:YES];
         });
     });
 }

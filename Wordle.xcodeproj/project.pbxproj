@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F716B0B61A4171F800BEADF9 /* AnimatedContentsDisplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F716B0B51A4171F800BEADF9 /* AnimatedContentsDisplayLayer.m */; };
+		F73D1E7F1A73A68900873066 /* RenderingModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = F73D1E7E1A73A68900873066 /* RenderingModel.mm */; };
+		F73D1E821A73B30400873066 /* UIImage+RawData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F73D1E811A73B30400873066 /* UIImage+RawData.mm */; };
 		F75E3DB0171DAC020058079D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DAF171DAC020058079D /* UIKit.framework */; };
 		F75E3DB2171DAC020058079D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DB1171DAC020058079D /* Foundation.framework */; };
 		F75E3DB4171DAC020058079D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DB3171DAC020058079D /* CoreGraphics.framework */; };
@@ -17,16 +19,17 @@
 		F75E3DC2171DAC020058079D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC1171DAC020058079D /* Default.png */; };
 		F75E3DC4171DAC020058079D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC3171DAC020058079D /* Default@2x.png */; };
 		F75E3DC6171DAC020058079D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC5171DAC020058079D /* Default-568h@2x.png */; };
-		F7B64591190D63B500436D9C /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B6458C190D63B500436D9C /* TFHpple.m */; };
-		F7B64592190D63B500436D9C /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B6458E190D63B500436D9C /* TFHppleElement.m */; };
-		F7B64593190D63B500436D9C /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B64590190D63B500436D9C /* XPathQuery.m */; };
 		F7B64595190D63FF00436D9C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B64594190D63FF00436D9C /* libxml2.dylib */; };
 		F7B76F5B190BCC3B0078E1CF /* RenderingController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F58190BCC3B0078E1CF /* RenderingController.mm */; };
 		F7B76F69190BCFE20078E1CF /* HttpInputController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7B76F68190BCFE20078E1CF /* HttpInputController.mm */; };
-		F7C7A6CD171FDD5B00F14C22 /* TextProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */; };
 		F7C7A6CF171FE0B000F14C22 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C7A6CE171FE0B000F14C22 /* libc++.dylib */; };
+		F7C8D2A81A6BAD6000D7EDCE /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C8D2A31A6BAD6000D7EDCE /* TFHpple.m */; };
+		F7C8D2A91A6BAD6000D7EDCE /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C8D2A51A6BAD6000D7EDCE /* TFHppleElement.m */; };
+		F7C8D2AA1A6BAD6000D7EDCE /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C8D2A71A6BAD6000D7EDCE /* XPathQuery.m */; };
+		F7C8D33C1A711FDB00D7EDCE /* LinguisticProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7C8D33B1A711FDB00D7EDCE /* LinguisticProcessor.mm */; };
+		F7C8D33F1A7123C200D7EDCE /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C8D33E1A7123C200D7EDCE /* Word.m */; };
 		F7CDC1CB190E7E3A0089433C /* NetworkRunLoopThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */; };
-		F7CDC1D1190E9D3B0089433C /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */; };
+		F7CDC1D1190E9D3B0089433C /* BinarySplitBitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CD190E9D3B0089433C /* BinarySplitBitmap.cpp */; };
 		F7CDC1D2190E9D3B0089433C /* MIRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CF190E9D3B0089433C /* MIRect.cpp */; };
 		F9D01C79F0F9FEE24713E2EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BA9CEEA6AF0479E8922E5F /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -36,6 +39,10 @@
 		CC7002490500737AD11DA7A1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F716B0B41A4171F800BEADF9 /* AnimatedContentsDisplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimatedContentsDisplayLayer.h; path = render/AnimatedContentsDisplayLayer.h; sourceTree = "<group>"; };
 		F716B0B51A4171F800BEADF9 /* AnimatedContentsDisplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnimatedContentsDisplayLayer.m; path = render/AnimatedContentsDisplayLayer.m; sourceTree = "<group>"; };
+		F73D1E7D1A73A68900873066 /* RenderingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingModel.h; sourceTree = "<group>"; };
+		F73D1E7E1A73A68900873066 /* RenderingModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RenderingModel.mm; sourceTree = "<group>"; };
+		F73D1E801A73B30400873066 /* UIImage+RawData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RawData.h"; sourceTree = "<group>"; };
+		F73D1E811A73B30400873066 /* UIImage+RawData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+RawData.mm"; sourceTree = "<group>"; };
 		F75E3DAC171DAC020058079D /* Wordle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F75E3DAF171DAC020058079D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F75E3DB1171DAC020058079D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -49,24 +56,26 @@
 		F75E3DC1171DAC020058079D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F75E3DC3171DAC020058079D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F75E3DC5171DAC020058079D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		F7B6458B190D63B500436D9C /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
-		F7B6458C190D63B500436D9C /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
-		F7B6458D190D63B500436D9C /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
-		F7B6458E190D63B500436D9C /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
-		F7B6458F190D63B500436D9C /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
-		F7B64590190D63B500436D9C /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		F7B64594190D63FF00436D9C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		F7B76F57190BCC3B0078E1CF /* RenderingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderingController.h; path = render/RenderingController.h; sourceTree = "<group>"; };
 		F7B76F58190BCC3B0078E1CF /* RenderingController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RenderingController.mm; path = render/RenderingController.mm; sourceTree = "<group>"; };
 		F7B76F67190BCFE20078E1CF /* HttpInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpInputController.h; path = input/HttpInputController.h; sourceTree = "<group>"; };
 		F7B76F68190BCFE20078E1CF /* HttpInputController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = HttpInputController.mm; path = input/HttpInputController.mm; sourceTree = "<group>"; };
-		F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextProcessor.cpp; sourceTree = "<group>"; };
-		F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = TextProcessor.h; sourceTree = "<group>"; };
 		F7C7A6CE171FE0B000F14C22 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		F7C8D2A21A6BAD6000D7EDCE /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		F7C8D2A31A6BAD6000D7EDCE /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		F7C8D2A41A6BAD6000D7EDCE /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		F7C8D2A51A6BAD6000D7EDCE /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		F7C8D2A61A6BAD6000D7EDCE /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		F7C8D2A71A6BAD6000D7EDCE /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		F7C8D33A1A711FDB00D7EDCE /* LinguisticProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinguisticProcessor.h; sourceTree = "<group>"; };
+		F7C8D33B1A711FDB00D7EDCE /* LinguisticProcessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LinguisticProcessor.mm; sourceTree = "<group>"; };
+		F7C8D33D1A7123C200D7EDCE /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
+		F7C8D33E1A7123C200D7EDCE /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		F7CDC1C9190E7E3A0089433C /* NetworkRunLoopThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRunLoopThread.h; sourceTree = "<group>"; };
 		F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRunLoopThread.m; sourceTree = "<group>"; };
-		F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bitmap.cpp; path = bsp/Bitmap.cpp; sourceTree = "<group>"; };
-		F7CDC1CE190E9D3B0089433C /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bitmap.h; path = bsp/Bitmap.h; sourceTree = "<group>"; };
+		F7CDC1CD190E9D3B0089433C /* BinarySplitBitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BinarySplitBitmap.cpp; path = bsp/BinarySplitBitmap.cpp; sourceTree = "<group>"; };
+		F7CDC1CE190E9D3B0089433C /* BinarySplitBitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BinarySplitBitmap.h; path = bsp/BinarySplitBitmap.h; sourceTree = "<group>"; };
 		F7CDC1CF190E9D3B0089433C /* MIRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MIRect.cpp; path = bsp/MIRect.cpp; sourceTree = "<group>"; };
 		F7CDC1D0190E9D3B0089433C /* MIRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIRect.h; path = bsp/MIRect.h; sourceTree = "<group>"; };
 		FBF4E218B68BC75B53532D36 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,19 +141,14 @@
 		F75E3DB5171DAC020058079D /* Wordle */ = {
 			isa = PBXGroup;
 			children = (
-				F7B6458A190D63B500436D9C /* hpple */,
-				F7CDC1CE190E9D3B0089433C /* Bitmap.h */,
-				F7CDC1CD190E9D3B0089433C /* Bitmap.cpp */,
-				F7CDC1D0190E9D3B0089433C /* MIRect.h */,
-				F7CDC1CF190E9D3B0089433C /* MIRect.cpp */,
-				F7C7A6CC171FDD5B00F14C22 /* TextProcessor.h */,
-				F7C7A6CB171FDD5B00F14C22 /* TextProcessor.cpp */,
+				F7C8D2A01A6BAD6000D7EDCE /* 3rdParty */,
 				F7B76F67190BCFE20078E1CF /* HttpInputController.h */,
 				F7B76F68190BCFE20078E1CF /* HttpInputController.mm */,
-				F7B76F57190BCC3B0078E1CF /* RenderingController.h */,
-				F7B76F58190BCC3B0078E1CF /* RenderingController.mm */,
 				F7CDC1C9190E7E3A0089433C /* NetworkRunLoopThread.h */,
 				F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */,
+				F7B76F57190BCC3B0078E1CF /* RenderingController.h */,
+				F7B76F58190BCC3B0078E1CF /* RenderingController.mm */,
+				F7C8D3401A71243E00D7EDCE /* Model */,
 				F716B0B41A4171F800BEADF9 /* AnimatedContentsDisplayLayer.h */,
 				F716B0B51A4171F800BEADF9 /* AnimatedContentsDisplayLayer.m */,
 				F75E3DB6171DAC020058079D /* Supporting Files */,
@@ -168,17 +172,44 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F7B6458A190D63B500436D9C /* hpple */ = {
+		F7C8D2A01A6BAD6000D7EDCE /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
-				F7B6458B190D63B500436D9C /* TFHpple.h */,
-				F7B6458C190D63B500436D9C /* TFHpple.m */,
-				F7B6458D190D63B500436D9C /* TFHppleElement.h */,
-				F7B6458E190D63B500436D9C /* TFHppleElement.m */,
-				F7B6458F190D63B500436D9C /* XPathQuery.h */,
-				F7B64590190D63B500436D9C /* XPathQuery.m */,
+				F7C8D2A11A6BAD6000D7EDCE /* hpple */,
+			);
+			path = 3rdParty;
+			sourceTree = "<group>";
+		};
+		F7C8D2A11A6BAD6000D7EDCE /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				F7C8D2A21A6BAD6000D7EDCE /* TFHpple.h */,
+				F7C8D2A31A6BAD6000D7EDCE /* TFHpple.m */,
+				F7C8D2A41A6BAD6000D7EDCE /* TFHppleElement.h */,
+				F7C8D2A51A6BAD6000D7EDCE /* TFHppleElement.m */,
+				F7C8D2A61A6BAD6000D7EDCE /* XPathQuery.h */,
+				F7C8D2A71A6BAD6000D7EDCE /* XPathQuery.m */,
 			);
 			path = hpple;
+			sourceTree = "<group>";
+		};
+		F7C8D3401A71243E00D7EDCE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F73D1E7D1A73A68900873066 /* RenderingModel.h */,
+				F73D1E7E1A73A68900873066 /* RenderingModel.mm */,
+				F7C8D33A1A711FDB00D7EDCE /* LinguisticProcessor.h */,
+				F7C8D33B1A711FDB00D7EDCE /* LinguisticProcessor.mm */,
+				F7C8D33D1A7123C200D7EDCE /* Word.h */,
+				F7C8D33E1A7123C200D7EDCE /* Word.m */,
+				F7CDC1CE190E9D3B0089433C /* BinarySplitBitmap.h */,
+				F7CDC1CD190E9D3B0089433C /* BinarySplitBitmap.cpp */,
+				F7CDC1D0190E9D3B0089433C /* MIRect.h */,
+				F7CDC1CF190E9D3B0089433C /* MIRect.cpp */,
+				F73D1E801A73B30400873066 /* UIImage+RawData.h */,
+				F73D1E811A73B30400873066 /* UIImage+RawData.mm */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,16 +314,19 @@
 			files = (
 				F7B76F5B190BCC3B0078E1CF /* RenderingController.mm in Sources */,
 				F75E3DBC171DAC020058079D /* main.m in Sources */,
-				F7B64592190D63B500436D9C /* TFHppleElement.m in Sources */,
 				F7B76F69190BCFE20078E1CF /* HttpInputController.mm in Sources */,
 				F75E3DC0171DAC020058079D /* AppDelegate.m in Sources */,
-				F7B64593190D63B500436D9C /* XPathQuery.m in Sources */,
-				F7B64591190D63B500436D9C /* TFHpple.m in Sources */,
 				F7CDC1D2190E9D3B0089433C /* MIRect.cpp in Sources */,
-				F7C7A6CD171FDD5B00F14C22 /* TextProcessor.cpp in Sources */,
+				F7C8D33F1A7123C200D7EDCE /* Word.m in Sources */,
+				F7C8D33C1A711FDB00D7EDCE /* LinguisticProcessor.mm in Sources */,
+				F7C8D2A81A6BAD6000D7EDCE /* TFHpple.m in Sources */,
 				F7CDC1CB190E7E3A0089433C /* NetworkRunLoopThread.m in Sources */,
 				F716B0B61A4171F800BEADF9 /* AnimatedContentsDisplayLayer.m in Sources */,
-				F7CDC1D1190E9D3B0089433C /* Bitmap.cpp in Sources */,
+				F73D1E821A73B30400873066 /* UIImage+RawData.mm in Sources */,
+				F7CDC1D1190E9D3B0089433C /* BinarySplitBitmap.cpp in Sources */,
+				F73D1E7F1A73A68900873066 /* RenderingModel.mm in Sources */,
+				F7C8D2AA1A6BAD6000D7EDCE /* XPathQuery.m in Sources */,
+				F7C8D2A91A6BAD6000D7EDCE /* TFHppleElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +406,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CC7002490500737AD11DA7A1 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wordle/Wordle-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -380,7 +415,10 @@
 					"$(SDKROOT)/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "Wordle/Wordle-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Wordle/Wordle-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -389,6 +427,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FBF4E218B68BC75B53532D36 /* Pods.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wordle/Wordle-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -397,7 +436,9 @@
 					"$(SDKROOT)/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = "Wordle/Wordle-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Wordle/Wordle-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
