@@ -20,7 +20,7 @@ std::unordered_map<std::string, std::unordered_set<std::string> > omitDict = {
         "be", "do", "have"
     }),
     std::pair<std::string, std::unordered_set<std::string> >("zh-Hans", {
-        "因为", "所以", "可能", "我们", "可以", "不同", "对于"
+        "因为", "所以", "可能", "我们", "可以", "不同", "对于", "这个", "如果"
     })
 };
 
@@ -76,7 +76,7 @@ std::unordered_map<std::string, std::unordered_set<std::string> > omitDict = {
              // For en, get lexical tag.
              NSString* lexicalTag = [tagger tagAtIndex:tokenRange.location scheme:NSLinguisticTagSchemeNameTypeOrLexicalClass tokenRange:NULL sentenceRange:NULL];
              
-             if (lexicalTag == NSLinguisticTagNoun || lexicalTag == NSLinguisticTagVerb || lexicalTag == NSLinguisticTagAdjective ) {
+             if (lexicalTag == NSLinguisticTagNoun) { // || lexicalTag == NSLinguisticTagVerb || lexicalTag == NSLinguisticTagAdjective ) {
                  // Get lemma
                  lemma = [tagger tagAtIndex:tokenRange.location scheme:NSLinguisticTagSchemeLemma tokenRange: NULL sentenceRange:NULL];
                  if (!lemma) {

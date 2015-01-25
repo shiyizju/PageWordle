@@ -75,8 +75,8 @@
     self.urlField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.urlField.delegate = self;
     // demo url.
-    //self.urlField.text = @"http://en.wikipedia.org/wiki/time_machine";
-    self.urlField.text = @"http://baike.baidu.com/subview/22509/6058445.htm";
+    self.urlField.text = @"http://en.wikipedia.org/wiki/Alan_Turing";
+    //self.urlField.text = @"http://baike.baidu.com/subview/22509/6058445.htm";
     [self.view addSubview:self.urlField];
     
     self.viewButton = [[UIButton alloc] init];

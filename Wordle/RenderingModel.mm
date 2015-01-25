@@ -58,19 +58,24 @@
         
         BinarySplitBitmap* bitmap = new BinarySplitBitmap(_canvasSize.width, _canvasSize.height);
         
-        float maxFontSize = [self fontSizeOfString:[(Word*)[words firstObject] wordText] withConstrainedSize:CGSizeMake(_canvasSize.width/2.0f, _canvasSize.height/2.0f)];
-        
-        float fontSizeRatio = maxFontSize /(float)[(Word*)[words firstObject] count];
+        float prevFontSize = [self fontSizeOfString:[(Word*)[words firstObject] wordText] constraintSize:CGSizeMake(_canvasSize.width/2.0f, _canvasSize.height/2.0f)];
+        float prevFontRatio = prevFontSize / (float)[(Word*)[words firstObject] count];
         
         for (NSInteger i=0; i < [words count]; i++) {
             
             NSString* word  = [(Word*)[words objectAtIndex:i] wordText];
             NSInteger count = [(Word*)[words objectAtIndex:i] count];
             
-            UIFont* font = [UIFont systemFontOfSize: roundf(count * fontSizeRatio)];
+            float fontSize = count * prevFontRatio;
+            if (fontSize < prevFontSize * 0.6) {
+                fontSize = prevFontSize * 0.6;
+            }
+            prevFontSize = fontSize;
+            prevFontRatio = fontSize / (float)count;
             
-            UIImage* wordImage = [self imageOfString:word WithFont:[UIFont systemFontOfSize: roundf(count * fontSizeRatio)]];
+            UIFont* font = [UIFont systemFontOfSize:roundf(fontSize)];
             
+            UIImage* wordImage = [self imageOfString:word WithFont:font];
             if (!wordImage) {
                 break;
             }
@@ -100,7 +105,7 @@
 #pragma mark - Private Method
 
 // Find the font size for the word with highest frequency
-- (float) fontSizeOfString:(NSString*)string withConstrainedSize:(CGSize)size
+- (float) fontSizeOfString:(NSString*)string constraintSize:(CGSize)size
 {
     int low = 0;
     int up  = 15;
