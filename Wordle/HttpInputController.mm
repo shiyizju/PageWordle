@@ -136,6 +136,10 @@
 
 - (void) getHttpUrlContent:(NSString*)urlStr
 {
+    if (![urlStr hasPrefix:@"http://"] && ![urlStr hasPrefix:@"https://"]) {
+        urlStr = [@"http://" stringByAppendingString:urlStr];
+    }
+    
     NSURLConnection* lpConnection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]]
                                                                     delegate:self
                                                             startImmediately:NO];
@@ -162,6 +166,7 @@
         for (TFHppleElement* element in arr) {
             if (element.content) {
                 [htmlText appendString:element.content];
+                [htmlText appendString:@"\n"];
             }
         }
         
