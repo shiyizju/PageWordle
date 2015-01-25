@@ -141,6 +141,7 @@
         int x = rand() % (int)(_canvasSize.width  - bitmapTpAdd->Width() + 1);
         int y = rand() % (int)(_canvasSize.height - bitmapTpAdd->Height()+ 1);
         
+//        if (kDataFlagEmperty == bitmap->dataFlagOfRect({x, y, bitmapTpAdd->Width(), bitmapTpAdd->Height() })) {
         if (bitmap->canAddBitmapAtEmpertyArea( {x, y, bitmapTpAdd->Width(), bitmapTpAdd->Height() }, bitmapTpAdd)) {
             return CGRectMake(x, y, bitmapTpAdd->Width(), bitmapTpAdd->Height());
         }

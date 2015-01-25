@@ -10,16 +10,44 @@
 #import "Word.h"
 
 #import <unordered_map>
+#import <unordered_set>
 #import <vector>
 #import <string>
 
-@interface LinguisticProcessor ()
 
+std::unordered_map<std::string, std::unordered_set<std::string> > omitDict = {
+    std::pair<std::string, std::unordered_set<std::string> >("en", {
+        "be", "do", "have"
+    }),
+    std::pair<std::string, std::unordered_set<std::string> >("zh-Hans", {
+        "因为", "所以", "可能", "我们", "可以", "不同", "对于"
+    })
+};
+
+
+@interface LinguisticProcessor () {
+    NSDictionary* _omitDictionary;
+}
 @end
 
 
-
 @implementation LinguisticProcessor
+
+// Simple and Naive checking since lexical tagging is not support for Chinese, and not perfect.
+- (bool) shouldOmitWord:(NSString*)word forLanguage:(NSString*)language {
+    
+    if ([word length] <= 1) {
+        return true;
+    }
+    
+    std::unordered_map<std::string, std::unordered_set<std::string> >::iterator iter = omitDict.find([language UTF8String]);
+    if (iter!=omitDict.end()) {
+        if (iter->second.find([word UTF8String]) != iter->second.end()) {
+            return true;
+        }
+    }
+    return false;
+}
 
 // Linguistical processing and get the word count
 - (NSArray*) wordsWithRawText:(NSString *)rawText
@@ -28,34 +56,41 @@
     __block std::unordered_map<std::string, int>::iterator iter;
     
     NSLinguisticTaggerOptions options = NSLinguisticTaggerOmitWhitespace | NSLinguisticTaggerOmitPunctuation | NSLinguisticTaggerJoinNames;
-    NSLinguisticTagger *tagger = [[NSLinguisticTagger alloc] initWithTagSchemes: [NSLinguisticTagger availableTagSchemesForLanguage:@"en"] options:options];
+    NSArray* tagSchemes = @[NSLinguisticTagSchemeLanguage, NSLinguisticTagSchemeLemma, NSLinguisticTagSchemeNameTypeOrLexicalClass];
+    NSLinguisticTagger *tagger = [[NSLinguisticTagger alloc] initWithTagSchemes:tagSchemes options:options];
     tagger.string = rawText;
     
     [tagger enumerateTagsInRange:NSMakeRange(0, [rawText length])
-                          scheme:NSLinguisticTagSchemeNameTypeOrLexicalClass
+                          scheme:NSLinguisticTagSchemeLanguage
                          options:options
                       usingBlock:^(NSString *tag, NSRange tokenRange, NSRange sentenceRange, BOOL *stop)
      {
          NSString *token = [rawText substringWithRange:tokenRange];
-//         NSLog(@"%@: %@", token, tag);
+         NSString *lemma = nil;
          
-         if ([token length] <= 1) {
-             return;
-         }
-         
-         if (![self usefulTagger:tag]) { // && tag!=NSLinguisticTagVerb && tag!=NSLinguisticTagAdverb) {
-             return;
-         }
-         
-         NSString* lemma = nil;
-         if ([self isNameTag:tag]) {
+         if ([tag isEqualToString:@"zh-Hans"]) {
+             // For zh-Hans, lexical tagging is not supported yet. Do some Simple and Naive check...
              lemma = token;
          }
-         else {
-             lemma = [tagger tagAtIndex:tokenRange.location scheme:NSLinguisticTagSchemeLemma tokenRange: NULL sentenceRange:NULL];
-             if (!lemma) {
+         else if ([tag isEqualToString:@"en"]) {
+             // For en, get lexical tag.
+             NSString* lexicalTag = [tagger tagAtIndex:tokenRange.location scheme:NSLinguisticTagSchemeNameTypeOrLexicalClass tokenRange:NULL sentenceRange:NULL];
+             
+             if (lexicalTag == NSLinguisticTagNoun || lexicalTag == NSLinguisticTagVerb || lexicalTag == NSLinguisticTagAdjective ) {
+                 // Get lemma
+                 lemma = [tagger tagAtIndex:tokenRange.location scheme:NSLinguisticTagSchemeLemma tokenRange: NULL sentenceRange:NULL];
+                 if (!lemma) {
+                     lemma = token;
+                 }
+             }
+             // Name tags
+             else if (lexicalTag == NSLinguisticTagPersonalName || lexicalTag == NSLinguisticTagPlaceName || lexicalTag == NSLinguisticTagOrganizationName) {
                  lemma = token;
              }
+         }
+         
+         if ([self shouldOmitWord:lemma forLanguage:tag]) {
+             return;
          }
          
          iter = tokenCount.find([lemma UTF8String]);
@@ -91,18 +126,5 @@
 
 #pragma mark - Private Method
 
-- (bool) usefulTagger:(NSString*) tag {
-    return  tag == NSLinguisticTagNoun              ||
-            tag == NSLinguisticTagIdiom             ||
-            tag == NSLinguisticTagOrganizationName  ||
-            tag == NSLinguisticTagPersonalName      ||
-            tag == NSLinguisticTagPlaceName;
-}
-
-- (bool) isNameTag:(NSString*) tag {
-    return  tag == NSLinguisticTagOrganizationName  ||
-            tag == NSLinguisticTagPersonalName      ||
-            tag == NSLinguisticTagPlaceName;
-}
 
 @end

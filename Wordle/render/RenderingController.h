@@ -9,7 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface RenderingController : UIViewController
-
 @property (nonatomic, retain) NSString* text;
-
 @end

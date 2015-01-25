@@ -75,7 +75,8 @@
     self.urlField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.urlField.delegate = self;
     // demo url.
-    self.urlField.text = @"http://en.wikipedia.org/wiki/time_machine";
+    //self.urlField.text = @"http://en.wikipedia.org/wiki/time_machine";
+    self.urlField.text = @"http://baike.baidu.com/subview/22509/6058445.htm";
     [self.view addSubview:self.urlField];
     
     self.viewButton = [[UIButton alloc] init];
@@ -154,7 +155,7 @@
         
         TFHpple *htmlParser = [TFHpple hppleWithHTMLData:self.responseData];
         
-        NSArray* arr = [htmlParser searchWithXPathQuery:@"//p//text()"];    //@"//text()[not(ancestor::script)][not(ancestor::style)]"
+        NSArray* arr = [htmlParser searchWithXPathQuery:@"//p//text() | //div[@class='para']//text()"];    //@"//text()[not(ancestor::script)][not(ancestor::style)]"
         
         NSMutableString* htmlText = [NSMutableString string];
         
@@ -163,7 +164,7 @@
                 [htmlText appendString:element.content];
             }
         }
-            
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [self.indicatorView stopAnimating];
