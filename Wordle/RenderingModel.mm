@@ -10,7 +10,6 @@
 #import "BinarySplitBitmap.h"
 #import "LinguisticProcessor.h"
 #import "Word.h"
-#import "UIImage+RawData.h"
 
 
 @interface RenderingModel ()
@@ -56,9 +55,16 @@
             return;
         }
         
-        BinarySplitBitmap* bitmap = new BinarySplitBitmap(_canvasSize.width, _canvasSize.height);
+        float minFontRation;
+        if ([self.linguisticProcessor dominantLanguage] == LANGUAGE_CHINESE) {
+            minFontRation = 0.5;
+        } else {
+            minFontRation = 0.6;
+        }
         
-        float prevFontSize = [self fontSizeOfString:[(Word*)[words firstObject] wordText] constraintSize:CGSizeMake(_canvasSize.width/2.0f, _canvasSize.height/2.0f)];
+        BinarySplitBitmap* bitmap = new BinarySplitBitmap(_size.width * _scale, _size.height * _scale);
+        
+        float prevFontSize = [self fontSizeOfString:[(Word*)[words firstObject] wordText] constraintSize:CGSizeMake(_size.width/2.0f, _size.height/2.0f)];
         float prevFontRatio = prevFontSize / (float)[(Word*)[words firstObject] count];
         
         for (NSInteger i=0; i < [words count]; i++) {
@@ -67,8 +73,8 @@
             NSInteger count = [(Word*)[words objectAtIndex:i] count];
             
             float fontSize = count * prevFontRatio;
-            if (fontSize < prevFontSize * 0.6) {
-                fontSize = prevFontSize * 0.6;
+            if (fontSize < prevFontSize * minFontRation) {
+                fontSize = prevFontSize * minFontRation;
             }
             prevFontSize = fontSize;
             prevFontRatio = fontSize / (float)count;
@@ -80,10 +86,11 @@
                 break;
             }
             
-            const unsigned char* binaryPixel = [wordImage newRawData];
-            
-            BinarySplitBitmap wordBitmap(wordImage.size.width, wordImage.size.height, binaryPixel);
-            
+            CGImageRef wordImageRef = [wordImage CGImage];
+            const unsigned char* binaryPixel = [self newBinaryBitmapOfCGImage:wordImage];
+            BinarySplitBitmap wordBitmap((int)CGImageGetWidth(wordImageRef), (int)CGImageGetHeight(wordImageRef), binaryPixel);
+            delete []binaryPixel;
+
             CGRect rect = [self getAvailableRectInBitmap:bitmap ForBitmap:&wordBitmap];
             
             MIRect miRect = { (int)roundf(rect.origin.x), (int)roundf(rect.origin.y), (int)roundf(rect.size.width), (int)round(rect.size.height) };
@@ -93,9 +100,14 @@
             
             bitmap->addBitmapInRect( miRect, &wordBitmap);
             
-            delete []binaryPixel;
+            CGFloat oneDividScale = 1 / _scale;
+            CGRect imageRect = CGRectMake(rect.origin.x * oneDividScale,
+                                          rect.origin.y * oneDividScale,
+                                          rect.size.width  * oneDividScale,
+                                          rect.size.height * oneDividScale);
             
-            displayBlock(word, font, rect);
+            displayBlock(wordImageRef, _scale, imageRect);
+            
         }
         
         delete bitmap;
@@ -143,10 +155,9 @@
     int count = 0;
     while (count++ < 1000) {
         
-        int x = rand() % (int)(_canvasSize.width  - bitmapTpAdd->Width() + 1);
-        int y = rand() % (int)(_canvasSize.height - bitmapTpAdd->Height()+ 1);
+        int x = rand() % (int)(bitmap->Width()  - bitmapTpAdd->Width() + 1);
+        int y = rand() % (int)(bitmap->Height() - bitmapTpAdd->Height()+ 1);
         
-//        if (kDataFlagEmperty == bitmap->dataFlagOfRect({x, y, bitmapTpAdd->Width(), bitmapTpAdd->Height() })) {
         if (bitmap->canAddBitmapAtEmpertyArea( {x, y, bitmapTpAdd->Width(), bitmapTpAdd->Height() }, bitmapTpAdd)) {
             return CGRectMake(x, y, bitmapTpAdd->Width(), bitmapTpAdd->Height());
         }
@@ -157,13 +168,13 @@
 
 - (UIImage*) imageOfString:(NSString *)string WithFont:(UIFont *)font
 {
-    CGSize size = [string sizeWithFont:font];
+    CGSize size = [string sizeWithAttributes:@{ NSFontAttributeName:font }];
     
     if ( CGSizeEqualToSize(size, CGSizeZero)) {
         return nil;
     }
     
-    UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, _scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
@@ -176,10 +187,45 @@
     [string drawInRect:rect withFont:font];
     
     // UIGraphicsGetImageFromCurrentImageContext() return an autoreleased UIImage
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     return image;
+}
+
+- (unsigned char*) newBinaryBitmapOfCGImage:(UIImage*)image
+{
+    CGImageRef imageRef = [image CGImage];
+    
+    NSUInteger width  = CGImageGetWidth(imageRef);
+    NSUInteger height = CGImageGetHeight(imageRef);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    unsigned char *rawData = new unsigned char[height * width * 4];
+    NSUInteger bytesPerPixel = 4;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height, bitsPerComponent, bytesPerRow, colorSpace,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGColorSpaceRelease(colorSpace);
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    CGContextRelease(context);
+    
+    unsigned char *binaryData = new unsigned char[height * width];
+    for (int h=0;h<height;h++) {
+        unsigned char* pBinaryData = binaryData + width*h;
+        unsigned char* pRawData = rawData + bytesPerRow * h;
+        for (int w=0;w<width;w++) {
+            if (pRawData[w*4]==255 && pRawData[w*4+1]==255 && pRawData[w*4+2] == 255) {
+                pBinaryData[w] = 0;
+            }
+            else {
+                pBinaryData[w] = 1;
+            }
+        }
+    }
+    delete[] rawData;
+    return binaryData;
 }
 
 @end

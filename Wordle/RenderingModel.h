@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^SingleWordDisplayBlock)(NSString* word, UIFont* font, CGRect rect);
+typedef void (^SingleWordDisplayBlock)(CGImageRef image, float imageScale, CGRect rect);
 
 @interface RenderingModel : NSObject
 
-@property (nonatomic, assign) CGSize canvasSize;
+@property (nonatomic, assign) CGSize size;  // By pixel.
+@property (nonatomic, assign) CGFloat scale;
 @property (nonatomic, strong) NSString* rawText;
 
 - (void) renderingWithDispalyBlock:(SingleWordDisplayBlock)displayBlock;

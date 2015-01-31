@@ -14,44 +14,33 @@
 #import <vector>
 #import <string>
 
+NSString* const LANGUAGE_ENGLISH = @"en";
+NSString* const LANGUAGE_CHINESE = @"zh-Hans";
 
 std::unordered_map<std::string, std::unordered_set<std::string> > omitDict = {
     std::pair<std::string, std::unordered_set<std::string> >("en", {
         "be", "do", "have"
     }),
     std::pair<std::string, std::unordered_set<std::string> >("zh-Hans", {
-        "因为", "所以", "可能", "我们", "可以", "不同", "对于", "这个", "如果"
+        "因为", "所以", "可能", "我们", "可以", "不同", "对于", "这个", "如果", "的", "于", "在", "对", "得", "地", "是"
     })
 };
 
 
 @interface LinguisticProcessor () {
     NSDictionary* _omitDictionary;
+    NSString* _dominantLanguage;
 }
 @end
 
 
 @implementation LinguisticProcessor
 
-// Simple and Naive checking since lexical tagging is not support for Chinese, and not perfect.
-- (bool) shouldOmitWord:(NSString*)word forLanguage:(NSString*)language {
-    
-    if ([word length] <= 1) {
-        return true;
-    }
-    
-    std::unordered_map<std::string, std::unordered_set<std::string> >::iterator iter = omitDict.find([language UTF8String]);
-    if (iter!=omitDict.end()) {
-        if (iter->second.find([word UTF8String]) != iter->second.end()) {
-            return true;
-        }
-    }
-    return false;
-}
-
 // Linguistical processing and get the word count
 - (NSArray*) wordsWithRawText:(NSString *)rawText
 {
+    __block NSInteger domainCN = 0;
+    
     __block std::unordered_map<std::string, int> tokenCount;
     __block std::unordered_map<std::string, int>::iterator iter;
     
@@ -70,13 +59,16 @@ std::unordered_map<std::string, std::unordered_set<std::string> > omitDict = {
          
          if ([tag isEqualToString:@"zh-Hans"]) {
              // For zh-Hans, lexical tagging is not supported yet. Do some Simple and Naive check...
-             lemma = token;
+             if (omitDict["zh-Hans"].find([token UTF8String]) == omitDict["zh-Hans"].end()) {
+                 lemma = token;
+             }
+             domainCN++;
          }
          else if ([tag isEqualToString:@"en"]) {
              // For en, get lexical tag.
              NSString* lexicalTag = [tagger tagAtIndex:tokenRange.location scheme:NSLinguisticTagSchemeNameTypeOrLexicalClass tokenRange:NULL sentenceRange:NULL];
              
-             if (lexicalTag == NSLinguisticTagNoun) { // || lexicalTag == NSLinguisticTagVerb || lexicalTag == NSLinguisticTagAdjective ) {
+             if (lexicalTag == NSLinguisticTagNoun) {   // Only show Noun.
                  // Get lemma
                  lemma = [tagger tagAtIndex:tokenRange.location scheme:NSLinguisticTagSchemeLemma tokenRange: NULL sentenceRange:NULL];
                  if (!lemma) {
@@ -87,9 +79,10 @@ std::unordered_map<std::string, std::unordered_set<std::string> > omitDict = {
              else if (lexicalTag == NSLinguisticTagPersonalName || lexicalTag == NSLinguisticTagPlaceName || lexicalTag == NSLinguisticTagOrganizationName) {
                  lemma = token;
              }
+             domainCN--;
          }
          
-         if ([self shouldOmitWord:lemma forLanguage:tag]) {
+         if (!lemma) {
              return;
          }
          
@@ -102,6 +95,13 @@ std::unordered_map<std::string, std::unordered_set<std::string> > omitDict = {
              iter->second++;
          }
      }];
+    
+    if (domainCN > 0) {
+        _dominantLanguage = LANGUAGE_CHINESE;
+    }
+    else {
+        _dominantLanguage = LANGUAGE_ENGLISH;
+    }
     
     NSMutableArray* lpWords = [NSMutableArray array];
     
@@ -122,6 +122,10 @@ std::unordered_map<std::string, std::unordered_set<std::string> > omitDict = {
     }];
     
     return lpWords;
+}
+
+- (NSString*) dominantLanguage {
+    return _dominantLanguage;
 }
 
 #pragma mark - Private Method

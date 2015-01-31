@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F73D1E7F1A73A68900873066 /* RenderingModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = F73D1E7E1A73A68900873066 /* RenderingModel.mm */; };
-		F73D1E821A73B30400873066 /* UIImage+RawData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F73D1E811A73B30400873066 /* UIImage+RawData.mm */; };
 		F73D1EB81A75191600873066 /* AnimatedContentsDisplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F73D1EB31A75191600873066 /* AnimatedContentsDisplayLayer.m */; };
 		F73D1EB91A75191600873066 /* RenderingController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F73D1EB51A75191600873066 /* RenderingController.mm */; };
 		F73D1EBA1A75191600873066 /* HttpInputController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F73D1EB71A75191600873066 /* HttpInputController.mm */; };
@@ -31,16 +30,25 @@
 		F7CDC1CB190E7E3A0089433C /* NetworkRunLoopThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */; };
 		F7CDC1D1190E9D3B0089433C /* BinarySplitBitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CD190E9D3B0089433C /* BinarySplitBitmap.cpp */; };
 		F7CDC1D2190E9D3B0089433C /* MIRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CF190E9D3B0089433C /* MIRect.cpp */; };
+		F7F95E271A7D183E00406446 /* Wordle_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F95E261A7D183E00406446 /* Wordle_Tests.swift */; };
 		F9D01C79F0F9FEE24713E2EB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BA9CEEA6AF0479E8922E5F /* libPods.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F7F95E281A7D183E00406446 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F75E3DA4171DAC020058079D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F75E3DAB171DAC020058079D;
+			remoteInfo = Wordle;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		20BA9CEEA6AF0479E8922E5F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7002490500737AD11DA7A1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F73D1E7D1A73A68900873066 /* RenderingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingModel.h; sourceTree = "<group>"; };
 		F73D1E7E1A73A68900873066 /* RenderingModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RenderingModel.mm; sourceTree = "<group>"; };
-		F73D1E801A73B30400873066 /* UIImage+RawData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RawData.h"; sourceTree = "<group>"; };
-		F73D1E811A73B30400873066 /* UIImage+RawData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+RawData.mm"; sourceTree = "<group>"; };
 		F73D1EB21A75191600873066 /* AnimatedContentsDisplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedContentsDisplayLayer.h; sourceTree = "<group>"; };
 		F73D1EB31A75191600873066 /* AnimatedContentsDisplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedContentsDisplayLayer.m; sourceTree = "<group>"; };
 		F73D1EB41A75191600873066 /* RenderingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingController.h; sourceTree = "<group>"; };
@@ -78,6 +86,9 @@
 		F7CDC1CE190E9D3B0089433C /* BinarySplitBitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BinarySplitBitmap.h; path = bsp/BinarySplitBitmap.h; sourceTree = "<group>"; };
 		F7CDC1CF190E9D3B0089433C /* MIRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MIRect.cpp; path = bsp/MIRect.cpp; sourceTree = "<group>"; };
 		F7CDC1D0190E9D3B0089433C /* MIRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIRect.h; path = bsp/MIRect.h; sourceTree = "<group>"; };
+		F7F95E221A7D183E00406446 /* Wordle Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wordle Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7F95E251A7D183E00406446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7F95E261A7D183E00406446 /* Wordle_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_Tests.swift; sourceTree = "<group>"; };
 		FBF4E218B68BC75B53532D36 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +103,13 @@
 				F75E3DB2171DAC020058079D /* Foundation.framework in Frameworks */,
 				F75E3DB4171DAC020058079D /* CoreGraphics.framework in Frameworks */,
 				F9D01C79F0F9FEE24713E2EB /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7F95E1F1A7D183E00406446 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +130,7 @@
 			children = (
 				F7C7A6CE171FE0B000F14C22 /* libc++.dylib */,
 				F75E3DB5171DAC020058079D /* Wordle */,
+				F7F95E231A7D183E00406446 /* Wordle Tests */,
 				F75E3DAE171DAC020058079D /* Frameworks */,
 				F75E3DAD171DAC020058079D /* Products */,
 				C992ABADEAE878326AAE3668 /* Pods */,
@@ -122,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				F75E3DAC171DAC020058079D /* Wordle.app */,
+				F7F95E221A7D183E00406446 /* Wordle Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,10 +161,10 @@
 		F75E3DB5171DAC020058079D /* Wordle */ = {
 			isa = PBXGroup;
 			children = (
-				F73D1EB41A75191600873066 /* RenderingController.h */,
-				F73D1EB51A75191600873066 /* RenderingController.mm */,
 				F73D1EB61A75191600873066 /* HttpInputController.h */,
 				F73D1EB71A75191600873066 /* HttpInputController.mm */,
+				F73D1EB41A75191600873066 /* RenderingController.h */,
+				F73D1EB51A75191600873066 /* RenderingController.mm */,
 				F7C8D2A01A6BAD6000D7EDCE /* 3rdParty */,
 				F7C8D3401A71243E00D7EDCE /* Model */,
 				F7CDC1C9190E7E3A0089433C /* NetworkRunLoopThread.h */,
@@ -206,10 +226,25 @@
 				F7CDC1CD190E9D3B0089433C /* BinarySplitBitmap.cpp */,
 				F7CDC1D0190E9D3B0089433C /* MIRect.h */,
 				F7CDC1CF190E9D3B0089433C /* MIRect.cpp */,
-				F73D1E801A73B30400873066 /* UIImage+RawData.h */,
-				F73D1E811A73B30400873066 /* UIImage+RawData.mm */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		F7F95E231A7D183E00406446 /* Wordle Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F7F95E261A7D183E00406446 /* Wordle_Tests.swift */,
+				F7F95E241A7D183E00406446 /* Supporting Files */,
+			);
+			path = "Wordle Tests";
+			sourceTree = "<group>";
+		};
+		F7F95E241A7D183E00406446 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F7F95E251A7D183E00406446 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +269,24 @@
 			productReference = F75E3DAC171DAC020058079D /* Wordle.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F7F95E211A7D183E00406446 /* Wordle Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7F95E2C1A7D183E00406446 /* Build configuration list for PBXNativeTarget "Wordle Tests" */;
+			buildPhases = (
+				F7F95E1E1A7D183E00406446 /* Sources */,
+				F7F95E1F1A7D183E00406446 /* Frameworks */,
+				F7F95E201A7D183E00406446 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F7F95E291A7D183E00406446 /* PBXTargetDependency */,
+			);
+			name = "Wordle Tests";
+			productName = "Wordle Tests";
+			productReference = F7F95E221A7D183E00406446 /* Wordle Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -242,6 +295,12 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Quan Xiaosha";
+				TargetAttributes = {
+					F7F95E211A7D183E00406446 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = F75E3DAB171DAC020058079D;
+					};
+				};
 			};
 			buildConfigurationList = F75E3DA7171DAC020058079D /* Build configuration list for PBXProject "Wordle" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -256,6 +315,7 @@
 			projectRoot = "";
 			targets = (
 				F75E3DAB171DAC020058079D /* Wordle */,
+				F7F95E211A7D183E00406446 /* Wordle Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -269,6 +329,13 @@
 				F75E3DC2171DAC020058079D /* Default.png in Resources */,
 				F75E3DC4171DAC020058079D /* Default@2x.png in Resources */,
 				F75E3DC6171DAC020058079D /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7F95E201A7D183E00406446 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +388,6 @@
 				F7C8D33C1A711FDB00D7EDCE /* LinguisticProcessor.mm in Sources */,
 				F7C8D2A81A6BAD6000D7EDCE /* TFHpple.m in Sources */,
 				F7CDC1CB190E7E3A0089433C /* NetworkRunLoopThread.m in Sources */,
-				F73D1E821A73B30400873066 /* UIImage+RawData.mm in Sources */,
 				F7CDC1D1190E9D3B0089433C /* BinarySplitBitmap.cpp in Sources */,
 				F73D1E7F1A73A68900873066 /* RenderingModel.mm in Sources */,
 				F7C8D2AA1A6BAD6000D7EDCE /* XPathQuery.m in Sources */,
@@ -330,7 +396,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F7F95E1E1A7D183E00406446 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7F95E271A7D183E00406446 /* Wordle_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F7F95E291A7D183E00406446 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F75E3DAB171DAC020058079D /* Wordle */;
+			targetProxy = F7F95E281A7D183E00406446 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F75E3DB8171DAC020058079D /* InfoPlist.strings */ = {
@@ -443,6 +525,68 @@
 			};
 			name = Release;
 		};
+		F7F95E2A1A7D183E00406446 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Wordle Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wordle.app/Wordle";
+			};
+			name = Debug;
+		};
+		F7F95E2B1A7D183E00406446 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Wordle Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wordle.app/Wordle";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -463,6 +607,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		F7F95E2C1A7D183E00406446 /* Build configuration list for PBXNativeTarget "Wordle Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7F95E2A1A7D183E00406446 /* Debug */,
+				F7F95E2B1A7D183E00406446 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

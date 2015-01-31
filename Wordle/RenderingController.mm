@@ -34,6 +34,8 @@
 
 - (void) viewDidLoad
 {
+    [super viewDidLoad];
+    
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -67,6 +69,8 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     [self rendering];
 }
 
@@ -80,17 +84,24 @@
 
 - (void) rendering
 {
-    self.renderingModel.canvasSize = self.view.frame.size;
+    self.renderingModel.size = self.view.frame.size;
+    self.renderingModel.scale = [[UIScreen mainScreen] scale];
     self.renderingModel.rawText = self.text;
     
-    [self.renderingModel renderingWithDispalyBlock:^(NSString* word, UIFont* font, CGRect rect){
+    [self.renderingModel renderingWithDispalyBlock:^(CGImageRef image, float imageScale, CGRect rect){
         // Display string in main queue
         dispatch_async(dispatch_get_main_queue(), ^{
+            ASImageNode* imageNode = [[ASImageNode alloc] init];
+            imageNode.layerBacked = true;
+            imageNode.image = [UIImage imageWithCGImage:image scale:imageScale orientation:UIImageOrientationUp];
+            imageNode.frame = rect;
+            [self.textNodeContainer addSubnode:imageNode];
+            /*
             ASTextNode* textNode = [[ASTextNode alloc] init];//WithLayerClass:[_ASDisplayLayer class]];
             textNode.layerBacked = true;
             textNode.frame = rect;
             textNode.attributedString = [[NSAttributedString alloc] initWithString:word attributes:@{NSFontAttributeName:font}];
-            [self.textNodeContainer addSubnode:textNode];
+            [self.textNodeContainer addSubnode:textNode];*/
         });
     }];
 }
