@@ -9,6 +9,7 @@
 #import "RenderingController.h"
 #import "AnimatedContentsDisplayLayer.h"
 #import "RenderingModel.h"
+#import "FBKVOController.h"
 
 #import <AsyncDisplayKit.h>
 
@@ -32,6 +33,14 @@
     return _renderingModel;
 }
 
+- (void) setTextNodeContainer:(ASDisplayNode *)textNodeContainer
+{
+    if (_textNodeContainer != textNodeContainer) {
+        [_textNodeContainer.layer removeFromSuperlayer];
+        _textNodeContainer = textNodeContainer;
+    }
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -45,6 +54,19 @@
     
     UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap)];
     [self.view addGestureRecognizer:tapGesture];
+    
+    __weak RenderingController* weakSelf = self;
+    [self.KVOController observe:self.renderingModel keyPath:@"isRendering" options:NULL block:^(id observer, id object, NSDictionary *change) {
+        RenderingController* strongSelf = weakSelf;
+        strongSelf.textNodeContainer = [[ASDisplayNode alloc] init];
+        strongSelf.textNodeContainer.layerBacked = true;
+        [strongSelf.view.layer addSublayer:strongSelf.textNodeContainer.layer];
+    }];
+}
+
+- (void) dealloc
+{
+    [self.KVOController unobserveAll];
 }
 
 - (BOOL) shouldAutorotate {
@@ -56,15 +78,17 @@
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [self.textNodeContainer.layer removeFromSuperlayer];
-    self.textNodeContainer = [[ASDisplayNode alloc] init];
-    self.textNodeContainer.layerBacked = true;
-    [self.view.layer addSublayer:self.textNodeContainer.layer];
+    
+}
+
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self rendering];
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    [self rendering];
+    
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -72,6 +96,13 @@
     [super viewDidAppear:animated];
     
     [self rendering];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [_renderingModel cancelRendering];
 }
 
 - (void) hideNavigationBar {
@@ -88,20 +119,15 @@
     self.renderingModel.scale = [[UIScreen mainScreen] scale];
     self.renderingModel.rawText = self.text;
     
-    [self.renderingModel renderingWithDispalyBlock:^(CGImageRef image, float imageScale, CGRect rect){
+    [self.renderingModel renderingWithDispalyBlock:^(UIImage* image, float imageScale, CGRect rect){
         // Display string in main queue
+        ASDisplayNode* asNode = self.textNodeContainer;
         dispatch_async(dispatch_get_main_queue(), ^{
             ASImageNode* imageNode = [[ASImageNode alloc] init];
             imageNode.layerBacked = true;
-            imageNode.image = [UIImage imageWithCGImage:image scale:imageScale orientation:UIImageOrientationUp];
+            imageNode.image = image;
             imageNode.frame = rect;
-            [self.textNodeContainer addSubnode:imageNode];
-            /*
-            ASTextNode* textNode = [[ASTextNode alloc] init];//WithLayerClass:[_ASDisplayLayer class]];
-            textNode.layerBacked = true;
-            textNode.frame = rect;
-            textNode.attributedString = [[NSAttributedString alloc] initWithString:word attributes:@{NSFontAttributeName:font}];
-            [self.textNodeContainer addSubnode:textNode];*/
+            [asNode addSubnode:imageNode];
         });
     }];
 }

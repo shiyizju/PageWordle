@@ -176,7 +176,6 @@
             
             [self.indicatorView stopAnimating];
             self.indicatorView = nil;
-            [_indicatorView removeFromSuperview];
             
             RenderingController* lpRenderingController = [[RenderingController alloc] init];
             [lpRenderingController setText:htmlText];

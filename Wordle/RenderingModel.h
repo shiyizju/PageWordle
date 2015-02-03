@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^SingleWordDisplayBlock)(CGImageRef image, float imageScale, CGRect rect);
+typedef void (^SingleWordDisplayBlock)(UIImage* image, float imageScale, CGRect rect);
 
 @interface RenderingModel : NSObject
 
@@ -16,6 +16,10 @@ typedef void (^SingleWordDisplayBlock)(CGImageRef image, float imageScale, CGRec
 @property (nonatomic, assign) CGFloat scale;
 @property (nonatomic, strong) NSString* rawText;
 
+@property (nonatomic, assign) bool isRendering;
+
 - (void) renderingWithDispalyBlock:(SingleWordDisplayBlock)displayBlock;
+
+- (void) cancelRendering;
 
 @end

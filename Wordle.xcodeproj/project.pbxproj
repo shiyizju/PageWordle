@@ -20,6 +20,8 @@
 		F75E3DC2171DAC020058079D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC1171DAC020058079D /* Default.png */; };
 		F75E3DC4171DAC020058079D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC3171DAC020058079D /* Default@2x.png */; };
 		F75E3DC6171DAC020058079D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E3DC5171DAC020058079D /* Default-568h@2x.png */; };
+		F770FA491A7E5EB100DFEF24 /* RenderingTask.mm in Sources */ = {isa = PBXBuildFile; fileRef = F770FA481A7E5EB100DFEF24 /* RenderingTask.mm */; };
+		F770FA4C1A7E74CD00DFEF24 /* UIImage+Wordle.mm in Sources */ = {isa = PBXBuildFile; fileRef = F770FA4B1A7E74CD00DFEF24 /* UIImage+Wordle.mm */; };
 		F7B64595190D63FF00436D9C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B64594190D63FF00436D9C /* libxml2.dylib */; };
 		F7C7A6CF171FE0B000F14C22 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C7A6CE171FE0B000F14C22 /* libc++.dylib */; };
 		F7C8D2A81A6BAD6000D7EDCE /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C8D2A31A6BAD6000D7EDCE /* TFHpple.m */; };
@@ -68,6 +70,10 @@
 		F75E3DC1171DAC020058079D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F75E3DC3171DAC020058079D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F75E3DC5171DAC020058079D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F770FA471A7E5EB100DFEF24 /* RenderingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingTask.h; sourceTree = "<group>"; };
+		F770FA481A7E5EB100DFEF24 /* RenderingTask.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RenderingTask.mm; sourceTree = "<group>"; };
+		F770FA4A1A7E74CD00DFEF24 /* UIImage+Wordle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Wordle.h"; sourceTree = "<group>"; };
+		F770FA4B1A7E74CD00DFEF24 /* UIImage+Wordle.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+Wordle.mm"; sourceTree = "<group>"; };
 		F7B64594190D63FF00436D9C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		F7C7A6CE171FE0B000F14C22 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		F7C8D2A21A6BAD6000D7EDCE /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
@@ -218,6 +224,10 @@
 			children = (
 				F73D1E7D1A73A68900873066 /* RenderingModel.h */,
 				F73D1E7E1A73A68900873066 /* RenderingModel.mm */,
+				F770FA471A7E5EB100DFEF24 /* RenderingTask.h */,
+				F770FA481A7E5EB100DFEF24 /* RenderingTask.mm */,
+				F770FA4A1A7E74CD00DFEF24 /* UIImage+Wordle.h */,
+				F770FA4B1A7E74CD00DFEF24 /* UIImage+Wordle.mm */,
 				F7C8D33A1A711FDB00D7EDCE /* LinguisticProcessor.h */,
 				F7C8D33B1A711FDB00D7EDCE /* LinguisticProcessor.mm */,
 				F7C8D33D1A7123C200D7EDCE /* Word.h */,
@@ -384,6 +394,8 @@
 				F73D1EBA1A75191600873066 /* HttpInputController.mm in Sources */,
 				F7CDC1D2190E9D3B0089433C /* MIRect.cpp in Sources */,
 				F73D1EB91A75191600873066 /* RenderingController.mm in Sources */,
+				F770FA4C1A7E74CD00DFEF24 /* UIImage+Wordle.mm in Sources */,
+				F770FA491A7E5EB100DFEF24 /* RenderingTask.mm in Sources */,
 				F7C8D33F1A7123C200D7EDCE /* Word.m in Sources */,
 				F7C8D33C1A711FDB00D7EDCE /* LinguisticProcessor.mm in Sources */,
 				F7C8D2A81A6BAD6000D7EDCE /* TFHpple.m in Sources */,
@@ -615,6 +627,7 @@
 				F7F95E2B1A7D183E00406446 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
