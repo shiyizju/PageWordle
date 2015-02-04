@@ -17,6 +17,7 @@
 NSString* const LANGUAGE_ENGLISH = @"en";
 NSString* const LANGUAGE_CHINESE = @"zh-Hans";
 
+// For some naive checking. Needs optimizing.
 std::unordered_map<std::string, std::unordered_set<std::string> > omitDict = {
     std::pair<std::string, std::unordered_set<std::string> >("en", {
         "be", "do", "have"
