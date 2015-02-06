@@ -12,19 +12,15 @@
 #import "RenderingController.h"
 
 
-#define URI_BOX_WIDTH_RATIO 0.8
-#define URI_BOX_TOP_RATIO   0.3
-#define URI_BOX_HEIGHT  44
-
-#define URI_BUTTON_GAP  50
-
-#define BUTTON_WIDTH    120
-#define BUTTON_HEIGHT   44
+static const CGFloat URI_BOX_WIDTH_RATIO = 0.8;
+static const CGFloat URI_BOX_TOP_RATIO   = 0.3;
+static const CGFloat URI_BOX_HEIGHT      =  44;
+static const CGFloat URI_BUTTON_GAP      =  50;
+static const CGFloat BUTTON_WIDTH        = 120;
+static const CGFloat BUTTON_HEIGHT       =  44;
 
 
-@interface HttpInputController () <UITextFieldDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
-    
-}
+@interface HttpInputController () <UITextFieldDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 @property (nonatomic, strong) UITextField* urlField;
 @property (nonatomic, strong) UIButton* viewButton;
@@ -37,10 +33,9 @@
 @implementation HttpInputController
 
 @synthesize indicatorView = _indicatorView;
-- (void) setIndicatorView:(UIActivityIndicatorView *)indicatorView
-{
-    if (_indicatorView != indicatorView)
-    {
+- (void) setIndicatorView:(UIActivityIndicatorView *)indicatorView {
+    
+    if (_indicatorView != indicatorView) {
         [_indicatorView stopAnimating];
         [_indicatorView removeFromSuperview];
         _indicatorView = indicatorView;
@@ -48,62 +43,49 @@
 }
 
 @synthesize urlConnection = _urlConnection;
-- (void) setUrlConnection:(NSURLConnection *)urlConnection
-{
-    if (_urlConnection != urlConnection)
-    {
+- (void) setUrlConnection:(NSURLConnection *)urlConnection {
+    
+    if (_urlConnection != urlConnection) {
         [_urlConnection cancel];
         _urlConnection = urlConnection;
     }
 }
 
-- (id) init
-{
-    self = [super init];
-    if (self) {
-    }
-    return self;
-}
-
-- (void) loadView
-{
-    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    [self.view setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0f]];
+- (void) viewDidLoad {
+    
+    self.view.frame = [[UIScreen mainScreen] applicationFrame];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0f];
     
     self.urlField = [[UITextField alloc] initWithFrame:[self frameOfUriBox]];
-    self.urlField.borderStyle = UITextBorderStyleRoundedRect;
-    self.urlField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.urlField.delegate = self;
-    // demo url.
-    self.urlField.text = @"http://en.wikipedia.org/wiki/Alan_Turing";
-    //self.urlField.text = @"http://baike.baidu.com/subview/22509/6058445.htm";
-    [self.view addSubview:self.urlField];
+    _urlField.borderStyle = UITextBorderStyleRoundedRect;
+    _urlField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _urlField.delegate = self;
+    _urlField.text = @"http://en.wikipedia.org/wiki/Alan_Turing";               // Demo Url.
+    //_urlField.text = @"http://baike.baidu.com/subview/22509/6058445.htm";
+    [self.view addSubview:_urlField];
     
     self.viewButton = [[UIButton alloc] init];
-    [[self.viewButton layer] setCornerRadius:5.0f];
-    [[self.viewButton layer] setBorderColor:[[UIColor grayColor] CGColor]];
-    [[self.viewButton layer] setBorderWidth:1.0f];
-    [self.viewButton setTitle:@"View" forState:UIControlStateNormal];
-    [self.viewButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.viewButton addTarget:self action:@selector(viewButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.viewButton];
+    [[_viewButton layer] setCornerRadius:5.0f];
+    [[_viewButton layer] setBorderColor:[[UIColor grayColor] CGColor]];
+    [[_viewButton layer] setBorderWidth:1.0f];
+    [_viewButton setTitle:@"View" forState:UIControlStateNormal];
+    [_viewButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_viewButton addTarget:self action:@selector(viewButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_viewButton];
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self layoutView];
+- (void) viewWillLayoutSubviews {
+    
+    _urlField.frame   = [self frameOfUriBox];
+    _viewButton.frame = [self frameOfViewButton];
+    _indicatorView.frame = self.view.bounds;
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-}
-
-- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [self layoutView];
 }
 
 #pragma mark - private method
@@ -111,13 +93,6 @@
 - (void) viewButtonTapped:(id)sender
 {
     [self getHttpUrlContent:self.urlField.text];
-}
-
-- (void) layoutView
-{
-    [self.urlField setFrame:[self frameOfUriBox]];
-
-    [self.viewButton setFrame:[self frameOfViewButton]];
 }
 
 - (CGRect) frameOfUriBox
