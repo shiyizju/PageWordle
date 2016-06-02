@@ -9,9 +9,9 @@
 #import "RenderingController.h"
 #import "AnimatedContentsDisplayLayer.h"
 #import "RenderingModel.h"
-#import "FBKVOController.h"
 
 #import <AsyncDisplayKit.h>
+#import <KVOController.h>
 
 @interface RenderingController ()
 @property (nonatomic, strong) ASDisplayNode* textNodeContainer;

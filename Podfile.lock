@@ -1,0 +1,36 @@
+PODS:
+  - AsyncDisplayKit (1.9.74):
+    - AsyncDisplayKit/PINRemoteImage (= 1.9.74)
+  - AsyncDisplayKit/ASDealloc2MainObject (1.9.74)
+  - AsyncDisplayKit/Core (1.9.74):
+    - AsyncDisplayKit/ASDealloc2MainObject
+  - AsyncDisplayKit/PINRemoteImage (1.9.74):
+    - AsyncDisplayKit/Core
+    - PINRemoteImage/iOS (>= 3.0.0-beta.2)
+  - KVOController (1.1.0)
+  - PINCache (2.2.2)
+  - PINRemoteImage/Core (3.0.0-beta.2):
+    - PINCache (>= 2.1)
+  - PINRemoteImage/iOS (3.0.0-beta.2):
+    - PINRemoteImage/Core
+
+DEPENDENCIES:
+  - AsyncDisplayKit (from `https://git.coding.net/shiyizju/AsyncDisplayKit.git`)
+  - KVOController
+
+EXTERNAL SOURCES:
+  AsyncDisplayKit:
+    :git: https://git.coding.net/shiyizju/AsyncDisplayKit.git
+
+CHECKOUT OPTIONS:
+  AsyncDisplayKit:
+    :commit: 95f1ab49025de0b3a796a9165cc2869a0b7a3f6d
+    :git: https://git.coding.net/shiyizju/AsyncDisplayKit.git
+
+SPEC CHECKSUMS:
+  AsyncDisplayKit: cbd10f28030c0b904cef1bd8e7d96d775c5b0484
+  KVOController: 321b5fc59300fcaabd42c0f679baa7a27efbb2fd
+  PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
+  PINRemoteImage: 197554c5ba57a6ae90f5db441651180039fc9062
+
+COCOAPODS: 0.39.0
