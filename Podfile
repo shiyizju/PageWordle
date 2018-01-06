@@ -1,4 +1,8 @@
-platform :ios, '7.0'
+platform :ios, '8.0'
 
-pod 'AsyncDisplayKit', :git => 'https://git.coding.net/shiyizju/AsyncDisplayKit.git'
-pod 'KVOController'
+target 'Wordle' do
+
+	pod 'AsyncDisplayKit'
+	pod 'KVOController'
+
+end
