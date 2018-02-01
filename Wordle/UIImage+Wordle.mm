@@ -28,7 +28,7 @@
     
     CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor]);
     CGContextSetTextDrawingMode(context, kCGTextFill);
-    [string drawInRect:rect withFont:font];
+    [string drawInRect:rect withAttributes:@{NSFontAttributeName: font}];
     
     // UIGraphicsGetImageFromCurrentImageContext() return an autoreleased UIImage
     UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
