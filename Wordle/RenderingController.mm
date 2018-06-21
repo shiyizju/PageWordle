@@ -10,8 +10,8 @@
 #import "AnimatedContentsDisplayLayer.h"
 #import "RenderingModel.h"
 
-#import <AsyncDisplayKit.h>
-#import <KVOController.h>
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import <KVOController/KVOController.h>
 
 @interface RenderingController ()
 @property (nonatomic, strong) ASDisplayNode* textNodeContainer;

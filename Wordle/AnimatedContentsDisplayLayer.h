@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Quan Xiaosha. All rights reserved.
 //
 
-#import <_ASDisplayLayer.h>
+#import <AsyncDisplayKit/_ASDisplayLayer.h>
 
 @interface AnimatedContentsDisplayLayer : _ASDisplayLayer
 
