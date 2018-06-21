@@ -1,8 +1,9 @@
 platform :ios, '8.0'
+use_frameworks!
 
 target 'Wordle' do
 
-	pod 'AsyncDisplayKit'
+	pod 'Texture'
 	pod 'KVOController'
 
 end

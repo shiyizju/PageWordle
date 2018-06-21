@@ -42,20 +42,33 @@ typedef NS_ENUM(NSUInteger, PINRemoteImageResultType) {
 @property (nonatomic, readonly, assign) PINRemoteImageResultType resultType;
 @property (nonatomic, readonly, strong, nullable) NSUUID *UUID;
 @property (nonatomic, readonly, assign) CGFloat renderedImageQuality;
-
-+ (nonnull instancetype)imageResultWithImage:(nullable PINImage *)image
-           alternativeRepresentation:(nullable id)alternativeRepresentation
-                       requestLength:(NSTimeInterval)requestLength
-                               error:(nullable NSError *)error
-                          resultType:(PINRemoteImageResultType)resultType
-                                UUID:(nullable NSUUID *)uuid;
+@property (nonatomic, readonly, assign) NSUInteger bytesSavedByResuming;
+@property (nonatomic, readonly, strong, nullable) NSURLResponse *response;
 
 + (nonnull instancetype)imageResultWithImage:(nullable PINImage *)image
                    alternativeRepresentation:(nullable id)alternativeRepresentation
                                requestLength:(NSTimeInterval)requestLength
-                                       error:(nullable NSError *)error
                                   resultType:(PINRemoteImageResultType)resultType
                                         UUID:(nullable NSUUID *)uuid
+                                    response:(nullable NSURLResponse *)response
+                                       error:(nullable NSError *)error;
+
++ (nonnull instancetype)imageResultWithImage:(nullable PINImage *)image
+                   alternativeRepresentation:(nullable id)alternativeRepresentation
+                               requestLength:(NSTimeInterval)requestLength
+                                  resultType:(PINRemoteImageResultType)resultType
+                                        UUID:(nullable NSUUID *)uuid
+                                    response:(nullable NSURLResponse *)response
+                                       error:(nullable NSError *)error
+                        bytesSavedByResuming:(NSUInteger)bytesSavedByResuming;
+
++ (nonnull instancetype)imageResultWithImage:(nullable PINImage *)image
+                   alternativeRepresentation:(nullable id)alternativeRepresentation
+                               requestLength:(NSTimeInterval)requestLength
+                                  resultType:(PINRemoteImageResultType)resultType
+                                        UUID:(nullable NSUUID *)uuid
+                                    response:(nullable NSURLResponse *)response
+                                       error:(nullable NSError *)error
                         renderedImageQuality:(CGFloat)renderedImageQuality;
 
 @end

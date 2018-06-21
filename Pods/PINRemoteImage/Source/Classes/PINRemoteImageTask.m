@@ -9,13 +9,25 @@
 #import "PINRemoteImageTask.h"
 
 #import "PINRemoteImageCallbacks.h"
+#import "PINRemoteImageManager+Private.h"
+
+@interface PINRemoteImageTask ()
+{
+    NSMutableDictionary<NSUUID *, PINRemoteImageCallbacks *> *_callbackBlocks;
+}
+
+@end
 
 @implementation PINRemoteImageTask
 
-- (instancetype)init
+@synthesize lock = _lock;
+
+- (instancetype)initWithManager:(PINRemoteImageManager *)manager
 {
     if (self = [super init]) {
-        self.callbackBlocks = [[NSMutableDictionary alloc] init];
+        _lock = [[PINRemoteLock alloc] initWithName:@"Task Lock"];
+        _manager = manager;
+        _callbackBlocks = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -35,32 +47,48 @@
     completion.progressImageBlock = progressImageBlock;
     completion.progressDownloadBlock = progressDownloadBlock;
     
-    [self.callbackBlocks setObject:completion forKey:UUID];
+    [self.lock lockWithBlock:^{
+        [_callbackBlocks setObject:completion forKey:UUID];
+    }];
 }
 
 - (void)removeCallbackWithUUID:(NSUUID *)UUID
 {
-    [self.callbackBlocks removeObjectForKey:UUID];
+    [self.lock lockWithBlock:^{
+        [self l_removeCallbackWithUUID:UUID];
+    }];
 }
 
-- (void)callCompletionsWithQueue:(dispatch_queue_t)queue
-                          remove:(BOOL)remove
-                       withImage:(PINImage *)image
+- (void)l_removeCallbackWithUUID:(NSUUID *)UUID
+{
+    [_callbackBlocks removeObjectForKey:UUID];
+}
+
+- (NSDictionary<NSUUID *, PINRemoteImageCallbacks *> *)callbackBlocks
+{
+    __block NSDictionary *callbackBlocks;
+    [self.lock lockWithBlock:^{
+        callbackBlocks = [_callbackBlocks copy];
+    }];
+    return callbackBlocks;
+}
+
+- (void)callCompletionsWithImage:(PINImage *)image
        alternativeRepresentation:(id)alternativeRepresentation
                           cached:(BOOL)cached
+                        response:(NSURLResponse *)response
                            error:(NSError *)error
+                          remove:(BOOL)remove;
 {
     __weak typeof(self) weakSelf = self;
     [self.callbackBlocks enumerateKeysAndObjectsUsingBlock:^(NSUUID *UUID, PINRemoteImageCallbacks *callback, BOOL *stop) {
         typeof(self) strongSelf = weakSelf;
-        if (callback.completionBlock != nil) {
+      PINRemoteImageManagerImageCompletion completionBlock = callback.completionBlock;
+        if (completionBlock != nil) {
             PINLog(@"calling completion for UUID: %@ key: %@", UUID, strongSelf.key);
-            PINRemoteImageManagerImageCompletion completionBlock = callback.completionBlock;
             CFTimeInterval requestTime = callback.requestTime;
-            
-            //The code run asynchronously below is *not* guaranteed to be run in the manager's lock!
-            //All access to the callbacks and self should be done outside the block below!
-            dispatch_async(queue, ^
+          
+            dispatch_async(self.manager.callbackQueue, ^
             {
                 PINRemoteImageResultType result;
                 if (image || alternativeRepresentation) {
@@ -68,12 +96,13 @@
                 } else {
                     result = PINRemoteImageResultTypeNone;
                 }
-                completionBlock([PINRemoteImageManagerResult imageResultWithImage:image
-                                                        alternativeRepresentation:alternativeRepresentation
-                                                                    requestLength:CACurrentMediaTime() - requestTime
-                                                                            error:error
-                                                                       resultType:result
-                                                                             UUID:UUID]);
+                completionBlock([self imageResultWithImage:image
+                                 alternativeRepresentation:alternativeRepresentation
+                                             requestLength:CACurrentMediaTime() - requestTime
+                                                resultType:result
+                                                      UUID:UUID
+                                                  response:response
+                                                     error:error]);
             });
         }
         if (remove) {
@@ -82,11 +111,20 @@
     }];
 }
 
-- (BOOL)cancelWithUUID:(NSUUID *)UUID manager:(PINRemoteImageManager *)manager
+- (BOOL)cancelWithUUID:(NSUUID *)UUID resume:(PINResume **)resume
+{
+    __block BOOL noMoreCompletions;
+    [self.lock lockWithBlock:^{
+        noMoreCompletions = [self l_cancelWithUUID:UUID];
+    }];
+    return noMoreCompletions;
+}
+
+- (BOOL)l_cancelWithUUID:(NSUUID *)UUID
 {
     BOOL noMoreCompletions = NO;
-    [self removeCallbackWithUUID:UUID];
-    if ([self.callbackBlocks count] == 0) {
+    [self l_removeCallbackWithUUID:UUID];
+    if ([_callbackBlocks count] == 0) {
         noMoreCompletions = YES;
     }
     return noMoreCompletions;
@@ -95,6 +133,28 @@
 - (void)setPriority:(PINRemoteImageManagerPriority)priority
 {
     
+}
+
+- (nonnull PINRemoteImageManagerResult *)imageResultWithImage:(nullable PINImage *)image
+                                    alternativeRepresentation:(nullable id)alternativeRepresentation
+                                                requestLength:(NSTimeInterval)requestLength
+                                                   resultType:(PINRemoteImageResultType)resultType
+                                                         UUID:(nullable NSUUID *)UUID
+                                                     response:(NSURLResponse *)response
+                                                        error:(nullable NSError *)error
+{
+    return [PINRemoteImageManagerResult imageResultWithImage:image
+                                   alternativeRepresentation:alternativeRepresentation
+                                               requestLength:requestLength
+                                                  resultType:resultType
+                                                        UUID:UUID
+                                                    response:response
+                                                       error:error];
+}
+
+- (NSMutableDictionary *)l_callbackBlocks
+{
+    return _callbackBlocks;
 }
 
 @end

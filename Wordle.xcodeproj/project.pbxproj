@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		64AB5A344CD86CE7B6EA0B40 /* libPods-Wordle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6828E03D61B653F260131E /* libPods-Wordle.a */; };
+		6E83BAE6E7779DC8EE251B33 /* Pods_Wordle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A88E190A6404F2DD13260F /* Pods_Wordle.framework */; };
 		F73D1E7F1A73A68900873066 /* RenderingModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = F73D1E7E1A73A68900873066 /* RenderingModel.mm */; };
 		F73D1EB81A75191600873066 /* AnimatedContentsDisplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F73D1EB31A75191600873066 /* AnimatedContentsDisplayLayer.m */; };
 		F73D1EB91A75191600873066 /* RenderingController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F73D1EB51A75191600873066 /* RenderingController.mm */; };
@@ -47,7 +47,7 @@
 
 /* Begin PBXFileReference section */
 		1B21B9B0946AA0B743DBAF3E /* Pods-Wordle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wordle/Pods-Wordle.debug.xcconfig"; sourceTree = "<group>"; };
-		7C6828E03D61B653F260131E /* libPods-Wordle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wordle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2A88E190A6404F2DD13260F /* Pods_Wordle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wordle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AF9D97D8D9A13DA0AE63BF /* Pods-Wordle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wordle/Pods-Wordle.release.xcconfig"; sourceTree = "<group>"; };
 		F73D1E7D1A73A68900873066 /* RenderingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingModel.h; sourceTree = "<group>"; };
 		F73D1E7E1A73A68900873066 /* RenderingModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RenderingModel.mm; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 				F75E3DB0171DAC020058079D /* UIKit.framework in Frameworks */,
 				F75E3DB2171DAC020058079D /* Foundation.framework in Frameworks */,
 				F75E3DB4171DAC020058079D /* CoreGraphics.framework in Frameworks */,
-				64AB5A344CD86CE7B6EA0B40 /* libPods-Wordle.a in Frameworks */,
+				6E83BAE6E7779DC8EE251B33 /* Pods_Wordle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +155,7 @@
 				F75E3DAF171DAC020058079D /* UIKit.framework */,
 				F75E3DB1171DAC020058079D /* Foundation.framework */,
 				F75E3DB3171DAC020058079D /* CoreGraphics.framework */,
-				7C6828E03D61B653F260131E /* libPods-Wordle.a */,
+				A2A88E190A6404F2DD13260F /* Pods_Wordle.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -264,8 +264,7 @@
 				F75E3DA8171DAC020058079D /* Sources */,
 				F75E3DA9171DAC020058079D /* Frameworks */,
 				F75E3DAA171DAC020058079D /* Resources */,
-				809807A756CDAAC2563C147A /* [CP] Embed Pods Frameworks */,
-				5DDE726865CDBAE3129D7C82 /* [CP] Copy Pods Resources */,
+				AC584E29DDB460BB1BC35038 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -350,21 +349,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5DDE726865CDBAE3129D7C82 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wordle/Pods-Wordle-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		772137851A6B7CF19F922979 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -383,15 +367,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		809807A756CDAAC2563C147A /* [CP] Embed Pods Frameworks */ = {
+		AC584E29DDB460BB1BC35038 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Wordle/Pods-Wordle-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/KVOController/KVOController.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KVOController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
