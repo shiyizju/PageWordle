@@ -172,7 +172,9 @@ static const CGFloat BUTTON_HEIGHT       =  44;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    self.indicatorView = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.indicatorView = nil;
+    });
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -193,7 +195,9 @@ static const CGFloat BUTTON_HEIGHT       =  44;
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    self.indicatorView = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.indicatorView = nil;
+    });
     
     [self handleData];
 }

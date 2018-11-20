@@ -10,8 +10,8 @@
 		6E83BAE6E7779DC8EE251B33 /* Pods_Wordle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A88E190A6404F2DD13260F /* Pods_Wordle.framework */; };
 		F73D1E7F1A73A68900873066 /* RenderingModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = F73D1E7E1A73A68900873066 /* RenderingModel.mm */; };
 		F73D1EB81A75191600873066 /* AnimatedContentsDisplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F73D1EB31A75191600873066 /* AnimatedContentsDisplayLayer.m */; };
-		F73D1EB91A75191600873066 /* RenderingController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F73D1EB51A75191600873066 /* RenderingController.mm */; };
 		F73D1EBA1A75191600873066 /* HttpInputController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F73D1EB71A75191600873066 /* HttpInputController.mm */; };
+		F751412620DB9D52005A1437 /* RenderingController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F73D1EB51A75191600873066 /* RenderingController.mm */; };
 		F75E3DB0171DAC020058079D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DAF171DAC020058079D /* UIKit.framework */; };
 		F75E3DB2171DAC020058079D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DB1171DAC020058079D /* Foundation.framework */; };
 		F75E3DB4171DAC020058079D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75E3DB3171DAC020058079D /* CoreGraphics.framework */; };
@@ -32,7 +32,6 @@
 		F7CDC1CB190E7E3A0089433C /* NetworkRunLoopThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CA190E7E3A0089433C /* NetworkRunLoopThread.m */; };
 		F7CDC1D1190E9D3B0089433C /* BinarySplitBitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CD190E9D3B0089433C /* BinarySplitBitmap.cpp */; };
 		F7CDC1D2190E9D3B0089433C /* MIRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7CDC1CF190E9D3B0089433C /* MIRect.cpp */; };
-		F7F95E271A7D183E00406446 /* Wordle_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F95E261A7D183E00406446 /* Wordle_Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,8 +91,6 @@
 		F7CDC1CF190E9D3B0089433C /* MIRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MIRect.cpp; path = bsp/MIRect.cpp; sourceTree = "<group>"; };
 		F7CDC1D0190E9D3B0089433C /* MIRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIRect.h; path = bsp/MIRect.h; sourceTree = "<group>"; };
 		F7F95E221A7D183E00406446 /* Wordle Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wordle Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7F95E251A7D183E00406446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F7F95E261A7D183E00406446 /* Wordle_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				F75E3DB5171DAC020058079D /* Wordle */,
-				F7F95E231A7D183E00406446 /* Wordle Tests */,
 				F75E3DAE171DAC020058079D /* Frameworks */,
 				F75E3DAD171DAC020058079D /* Products */,
 				0D7D5F87C9F1F9D870936128 /* Pods */,
@@ -234,23 +230,6 @@
 				F7CDC1CF190E9D3B0089433C /* MIRect.cpp */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		F7F95E231A7D183E00406446 /* Wordle Tests */ = {
-			isa = PBXGroup;
-			children = (
-				F7F95E261A7D183E00406446 /* Wordle_Tests.swift */,
-				F7F95E241A7D183E00406446 /* Supporting Files */,
-			);
-			path = "Wordle Tests";
-			sourceTree = "<group>";
-		};
-		F7F95E241A7D183E00406446 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F7F95E251A7D183E00406446 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,11 +379,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F751412620DB9D52005A1437 /* RenderingController.mm in Sources */,
 				F75E3DBC171DAC020058079D /* main.m in Sources */,
 				F75E3DC0171DAC020058079D /* AppDelegate.m in Sources */,
 				F73D1EBA1A75191600873066 /* HttpInputController.mm in Sources */,
 				F7CDC1D2190E9D3B0089433C /* MIRect.cpp in Sources */,
-				F73D1EB91A75191600873066 /* RenderingController.mm in Sources */,
 				F770FA4C1A7E74CD00DFEF24 /* UIImage+Wordle.mm in Sources */,
 				F770FA491A7E5EB100DFEF24 /* RenderingTask.mm in Sources */,
 				F7C8D33F1A7123C200D7EDCE /* Word.m in Sources */,
@@ -423,7 +402,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7F95E271A7D183E00406446 /* Wordle_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

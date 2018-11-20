@@ -17,9 +17,9 @@ public:
     int x, y, width, height;
     
     int left()   { return x; }
-    int right()  { return x + width; }
+    int right()  { return x + width - 1; }
     int bottom() { return y; }
-    int top()    { return y + height; }
+    int top()    { return y + height - 1; }
     
     bool isEqual(MIRect rect)
     {
@@ -41,12 +41,12 @@ public:
     
     MIRect overlapRect(MIRect rect)
     {
-        int left   = x > rect.x ? x : rect.x;
-        int right  = x + width  > rect.x + rect.width  ? rect.x + rect.width  : x + width;
-        int bottom = y > rect.y ? y : rect.y;
-        int top    = y + height > rect.y + rect.height ? rect.y + rect.height : y + height;
+        int left = std::max(this->left(), rect.left());
+        int right = std::min(this->right(), rect.right());
+        int bottom = std::max(this->bottom(), rect.bottom());
+        int top = std::min(this->top(), rect.top());
         
-        return { left, bottom, right - left, top - bottom };
+        return { left, bottom, right - left + 1, top - bottom + 1};
     }
     
     bool operator == (MIRect rect)
